@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+  <title>知习 · 正在开启</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="startup.js" defer></script>
+</head>
+<body>
+  <main class="card">
+    <header class="titlebar"><div class="wordmark"><span class="brand-dot"></span>知习<span class="product">技术练习室</span></div><button id="close" aria-label="退出知习" title="退出">×</button></header>
+    <section class="hero" aria-label="知习启动动画">
+      <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+      <svg class="circuit" viewBox="0 0 300 160" fill="none" aria-hidden="true"><path d="M0 40h61l28 28h34M0 120h61l28-28h34M300 40h-61l-28 28h-34M300 120h-61l-28-28h-34M150 0v42M150 160v-42"/><circle cx="61" cy="40" r="3"/><circle cx="61" cy="120" r="3"/><circle cx="239" cy="40" r="3"/><circle cx="239" cy="120" r="3"/></svg>
+      <div class="chip"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="15" y="15" width="34" height="34" rx="7"/><path d="M25 7v8m14-8v8M25 49v8m14-8v8M7 25h8m-8 14h8m34-14h8m-8 14h8"/><rect x="25" y="25" width="14" height="14" rx="3"/></svg></div>
+      <span class="spark spark-one"></span><span class="spark spark-two"></span>
+    </section>
+    <div class="intro"><span class="eyebrow">A LITTLE PRACTICE. A LITTLE PROGRESS.</span><h1>让理解，在练习中生长。</h1></div>
+    <section class="loading" aria-label="启动进度">
+      <div class="progress-heading"><span id="phase" role="status">正在开启你的学习空间</span><span class="percentage"><strong id="percent">0</strong><span>%</span></span></div>
+      <progress id="progress" max="100" value="0" aria-label="知习启动进度">0%</progress>
+      <div class="step-dots" aria-hidden="true"><i data-at="12"></i><i data-at="35"></i><i data-at="62"></i><i data-at="86"></i><i data-at="100"></i></div>
+    </section>
+    <section class="quote-panel"><span class="quote-mark" aria-hidden="true">“</span><div><span class="quote-caption">给今天的你</span><p id="quote">保持练习，也给理解留一点生长的时间。</p></div></section>
+    <section class="error-panel" id="error-panel" hidden><p id="error-detail" role="alert"></p><div><button id="retry">重新启动</button><button id="exit">退出</button></div></section>
+    <footer><span><i class="local-dot"></i>本地学习 · 安心积累</span><span id="version">知习</span></footer>
+  </main>
+</body>
+</html>

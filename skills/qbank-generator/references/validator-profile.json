@@ -1,0 +1,18 @@
+{
+  "protocol_version": "1.0",
+  "app_version": "0.1.0",
+  "updated": "2026-10-27",
+  "node_minimum": "18",
+  "schema_sha256": "b800bc7ad243396325d93abbcf8142d3f2017d6023fc4fa27d15ba5542aa3110",
+  "validator_sha256": "83d2184f87cc77eb3ac0902c2bfeceb029ad6da7525d541ff8686f52f5572c3c",
+  "engine": "Bundled snapshot of TechPractice QBankValidator plus current-profile and baseline checks",
+  "dependencies": {
+    "adm-zip": "0.6.1",
+    "ajv": "8.20.0",
+    "jsonc-parser": "3.3.1",
+    "fast-deep-equal": "3.1.3",
+    "fast-uri": "3.1.9",
+    "json-schema-traverse": "1.0.0",
+    "require-from-string": "2.0.2"
+  }
+}

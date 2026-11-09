@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.png binary
+*.ico binary
+skills/** -text
+**/THIRD_PARTY_NOTICES.txt -whitespace
+skills/qbank-generator/scripts/validate_qbank.cjs -whitespace

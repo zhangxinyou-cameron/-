@@ -1,0 +1,95 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url);
+let playwright;
+try { playwright = require('playwright'); } catch { playwright = require('C:/Users/Asus/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'); }
+const {_electron:electron}=playwright;
+const root=path.resolve('.'),out=path.join(root,'test-results/ui');fs.mkdirSync(out,{recursive:true});
+const data=fs.mkdtempSync(path.join(out,'data-'));
+const env={...process.env,TECH_PRACTICE_TEST:'1',TECH_PRACTICE_DATA_DIR:data};delete env.ELECTRON_RUN_AS_NODE;
+const executable=process.env.TECH_PACKAGED_EXE||path.join(root,'node_modules/electron/dist/electron.exe');
+const app=await electron.launch({executablePath:executable,args:[...(process.env.TECH_PACKAGED_EXE?[]:[root]),'--user-data-dir='+path.join(data,'chromium')],env,timeout:30000});
+const checks=[],errors=[];
+const screenshot=async name=>{await app.evaluate(async({BrowserWindow})=>{await BrowserWindow.getAllWindows()[0].webContents.capturePage(undefined,{stayHidden:true,stayAwake:true})});await new Promise(r=>setTimeout(r,180));const data=await app.evaluate(async({BrowserWindow})=>(await BrowserWindow.getAllWindows()[0].webContents.capturePage(undefined,{stayHidden:true,stayAwake:true})).toPNG().toString('base64'));fs.writeFileSync(path.join(out,name),Buffer.from(data,'base64'))};
+try{
+  let page;
+  for(let n=0;n<600;n++){page=app.windows().find(p=>p.url().endsWith('/dist/index.html'));if(page&&!app.windows().some(p=>p.url().endsWith('/startup/index.html')))break;await new Promise(r=>setTimeout(r,50));}
+  assert.ok(page,'Main window did not load');page.on('pageerror',e=>errors.push(e.message));
+  await page.getByRole('heading',{name:'今天，学会一点新东西。'}).waitFor({timeout:30000});
+  await screenshot('01-home.png');checks.push('Desktop starts with seeded local database');
+  for(const title of ['我的题库','知识专题','错题与复习','收藏与笔记','学习统计','运行环境','偏好与数据']){
+    await page.locator('.sidebar nav').getByRole('button',{name:title,exact:true}).click();
+    await page.getByRole('heading',{name:title,exact:true}).waitFor();
+    if(title==='运行环境')await page.getByRole('heading',{name:'Python',exact:true}).waitFor({timeout:30000});
+  }
+  checks.push('All eight navigation pages render');
+  await page.locator('.sidebar nav').getByRole('button',{name:'我的题库',exact:true}).click();
+  await page.getByRole('button',{name:'Python 元组与可变元素',exact:true}).click();
+  await page.getByRole('heading',{name:'Python 元组与可变元素',exact:true}).waitFor();
+  assert.equal(await page.getByRole('button',{name:'提交答案',exact:true}).isEnabled(),false);
+  await page.getByRole('radio',{name:'错误',exact:true}).click();
+  await page.getByRole('button',{name:'提交答案',exact:true}).click();
+  await page.getByRole('heading',{name:'回答正确',exact:true}).waitFor();
+  let boot=await page.evaluate(()=>window.practice.call('bootstrap'));
+  assert.equal(boot.overview.totalAttempts,1);assert.equal(boot.overview.todayPass,1);checks.push('False is a valid answer and creates one independent correct attempt');
+  await page.getByRole('button',{name:'收藏',exact:true}).click();
+  await page.getByRole('button',{name:'笔记',exact:true}).click();
+  await page.getByRole('textbox',{name:'题目笔记',exact:true}).fill('UI 测试笔记：元组可以引用可变对象。');
+  await page.waitForTimeout(1000);
+  await screenshot('02-objective-note.png');
+  const note=await page.evaluate(()=>window.practice.call('question',{key:'python-fundamentals/python_tuple_mutability@1'}));
+  assert.match(note.annotation.note,/UI 测试笔记/);assert.equal(note.annotation.bookmarked,1);checks.push('Bookmarks and note autosave persist in SQLite');
+  await app.evaluate(({dialog})=>{dialog.showMessageBox=async()=>({response:1,checkboxChecked:false})});
+  await page.locator('.sidebar nav').getByRole('button',{name:'运行环境',exact:true}).click();
+  await page.getByRole('button',{name:/本机环境/}).click();
+  await page.locator('.trust-list>div').filter({hasText:'Python 编程入门'}).getByRole('button',{name:'确认信任',exact:true}).click();
+  await page.getByText('已信任当前内容',{exact:true}).waitFor();
+  await screenshot('03-environments.png');
+  await page.locator('.sidebar nav').getByRole('button',{name:'我的题库',exact:true}).click();
+  await page.getByRole('button',{name:'求所有输入整数之和',exact:true}).click();
+  await page.getByRole('heading',{name:'求所有输入整数之和',exact:true}).waitFor();
+  await page.locator('.code-editor .monaco-editor').waitFor();
+  await page.locator('.code-editor .monaco-editor .view-lines').click({position:{x:70,y:15}});
+  await page.keyboard.press('Control+A');await page.keyboard.insertText('import sys\nprint(sum(map(int, sys.stdin.read().split())))\n');
+  await page.getByRole('button',{name:'运行样例',exact:true}).click();
+  await page.getByText('运行完成',{exact:true}).waitFor({timeout:30000});
+  boot=await page.evaluate(()=>window.practice.call('bootstrap'));assert.equal(boot.overview.totalAttempts,1);
+  await page.getByRole('button',{name:'正式提交',exact:true}).click();
+  await page.getByText('正式测试通过',{exact:true}).first().waitFor({timeout:30000});
+  boot=await page.evaluate(()=>window.practice.call('bootstrap'));assert.equal(boot.overview.totalAttempts,2);
+  await screenshot('04-code-passed.png');checks.push('Offline Monaco editing and actual Python sample/formal judging work; sample does not inflate statistics');
+  await page.locator('.sidebar nav').getByRole('button',{name:'我的题库',exact:true}).click();
+  await page.getByRole('button',{name:'导入题库',exact:true}).click();
+  await page.getByRole('button',{name:'粘贴 JSON',exact:true}).click();
+  await page.getByRole('textbox',{name:'题库 JSON 输入'}).fill('{"schema_version":"1.0"}');
+  await page.getByRole('button',{name:'校验并预览',exact:true}).click();
+  await page.getByRole('heading',{name:'暂时无法导入',exact:true}).waitFor();
+  const bank=JSON.parse(fs.readFileSync(path.join(root,'assets/demo-bank.json'),'utf8'));bank.bank_id='ui-import';bank.title='UI 导入验证题库';bank.questions=[bank.questions[2]];bank.files={};
+  await page.getByRole('textbox',{name:'题库 JSON 输入'}).fill(JSON.stringify(bank));
+  await page.getByRole('button',{name:'校验并预览',exact:true}).click();
+  await page.getByRole('button',{name:'确认导入',exact:true}).click();
+  await page.getByRole('heading',{name:'UI 导入验证题库',exact:true}).waitFor();checks.push('UI rejects malformed banks and imports a validated bank after preview');
+  await page.locator('.sidebar nav').getByRole('button',{name:'学习统计',exact:true}).click();
+  await page.getByRole('button',{name:/首次正确率/}).click();
+  await page.getByRole('dialog',{name:'学习记录'}).waitFor();
+  await page.getByRole('dialog',{name:'学习记录'}).getByText('Python 元组与可变元素',{exact:true}).waitFor();
+  await page.getByRole('button',{name:'关闭对话框'}).click();checks.push('Statistics drill down to their source submissions');
+  await screenshot('05-statistics.png');
+  await page.locator('.sidebar nav').getByRole('button',{name:'偏好与数据',exact:true}).click();
+  const backupFile=path.join(data,'ui-export.zip');
+  await app.evaluate(({dialog},file)=>{dialog.showSaveDialog=async()=>({canceled:false,filePath:file})},backupFile);
+  await page.getByRole('button',{name:'导出全部备份',exact:true}).click();
+  await page.waitForTimeout(400);assert.equal(fs.existsSync(backupFile),true);checks.push('Backup export works through the desktop file dialog');
+  await page.locator('.sidebar nav').getByRole('button',{name:'今日学习',exact:true}).click();
+  const geometry=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,sidebar:document.querySelector('.sidebar').getBoundingClientRect().width}));
+  assert.equal(geometry.overflow,false);
+  assert.deepEqual(errors,[]);
+  const summary={checks,errors,dataDirectory:data,packaged:!!process.env.TECH_PACKAGED_EXE};
+  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(summary,null,2));console.log(JSON.stringify(summary));
+}catch(error){
+  console.error('Original test error:',error);
+  const pages=app.windows();if(pages[0]){try{await screenshot('failure.png')}catch{}console.error((await pages[0].locator('body').innerText()).slice(-7000))}
+  console.error('Page errors:',errors);throw error;
+}finally{await app.close()}

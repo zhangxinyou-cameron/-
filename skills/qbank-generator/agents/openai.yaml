@@ -1,0 +1,4 @@
+interface:
+  display_name: "知习题库生成"
+  short_description: "为知习生成可导入的数字IC与编程题库，支持格式校验、修复和增量更新"
+  default_prompt: "使用 $qbank-generator 按我的学习目标生成兼容知习初版的题库，并校验后交付 JSON 文件。"

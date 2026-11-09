@@ -1,39 +1,78 @@
-# 知习
+# 知习 · 技术练习室
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+个人数字 IC、Verilog、Python 和 C/C++ 刷题桌面软件。当前版本 **0.2.0**，使用 Electron、React、TypeScript、Monaco 和 SQLite，学习数据保存在本机。
 
-#### 软件架构
-软件架构说明
+![知习界面](docs/知习界面预览.png)
 
+## 功能
 
-#### 安装教程
+- 单选、多选、判断题即时判分；编程/RTL 题支持代码编辑、样例运行、正式评测、日志及 VCD 导出。
+- Python、C11、C++17 和基础 Verilog-2005 运行适配器，可使用本机工具或 Docker。
+- QBank 1.0 JSON/ZIP 导入、格式和语义校验、版本与历史；配套 AI 出题提示词和 qbank-generator 技能。
+- 错题复习、收藏、笔记、草稿自动保存、学习统计、CSV 导出和备份恢复。
+- Windows exe 启动器、按实际初始化阶段更新的进度，以及 24 条本地轮换学习寄语。
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+![启动过场](docs/知习启动过场预览.png)
 
-#### 使用说明
+## 从源码运行
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+需要 Node.js 24、npm 和 Windows。Windows 启动器使用系统自带的 .NET Framework C# 编译器构建。
 
-#### 参与贡献
+```powershell
+cd tech-practice
+npm ci
+npm run prepare:assets
+npm test
+npm run build
+npm start
+```
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+prepare:assets 从 npm 依赖生成 sql.js 的 WASM，并准备内置题库。Git 仓库不携带下载的 Python、Icarus、GTKWave、Electron 运行库或个人学习数据库；npm ci 会按锁文件安装依赖并下载 Electron。
 
+Python 练习可在「运行环境」选择已安装的 Python；也可从 [Python 官方](https://www.python.org/downloads/windows/)获取 Windows embeddable 包，完整解压到 tech-practice/assets/python/ 并保留许可证。Verilog 需要 iverilog.exe 和 vvp.exe；C/C++ 需要对应编译器，环境页可指定路径。
 
-#### 特技
+## 构建 Windows 程序
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+```powershell
+cd tech-practice
+npm run package
+```
+
+输出位于 tech-practice/release/TechPractice-win32-x64/，双击其中的知习.exe。仓库根目录也会生成入口知习.exe，须与 tech-practice 文件夹保留当前相对位置。
+
+更新资源后，正常退出旧窗口再打开新入口。学习数据库沿用 %APPDATA%/TechPractice，与程序目录分开。
+
+## 题库与文档
+
+- [Verilog 时序逻辑 200 题](题库/Verilog时序逻辑200题.qbank.json)：100 单选、40 多选、40 判断、20 RTL，源码与测试均内联，直接导入 JSON。
+- [QBank 协议与示例](题库协议与示例/)：Schema、AI 出题提示词、完整示例。
+- [qbank-generator 技能](skills/qbank-generator/SKILL.md)：生成、校验、修复及增量更新题库。
+- [功能设计文档](docs/个人技术刷题软件功能设计文档.md)。
+- [启动功能测试报告](tech-practice/STARTUP_TEST_REPORT.md)。
+
+结构校验不等于知识内容的完整正确性，请结合解析和实际测试学习。
+
+## 验证
+
+```powershell
+cd tech-practice
+npm test
+npm run test:startup
+npm run test:ui
+```
+
+启动/桌面测试需要可运行 Electron 的 Windows 桌面，使用独立数据库和 Chromium profile。构建产物、下载缓存和个人学习数据已加入 .gitignore。
+
+## 目录
+
+```text
+tech-practice/       应用源码、资源、测试、启动器和构建脚本
+docs/               功能设计、使用补充和界面预览
+题库/               可导入的学习题库
+题库协议与示例/      QBank 1.0 Schema、提示词和示例
+skills/             qbank-generator 技能
+```
+
+本机模式以当前账户权限运行代码；隔离和资源限制依赖容器后端，详见软件内环境说明。功能仿真不代替综合、CDC 检查或实现后 STA。
+
+第三方依赖按各自许可证使用，见 [THIRD_PARTY_NOTICES](tech-practice/assets/THIRD_PARTY_NOTICES.txt)。

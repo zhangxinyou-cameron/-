@@ -1,0 +1,1325 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "bank_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+    },
+    "bank_version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "locale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1
+    },
+    "knowledge_points": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/knowledge"
+      },
+      "minItems": 1
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/question"
+      },
+      "minItems": 1
+    },
+    "files": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/path"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/file"
+      }
+    },
+    "extensions": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "bank_id",
+    "bank_version",
+    "title",
+    "description",
+    "locale",
+    "authors",
+    "license",
+    "knowledge_points",
+    "questions",
+    "files"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QBank 1.0 personal technical learning bank",
+  "$defs": {
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:])(?!.*//)(?!.*\\/$)[^\\x00-\\x1F]+$"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "locator",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "knowledge": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "option": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "text_md": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "text_md"
+      ],
+      "additionalProperties": false
+    },
+    "mapping": {
+      "type": "object",
+      "properties": {
+        "source_path": {
+          "$ref": "#/$defs/path"
+        },
+        "target_path": {
+          "$ref": "#/$defs/path"
+        }
+      },
+      "required": [
+        "source_path",
+        "target_path"
+      ],
+      "additionalProperties": false
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "per_case_wall_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "compile_wall_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "job_wall_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "memory_mib": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "compile_memory_mib": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "output_kib": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "artifact_mib": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "processes": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "per_case_wall_ms",
+        "compile_wall_ms",
+        "job_wall_ms",
+        "memory_mib",
+        "compile_memory_mib",
+        "output_kib",
+        "artifact_mib",
+        "processes"
+      ],
+      "additionalProperties": false
+    },
+    "case": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "visibility": {
+          "enum": [
+            "sample",
+            "private"
+          ]
+        },
+        "stdin": {
+          "type": "string"
+        },
+        "expected_stdout": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "visibility",
+        "stdin",
+        "expected_stdout"
+      ],
+      "additionalProperties": false
+    },
+    "stdio_judge": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "stdio"
+        },
+        "comparator": {
+          "enum": [
+            "exact",
+            "trim_end"
+          ]
+        },
+        "tests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/case"
+          },
+          "minItems": 2
+        }
+      },
+      "required": [
+        "kind",
+        "comparator",
+        "tests"
+      ],
+      "additionalProperties": false
+    },
+    "hdl_judge": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "hdl_testbench"
+        },
+        "testbench_files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mapping"
+          },
+          "minItems": 1
+        },
+        "top_module": {
+          "type": "string",
+          "minLength": 1
+        },
+        "check_count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "kind",
+        "testbench_files",
+        "top_module",
+        "check_count"
+      ],
+      "additionalProperties": false
+    },
+    "port": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "direction": {
+          "enum": [
+            "input",
+            "output",
+            "inout"
+          ]
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "name",
+        "direction",
+        "width"
+      ],
+      "additionalProperties": false
+    },
+    "rtl_spec": {
+      "type": "object",
+      "properties": {
+        "dut_top_module": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/port"
+          },
+          "minItems": 1
+        },
+        "timescale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clock_reset_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "latency_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "simulation_limit_ns": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "parameters_md": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dut_top_module",
+        "ports",
+        "timescale",
+        "clock_reset_md",
+        "latency_md",
+        "required_capabilities",
+        "simulation_limit_ns",
+        "parameters_md"
+      ],
+      "additionalProperties": false
+    },
+    "file": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "inline"
+            },
+            "role": {
+              "enum": [
+                "starter",
+                "reference",
+                "test",
+                "asset"
+              ]
+            },
+            "content": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "role",
+            "content"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "asset"
+            },
+            "role": {
+              "enum": [
+                "starter",
+                "reference",
+                "test",
+                "asset"
+              ]
+            },
+            "package_path": {
+              "$ref": "#/$defs/path"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "kind",
+            "role",
+            "package_path",
+            "sha256"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "code_execution": {
+      "type": "object",
+      "properties": {
+        "runtime_ref": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "entry_file": {
+          "$ref": "#/$defs/path"
+        },
+        "starter_files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mapping"
+          },
+          "minItems": 1
+        },
+        "reference_files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mapping"
+          },
+          "minItems": 1
+        },
+        "limits": {
+          "$ref": "#/$defs/limits"
+        },
+        "judge": {
+          "$ref": "#/$defs/stdio_judge"
+        }
+      },
+      "required": [
+        "runtime_ref",
+        "entry_file",
+        "starter_files",
+        "reference_files",
+        "limits",
+        "judge"
+      ],
+      "additionalProperties": false
+    },
+    "rtl_execution": {
+      "type": "object",
+      "properties": {
+        "runtime_ref": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "entry_file": {
+          "$ref": "#/$defs/path"
+        },
+        "starter_files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mapping"
+          },
+          "minItems": 1
+        },
+        "reference_files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mapping"
+          },
+          "minItems": 1
+        },
+        "limits": {
+          "$ref": "#/$defs/limits"
+        },
+        "judge": {
+          "$ref": "#/$defs/hdl_judge"
+        },
+        "rtl_spec": {
+          "$ref": "#/$defs/rtl_spec"
+        }
+      },
+      "required": [
+        "runtime_ref",
+        "entry_file",
+        "starter_files",
+        "reference_files",
+        "limits",
+        "judge",
+        "rtl_spec"
+      ],
+      "additionalProperties": false
+    },
+    "single_choice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "type": {
+          "const": "single_choice"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "knowledge_point_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "primary_knowledge_point_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "estimated_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stem_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "answer": {
+          "type": "object",
+          "properties": {
+            "options": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/option"
+              },
+              "minItems": 2
+            },
+            "correct_option_id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+            }
+          },
+          "required": [
+            "options",
+            "correct_option_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "type",
+        "title",
+        "domain",
+        "knowledge_point_ids",
+        "primary_knowledge_point_id",
+        "difficulty",
+        "estimated_minutes",
+        "stem_md",
+        "explanation_md",
+        "hints",
+        "sources",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "multiple_choice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "type": {
+          "const": "multiple_choice"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "knowledge_point_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "primary_knowledge_point_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "estimated_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stem_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "answer": {
+          "type": "object",
+          "properties": {
+            "options": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/option"
+              },
+              "minItems": 2
+            },
+            "correct_option_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "options",
+            "correct_option_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "type",
+        "title",
+        "domain",
+        "knowledge_point_ids",
+        "primary_knowledge_point_id",
+        "difficulty",
+        "estimated_minutes",
+        "stem_md",
+        "explanation_md",
+        "hints",
+        "sources",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "true_false": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "type": {
+          "const": "true_false"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "knowledge_point_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "primary_knowledge_point_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "estimated_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stem_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "answer": {
+          "type": "object",
+          "properties": {
+            "correct": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "correct"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "type",
+        "title",
+        "domain",
+        "knowledge_point_ids",
+        "primary_knowledge_point_id",
+        "difficulty",
+        "estimated_minutes",
+        "stem_md",
+        "explanation_md",
+        "hints",
+        "sources",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "fill_blank": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "type": {
+          "const": "fill_blank"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "knowledge_point_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "primary_knowledge_point_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "estimated_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stem_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "answer": {
+          "type": "object",
+          "properties": {
+            "blanks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+                  },
+                  "accepted_answers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                  },
+                  "case_sensitive": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "accepted_answers",
+                  "case_sensitive"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "blanks"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "type",
+        "title",
+        "domain",
+        "knowledge_point_ids",
+        "primary_knowledge_point_id",
+        "difficulty",
+        "estimated_minutes",
+        "stem_md",
+        "explanation_md",
+        "hints",
+        "sources",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "short_answer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "type": {
+          "const": "short_answer"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "knowledge_point_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "primary_knowledge_point_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "estimated_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stem_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "rubric": {
+          "type": "object",
+          "properties": {
+            "max_score": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "criteria": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "points": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "id",
+                  "description",
+                  "points"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            },
+            "reference_answer_md": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "max_score",
+            "criteria",
+            "reference_answer_md"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "type",
+        "title",
+        "domain",
+        "knowledge_point_ids",
+        "primary_knowledge_point_id",
+        "difficulty",
+        "estimated_minutes",
+        "stem_md",
+        "explanation_md",
+        "hints",
+        "sources",
+        "rubric"
+      ],
+      "additionalProperties": false
+    },
+    "code": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "type": {
+          "const": "code"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "knowledge_point_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "primary_knowledge_point_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "estimated_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stem_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "execution": {
+          "$ref": "#/$defs/code_execution"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "type",
+        "title",
+        "domain",
+        "knowledge_point_ids",
+        "primary_knowledge_point_id",
+        "difficulty",
+        "estimated_minutes",
+        "stem_md",
+        "explanation_md",
+        "hints",
+        "sources",
+        "execution"
+      ],
+      "additionalProperties": false
+    },
+    "rtl": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "type": {
+          "const": "rtl"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "knowledge_point_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "primary_knowledge_point_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,95}$"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "estimated_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stem_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "execution": {
+          "$ref": "#/$defs/rtl_execution"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "type",
+        "title",
+        "domain",
+        "knowledge_point_ids",
+        "primary_knowledge_point_id",
+        "difficulty",
+        "estimated_minutes",
+        "stem_md",
+        "explanation_md",
+        "hints",
+        "sources",
+        "execution"
+      ],
+      "additionalProperties": false
+    },
+    "question": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/single_choice"
+        },
+        {
+          "$ref": "#/$defs/multiple_choice"
+        },
+        {
+          "$ref": "#/$defs/true_false"
+        },
+        {
+          "$ref": "#/$defs/fill_blank"
+        },
+        {
+          "$ref": "#/$defs/short_answer"
+        },
+        {
+          "$ref": "#/$defs/code"
+        },
+        {
+          "$ref": "#/$defs/rtl"
+        }
+      ]
+    }
+  },
+  "$comment": "Structural validation only. Apply the semantic checks in design section 7.7 before import."
+}

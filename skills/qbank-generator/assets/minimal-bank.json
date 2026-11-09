@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "bank_id": "qbank-minimal-example",
+  "bank_version": "1.0.0",
+  "title": "最小单选题库",
+  "description": "当前软件五种自动判分题型，包含 Python、C、C++ 和基础 Verilog。结构示例不代表编译仿真均已执行。",
+  "locale": "zh-CN",
+  "authors": [
+    "个人技术刷题软件设计示例"
+  ],
+  "license": "原创示例，可用于个人学习和本项目开发；不包含第三方题库授权。",
+  "knowledge_points": [
+    {
+      "id": "verilog_basics",
+      "name": "Verilog 基础"
+    }
+  ],
+  "questions": [
+    {
+      "id": "rtl_seq_assign",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "时序逻辑赋值方式",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "verilog_basics"
+      ],
+      "primary_knowledge_point_id": "verilog_basics",
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "stem_md": "在单时钟同步 RTL 中，为避免时钟沿触发过程之间的阻塞赋值竞态，描述触发器状态更新通常推荐哪种写法？",
+      "explanation_md": "opt_b 正确：时序状态更新通常采用非阻塞赋值。opt_a 阻塞赋值可能使同沿过程相互依赖执行次序。opt_c 连续赋值不直接描述该类时序状态更新。opt_d 延迟不能作为综合 RTL 的通用竞态解决方法。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "原创协议示例",
+          "locator": "qbank-generator 内置示例",
+          "note": "用于理解格式；实际出题需按目标知识与工具独立校验。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "在时钟沿过程里全部使用阻塞赋值 ="
+          },
+          {
+            "id": "opt_b",
+            "text_md": "在时钟沿过程里使用非阻塞赋值 <="
+          },
+          {
+            "id": "opt_c",
+            "text_md": "将状态更新全部改成 assign 连续赋值"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "给每条语句加入任意 # 延迟"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    }
+  ],
+  "files": {}
+}

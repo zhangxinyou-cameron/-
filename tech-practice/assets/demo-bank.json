@@ -1,0 +1,432 @@
+{
+  "schema_version": "1.0",
+  "bank_id": "personal-tech-demo",
+  "bank_version": "1.0.0",
+  "title": "个人技术学习协议演示题库",
+  "description": "七种题型的结构示例，包含 Python 和基础 Verilog 的完整内联文件。",
+  "locale": "zh-CN",
+  "authors": [
+    "个人技术刷题软件设计示例"
+  ],
+  "license": "原创示例，可用于个人学习和本项目开发；不包含第三方题库授权。",
+  "knowledge_points": [
+    {
+      "id": "verilog_basics",
+      "name": "Verilog 基础"
+    },
+    {
+      "id": "reset_basics",
+      "name": "时钟复位与时序逻辑"
+    },
+    {
+      "id": "python_basics",
+      "name": "Python 基础"
+    },
+    {
+      "id": "cdc_basics",
+      "name": "跨时钟域基础"
+    }
+  ],
+  "questions": [
+    {
+      "id": "rtl_seq_assign",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "时序逻辑赋值方式",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "verilog_basics"
+      ],
+      "primary_knowledge_point_id": "verilog_basics",
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "stem_md": "在单时钟同步 RTL 中，为避免时钟沿触发过程之间的阻塞赋值竞态，描述触发器状态更新通常推荐哪种写法？",
+      "explanation_md": "opt_b 正确：时序状态更新通常采用非阻塞赋值。opt_a 阻塞赋值可能使同沿过程相互依赖执行次序。opt_c 连续赋值不直接描述该类时序状态更新。opt_d 延迟不能作为综合 RTL 的通用竞态解决方法。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "原创协议演示题",
+          "locator": "本设计文档配套示例",
+          "note": "用于演示格式，正式发布前应复核。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "在时钟沿过程里全部使用阻塞赋值 ="
+          },
+          {
+            "id": "opt_b",
+            "text_md": "在时钟沿过程里使用非阻塞赋值 <="
+          },
+          {
+            "id": "opt_c",
+            "text_md": "将状态更新全部改成 assign 连续赋值"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "给每条语句加入任意 # 延迟"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sync_reset_properties",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "同步复位的行为",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "reset_basics"
+      ],
+      "primary_knowledge_point_id": "reset_basics",
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "stem_md": "对于仅由上升沿触发、复位优先的同步复位寄存器，哪些说法正确？",
+      "explanation_md": "opt_a、opt_c 正确。同步复位仅在指定采样沿生效；没有有效沿不会更新状态；异步复位不属于本题前提。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "原创协议演示题",
+          "locator": "本设计文档配套示例",
+          "note": "用于演示格式，正式发布前应复核。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "复位在有效采样沿满足条件时才更新寄存器"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "复位信号一变化，寄存器输出必定立刻更新"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "没有时钟采样沿时，复位拉高本身不会使该寄存器更新"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "同步复位与异步复位的过程敏感事件必须完全相同"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "python_tuple_mutability",
+      "revision": 1,
+      "type": "true_false",
+      "title": "Python 元组与可变元素",
+      "domain": "programming",
+      "knowledge_point_ids": [
+        "python_basics"
+      ],
+      "primary_knowledge_point_id": "python_basics",
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "stem_md": "判断：只要一个对象是 Python tuple，它所引用的所有内部对象也一定都不可变。",
+      "explanation_md": "错误。元组本身的元素引用不能通过索引赋值替换，但元组可以引用列表等可变对象，例如 t = ([1],)，t[0].append(2) 可以修改列表。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "原创协议演示题",
+          "locator": "本设计文档配套示例",
+          "note": "用于演示格式，正式发布前应复核。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "verilog_assign_keyword",
+      "revision": 1,
+      "type": "fill_blank",
+      "title": "连续赋值关键字",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "verilog_basics"
+      ],
+      "primary_knowledge_point_id": "verilog_basics",
+      "difficulty": 1,
+      "estimated_minutes": 2,
+      "stem_md": "在 Verilog 中，用于连续赋值的关键字是 {{keyword}}。",
+      "explanation_md": "关键字为 assign，Verilog 关键字区分大小写。本题是 P1 预留题型示例。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "原创协议演示题",
+          "locator": "本设计文档配套示例",
+          "note": "用于演示格式，正式发布前应复核。"
+        }
+      ],
+      "answer": {
+        "blanks": [
+          {
+            "id": "keyword",
+            "accepted_answers": [
+              "assign"
+            ],
+            "case_sensitive": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "cdc_two_flop_limits",
+      "revision": 1,
+      "type": "short_answer",
+      "title": "两级同步器的使用边界",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "cdc_basics"
+      ],
+      "primary_knowledge_point_id": "cdc_basics",
+      "difficulty": 3,
+      "estimated_minutes": 8,
+      "stem_md": "说明两级触发器同步器适合的信号类型，以及它对短脉冲和多位数据分别有什么局限。",
+      "explanation_md": "这是主观题，依据量表自评或由 AI 辅助评价；不以关键词命中直接断言硬件安全。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "原创协议演示题",
+          "locator": "本设计文档配套示例",
+          "note": "用于演示格式，正式发布前应复核。"
+        }
+      ],
+      "rubric": {
+        "max_score": 6,
+        "criteria": [
+          {
+            "id": "single_bit",
+            "description": "适用于满足相应假设的单比特控制/电平信号；降低亚稳态传播概率，不能声称完全消除亚稳态。",
+            "points": 2
+          },
+          {
+            "id": "pulse",
+            "description": "短脉冲可能被目标时钟漏采，需按场景采用脉冲展宽、翻转编码或握手等方案。",
+            "points": 2
+          },
+          {
+            "id": "multibit",
+            "description": "多位分别同步不能保证原子一致性，应考虑握手、异步 FIFO 或适用的编码方案。",
+            "points": 2
+          }
+        ],
+        "reference_answer_md": "两级同步器主要用于适合的单比特跨域控制信号，作用是降低亚稳态传播风险。短脉冲可能漏采，多位信号逐位同步可能形成混合值；需要结合时钟关系、速率和协议选择方案。"
+      }
+    },
+    {
+      "id": "sum_all_integers",
+      "revision": 1,
+      "type": "code",
+      "title": "求所有输入整数之和",
+      "domain": "programming",
+      "knowledge_point_ids": [
+        "python_basics"
+      ],
+      "primary_knowledge_point_id": "python_basics",
+      "difficulty": 1,
+      "estimated_minutes": 5,
+      "stem_md": "编写 Python 完整程序，读取标准输入中以空白分隔的整数，输出它们的和。可以有零个整数；每个整数绝对值不超过 10^6，总数不超过 10^4。空输入输出 0。\n\n样例输入：`1 2 3`\n\n样例输出：`6`。",
+      "explanation_md": "读取并拆分全部输入，转为整数后求和。sum 的空序列结果是 0。测试覆盖正负数、空输入和多行空白。",
+      "hints": [
+        "可以先使用 sys.stdin.read() 读取全部输入。"
+      ],
+      "sources": [
+        {
+          "title": "原创协议演示题",
+          "locator": "本设计文档配套示例",
+          "note": "用于演示格式，正式发布前应复核。"
+        }
+      ],
+      "execution": {
+        "runtime_ref": "python-stdio-1",
+        "entry_file": "main.py",
+        "starter_files": [
+          {
+            "source_path": "python/starter/main.py",
+            "target_path": "main.py"
+          }
+        ],
+        "reference_files": [
+          {
+            "source_path": "python/reference/main.py",
+            "target_path": "main.py"
+          }
+        ],
+        "limits": {
+          "per_case_wall_ms": 2000,
+          "compile_wall_ms": 30000,
+          "job_wall_ms": 60000,
+          "memory_mib": 256,
+          "compile_memory_mib": 1024,
+          "output_kib": 1024,
+          "artifact_mib": 20,
+          "processes": 64
+        },
+        "judge": {
+          "kind": "stdio",
+          "comparator": "trim_end",
+          "tests": [
+            {
+              "id": "sample_basic",
+              "visibility": "sample",
+              "stdin": "1 2 3\n",
+              "expected_stdout": "6\n"
+            },
+            {
+              "id": "private_empty",
+              "visibility": "private",
+              "stdin": "",
+              "expected_stdout": "0\n"
+            },
+            {
+              "id": "private_signed",
+              "visibility": "private",
+              "stdin": "-3 1\n2\n",
+              "expected_stdout": "0\n"
+            },
+            {
+              "id": "private_single",
+              "visibility": "private",
+              "stdin": "1000000\n",
+              "expected_stdout": "1000000\n"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "counter4_sync_reset",
+      "revision": 1,
+      "type": "rtl",
+      "title": "带同步复位与使能的四位计数器",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "reset_basics"
+      ],
+      "primary_knowledge_point_id": "reset_basics",
+      "difficulty": 2,
+      "estimated_minutes": 10,
+      "stem_md": "实现 top_module(input clk, input rst, input en, output reg [3:0] count)。在 clk 上升沿采样，rst 高电平同步复位，优先于 en；非复位时 en 为 1 则加一，否则保持。计数按模 16 回绕。输出只保证在首次有效复位采样沿后确定，不要求初始化值。",
+      "explanation_md": "在 posedge clk 过程使用非阻塞赋值：先判断 rst，再判断 en。4 位寄存器自然截断得到模 16 计数。测试检查复位、使能保持、回绕和复位优先级；不评价实现时序或面积。",
+      "hints": [
+        "先明确 rst 与 en 同时有效时的优先级。"
+      ],
+      "sources": [
+        {
+          "title": "原创协议演示题",
+          "locator": "本设计文档配套示例",
+          "note": "用于演示格式，正式发布前应复核。"
+        }
+      ],
+      "execution": {
+        "runtime_ref": "iverilog-verilog-1",
+        "entry_file": "top_module.v",
+        "starter_files": [
+          {
+            "source_path": "rtl/starter/top_module.v",
+            "target_path": "top_module.v"
+          }
+        ],
+        "reference_files": [
+          {
+            "source_path": "rtl/reference/top_module.v",
+            "target_path": "top_module.v"
+          }
+        ],
+        "limits": {
+          "per_case_wall_ms": 2000,
+          "compile_wall_ms": 30000,
+          "job_wall_ms": 60000,
+          "memory_mib": 256,
+          "compile_memory_mib": 1024,
+          "output_kib": 1024,
+          "artifact_mib": 20,
+          "processes": 64
+        },
+        "judge": {
+          "kind": "hdl_testbench",
+          "testbench_files": [
+            {
+              "source_path": "rtl/test/tb.v",
+              "target_path": "tests/tb.v"
+            }
+          ],
+          "top_module": "tb",
+          "check_count": 24
+        },
+        "rtl_spec": {
+          "dut_top_module": "top_module",
+          "ports": [
+            {
+              "name": "clk",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "rst",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "en",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "count",
+              "direction": "output",
+              "width": 4
+            }
+          ],
+          "timescale": "1ns/1ps",
+          "clock_reset_md": "clk 周期 10 ns，上升沿采样；rst 高有效同步复位。测试在下降沿驱动输入，上升沿后 1 ns 检查输出。",
+          "latency_md": "count 在采样沿的非阻塞更新完成后有效；无额外流水线延迟。",
+          "required_capabilities": [
+            "verilog-2005",
+            "four-state",
+            "vcd"
+          ],
+          "simulation_limit_ns": 400,
+          "parameters_md": "无可配置参数，计数位宽固定为 4。"
+        }
+      }
+    }
+  ],
+  "files": {
+    "python/starter/main.py": {
+      "kind": "inline",
+      "role": "starter",
+      "content": "import sys\n\n# Read integers from stdin and print their sum.\n"
+    },
+    "python/reference/main.py": {
+      "kind": "inline",
+      "role": "reference",
+      "content": "import sys\n\nvalues = sys.stdin.read().split()\nprint(sum(int(value) for value in values))\n"
+    },
+    "rtl/starter/top_module.v": {
+      "kind": "inline",
+      "role": "starter",
+      "content": "module top_module(input wire clk, input wire rst, input wire en,\n                  output reg [3:0] count);\n// Implement the sequential logic here.\nendmodule\n"
+    },
+    "rtl/reference/top_module.v": {
+      "kind": "inline",
+      "role": "reference",
+      "content": "module top_module(input wire clk, input wire rst, input wire en,\n                  output reg [3:0] count);\nalways @(posedge clk) begin\n    if (rst) count <= 4'd0;\n    else if (en) count <= count + 4'd1;\nend\nendmodule\n"
+    },
+    "rtl/test/tb.v": {
+      "kind": "inline",
+      "role": "test",
+      "content": "`timescale 1ns/1ps\nmodule tb;\nreg clk = 0;\nreg rst = 0;\nreg en = 0;\nwire [3:0] count;\nreg [3:0] expected = 0;\ninteger checks = 0;\ninteger i;\ntop_module dut(.clk(clk), .rst(rst), .en(en), .count(count));\nalways #5 clk = ~clk;\ntask tick;\n    input next_rst;\n    input next_en;\n    begin\n        @(negedge clk);\n        rst = next_rst;\n        en = next_en;\n        @(posedge clk);\n        if (next_rst) expected = 4'd0;\n        else if (next_en) expected = expected + 4'd1;\n        #1;\n        checks = checks + 1;\n        if (count !== expected) begin\n            $display(\"QB_CHECK_FAIL index=%0d time=%0t expected=%0d actual=%0d\",\n                     checks, $time, expected, count);\n            $fatal(1, \"counter mismatch\");\n        end\n    end\nendtask\ninitial begin\n    $timeformat(-9, 1, \" ns\", 0);\n    $dumpfile(\"wave.vcd\");\n    $dumpvars(0, tb);\n    tick(1, 0);\n    for (i = 0; i < 18; i = i + 1) tick(0, 1);\n    tick(0, 0);\n    tick(1, 1);\n    tick(0, 0);\n    tick(0, 1);\n    tick(0, 1);\n    if (checks != 24) $fatal(1, \"incomplete checks\");\n    $display(\"QB_TEST_DONE checks=%0d\", checks);\n    $finish;\nend\ninitial begin\n    #400;\n    $fatal(1, \"simulation timeout\");\nend\nendmodule\n"
+    }
+  }
+}

@@ -1,36 +1,18 @@
-# 知习
+# Wisdom Cultivator (知习)
 
-#### Description
-{**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}
+A local-first Windows desktop practice app for digital IC, Verilog, Python, C and C++. Built with Electron, React, TypeScript, Monaco and SQLite. Current version: 0.2.0.
 
-#### Software Architecture
-Software architecture description
+Features include objective grading, code/RTL execution, QBank 1.0 imports, spaced review, bookmarks, notes, statistics, backups, and a native launcher with startup progress and rotating learning messages.
 
-#### Installation
+See the [Chinese README](README.md) for setup, packaging, question banks and documentation.
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+```powershell
+cd tech-practice
+npm ci
+npm run prepare:assets
+npm test
+npm run build
+npm start
+```
 
-#### Instructions
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Contribution
-
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
-
-
-#### Gitee Feature
-
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+Node.js 24 is required. Downloaded toolchains, build output and personal learning databases are excluded. Configure Python, C/C++ or Icarus Verilog in the app as needed. Run npm run package on Windows to build the portable application.
