@@ -6,6 +6,7 @@ import { Environments } from './environment.mjs';
 import { Runner } from './runner.mjs';
 import { Backups } from './backup.mjs';
 import { ensure, uid } from './util.mjs';
+import { Plugins } from './plugins/index.mjs';
 
 export async function createServices(root, assetDir, { onProgress = () => {} } = {}) {
   await onProgress(12, '读取你的学习记录');
@@ -35,7 +36,8 @@ export async function createServices(root, assetDir, { onProgress = () => {} } =
   await onProgress(78, '检查本地学习备份');
   try { backups.automatic(); } catch (error) { console.error('Automatic backup:', error.message); }
   await onProgress(86, '准备练习工作台');
-  return { root, assetDir, store, validator, environments, runner, backups };
+  const plugins = new Plugins({store,validator}); plugins.start();
+  return { root, assetDir, store, validator, environments, runner, backups, plugins };
 }
 
 export function gradeObjective(question, answer) {

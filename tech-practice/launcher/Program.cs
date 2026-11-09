@@ -10,8 +10,8 @@ using System.Windows.Forms;
 [assembly: AssemblyDescription("知习技术练习室启动入口")]
 [assembly: AssemblyCompany("TechPractice")]
 [assembly: AssemblyProduct("知习")]
-[assembly: AssemblyVersion("0.2.0.0")]
-[assembly: AssemblyFileVersion("0.2.0.0")]
+[assembly: AssemblyVersion("0.3.0.0")]
+[assembly: AssemblyFileVersion("0.3.0.0")]
 
 internal static class Program
 {
@@ -21,6 +21,7 @@ internal static class Program
         string root = AppDomain.CurrentDomain.BaseDirectory;
         string[] candidates = {
             Path.Combine(root, "TechPractice.exe"),
+            Path.Combine(root, "wisdom-cultivator", "tech-practice", "release", "TechPractice-win32-x64", "TechPractice.exe"),
             Path.Combine(root, "tech-practice", "release", "TechPractice-win32-x64", "TechPractice.exe")
         };
         string executable = candidates.FirstOrDefault(File.Exists);

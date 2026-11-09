@@ -2,7 +2,7 @@ import { app, BrowserWindow, clipboard, dialog, ipcMain, shell } from 'electron'
 import fs from 'node:fs';
 import path from 'node:path';
 import { createServices, gradeObjective } from './service.mjs';
-import { AppError, atomicWrite, ensure, hash, uid, within, localDay } from './util.mjs';
+import { AppError, atomicWrite, ensure, hash, uid, within, localDay, strictJSON } from './util.mjs';
 import { exportBank } from './qbank.mjs';
 import AdmZip from 'adm-zip';
 import { nextStartupQuote } from './startup.mjs';
@@ -11,7 +11,7 @@ app.setName('TechPractice');
 if (process.platform === 'win32') app.setAppUserModelId('local.techpractice.desktop');
 const gotLock = app.requestSingleInstanceLock();
 if (!gotLock) app.quit();
-let window, splash, services, closing = false;
+let window, splash, services, closing = false, pluginEditorDirty = false;
 let startupState = { progress: 0, message: '正在开启你的学习空间', quote: '', version: app.getVersion(), error: null, leaving: false };
 let rendererReady = false, mainLoaded = false, startupFinished = false, startupStartedAt = 0, startupWatchdog, startupTransition;
 const hiddenTest = process.env.TECH_PRACTICE_TEST === '1';
@@ -102,6 +102,7 @@ async function makeWindow() {
   window.webContents.on('did-fail-load', (_event, code, description, _url, isMainFrame) => { if (isMainFrame && code !== -3) failStartup(new Error(description)); });
   window.webContents.session.setPermissionRequestHandler((_contents, _permission, callback) => callback(false));
   window.on('close', event => {
+    if(pluginEditorDirty&&!closing){const choice=dialog.showMessageBoxSync(window,{type:'question',buttons:['继续编辑','放弃未保存修改并退出'],defaultId:0,cancelId:0,message:'学习内容尚未保存'});if(choice===0){event.preventDefault();return;}}
     if (services.runner.active && !closing) {
       const choice = dialog.showMessageBoxSync(window, { type: 'question', buttons: ['继续练习', '停止运行并退出'], defaultId: 0, cancelId: 0, message: '仍有代码任务正在运行', detail: '退出会停止本次运行，草稿会保留。' });
       if (choice === 0) { event.preventDefault(); return; }
@@ -116,8 +117,16 @@ async function makeWindow() {
 }
 
 const methods = {
+  learningExample:()=>{ensure(services.plugins.enabled('learning'),'插件已关闭');return JSON.parse(fs.readFileSync(path.join(services.assetDir,'learnpack-demo.json'),'utf8'));},
+  plugins:()=>services.plugins.list(),
+  togglePlugin:({id,enabled})=>{ensure(!pluginEditorDirty,'请先保存学习编辑内容');return services.plugins.toggle(id,enabled);},
+  plugin:({id,action,payload})=>services.plugins.call(id,action,payload),
+  pluginDirty:({dirty})=>{ensure(typeof dirty==='boolean','无效编辑状态');pluginEditorDirty=dirty;return true;},
+  confirmNavigation:async()=>{if(!pluginEditorDirty)return true;const r=await dialog.showMessageBox(window,{type:'question',buttons:['继续编辑','放弃未保存修改'],defaultId:0,cancelId:0,message:'学习内容尚未保存，是否离开？'});if(r.response===1){pluginEditorDirty=false;return true;}return false;},
+  importLearning:async()=>{ensure(services.plugins.enabled('learning'),'插件已关闭');const r=await dialog.showOpenDialog(window,{title:'导入学习课程 LearnPack',properties:['openFile'],filters:[{name:'LearnPack JSON',extensions:['json']}]});if(r.canceled)return null;ensure(fs.statSync(r.filePaths[0]).size<=8*1024*1024,'课程超过 8 MiB');return services.plugins.call('learning','import',{pack:strictJSON(fs.readFileSync(r.filePaths[0],'utf8'),8*1024*1024)});},
+  exportLearning:async({id})=>{const p=services.plugins.call('learning','export',{id});const r=await dialog.showSaveDialog(window,{title:'导出学习课程',defaultPath:'learning-course.json',filters:[{name:'LearnPack JSON',extensions:['json']}]});if(r.canceled)return null;atomicWrite(r.filePath,JSON.stringify(p,null,2));return true;},
   bootstrap: () => ({ overview: services.store.overview(), settings: services.store.getSettings(), version: app.getVersion(),
-    dataDirectory: services.root, banks: services.store.listBanks().map(b => ({ ...b, trusted: services.store.getSettings().trustedBanks.includes(b.id + ':' + hash(services.store.bank(b.id))) })) }),
+    dataDirectory: services.root, plugins: services.plugins.list(), banks: services.store.listBanks().map(b => ({ ...b, trusted: services.store.getSettings().trustedBanks.includes(b.id + ':' + hash(services.store.bank(b.id))) })) }),
   questions: params => services.store.listQuestions(params),
   question: ({ key }) => services.store.question(key),
   saveDraft: ({ key, draft }) => services.store.saveDraft(key, draft),

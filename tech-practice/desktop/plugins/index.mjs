@@ -1,0 +1,11 @@
+import {ensure} from '../util.mjs';
+import * as learning from './learning.mjs';
+export class Plugins{
+ constructor(context,definitions=[learning]){this.context=context;this.definitions=new Map();this.active=new Map();this.errors=new Map();for(const d of definitions){ensure(d.manifest.apiVersion===1&&/^[a-z][a-z0-9_-]*$/.test(d.manifest.id)&&!this.definitions.has(d.manifest.id),'插件协议或 ID 无效');this.definitions.set(d.manifest.id,d);}}
+ enabled(id){const d=this.definitions.get(id);ensure(d,'插件不存在');const r=this.context.store.one('SELECT value FROM meta WHERE key=?',['plugin-enabled:'+id]);return r?JSON.parse(r.value):d.manifest.defaultEnabled===true;}
+ activate(id){if(this.active.has(id))return;const d=this.definitions.get(id);const instance=d.activate(this.context);ensure(instance&&instance.handlers&&typeof instance.dispose==='function','插件缺少生命周期接口');this.active.set(id,instance);this.errors.delete(id);}
+ start(){for(const id of this.definitions.keys())if(this.enabled(id)){if(!this.errors.has(id))try{this.activate(id)}catch(e){this.errors.set(id,e.message)}}else if(this.active.has(id)){try{this.active.get(id).dispose()}catch(e){this.errors.set(id,e.message)}finally{this.active.delete(id)}}}
+ list(){this.start();return [...this.definitions.values()].map(d=>({...d.manifest,enabled:this.enabled(d.manifest.id),active:this.active.has(d.manifest.id),error:this.errors.get(d.manifest.id)||null}));}
+ toggle(id,enabled){ensure(typeof enabled==='boolean','插件开关必须是布尔值');ensure(this.definitions.has(id),'插件不存在');const previous=this.enabled(id);if(previous===enabled)return this.list();if(enabled)this.activate(id);try{this.context.store.transaction(()=>this.context.store.db.run('INSERT OR REPLACE INTO meta VALUES(?,?)',['plugin-enabled:'+id,JSON.stringify(enabled)]));}catch(e){if(enabled){try{this.active.get(id)?.dispose()}finally{this.active.delete(id)}}throw e;}if(!enabled){try{this.active.get(id)?.dispose()}catch(e){this.errors.set(id,e.message)}finally{this.active.delete(id)}}return this.list();}
+ call(id,action,payload={}){this.start();ensure(this.enabled(id),'插件已关闭');ensure(this.active.has(id),'插件启动失败：'+this.errors.get(id));const handlers=this.active.get(id).handlers;ensure(Object.hasOwn(handlers,action),'未知插件接口');return handlers[action](payload);}
+}

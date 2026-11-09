@@ -19,5 +19,11 @@ fs.copyFileSync('build/知习.exe',path.resolve('../知习.exe'));
 fs.writeFileSync(path.join(out, '使用说明.md'), fs.readFileSync('README.md','utf8').replace('双击工作区的 `知习.exe`，或 release/TechPractice-win32-x64/知习.exe。','双击本文件夹中的 `知习.exe`。'));
 if (fs.existsSync('TEST_REPORT.md')) fs.copyFileSync('TEST_REPORT.md', path.join(out, 'TEST_REPORT.md'));
 if (fs.existsSync('STARTUP_TEST_REPORT.md')) fs.copyFileSync('STARTUP_TEST_REPORT.md', path.join(out, 'STARTUP_TEST_REPORT.md'));
+if (fs.existsSync('LEARNING_TEST_REPORT.md')) fs.copyFileSync('LEARNING_TEST_REPORT.md', path.join(out, 'LEARNING_TEST_REPORT.md'));
+for (const name of ['学习资料协议.md','插件开发协议.md']) {
+  const file=path.resolve('../docs',name);
+  if(fs.existsSync(file))fs.copyFileSync(file,path.join(out,name));
+}
+fs.copyFileSync('assets/learnpack-demo.json',path.join(out,'learnpack-demo.json'));
 fs.writeFileSync(path.join(out, '启动知习.cmd'), '@echo off\r\nstart "" "%~dp0知习.exe"\r\n');
 console.log(exe);

@@ -3,6 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const parent = path.dirname(root), out = path.join(root, 'assets'); fs.mkdirSync(out, { recursive: true });
+const learningExample=path.join(parent,'examples','learnpack-demo.json');
+if(fs.existsSync(learningExample))fs.copyFileSync(learningExample,path.join(out,'learnpack-demo.json'));
 for (const [from, to] of [
   ['题库协议与示例/qbank.schema.json', 'qbank.schema.json'], ['题库协议与示例/AI生成题库提示词.md', 'AI生成题库提示词.md'],
   ['题库协议与示例/examples/demo-bank.json', 'demo-bank.json']

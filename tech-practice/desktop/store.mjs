@@ -47,9 +47,12 @@ export class Store {
   one(sql, params = []) { return this.all(sql, params)[0] ?? null; }
   save() { atomicWrite(this.file, Buffer.from(this.db.export())); }
   transaction(fn) {
+    if (this.inTransaction) return fn();
     const snapshot = this.db.export();
+    this.inTransaction = true;
     try { this.db.run('BEGIN IMMEDIATE'); const result = fn(); this.db.run('COMMIT'); this.save(); return result; }
     catch (error) { this.db.close(); this.db = new this.SQL.Database(snapshot); throw error; }
+    finally { this.inTransaction = false; }
   }
   getSettings() { const row = this.one('SELECT value FROM meta WHERE key=?', ['settings']); return { ...defaultSettings, ...row ? JSON.parse(row.value) : {} }; }
   setSettings(patch) {
