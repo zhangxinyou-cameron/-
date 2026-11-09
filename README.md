@@ -73,7 +73,7 @@ npm run test:ui
 .\scripts\Sync-Repositories.ps1 -ConfigureOnly
 ```
 
-之后正常提交并执行 `git push`，会将当前提交推送到两个平台的 main 和 master 分支，保持默认分支内容一致。也可以运行 `.\scripts\Sync-Repositories.ps1` 完成推送及远程提交核验。两个平台的写入权限分别使用本机 Git 凭据；不要把密码或访问令牌写入仓库。
+请在本地 main/master 分支上配置同步。之后正常提交并执行 `git push`，会将该本地主分支推送到两个平台的 main 和 master，保持默认分支内容一致。也可以运行 `.\scripts\Sync-Repositories.ps1` 完成推送及远程提交核验。映射固定到本地主分支，切换到特性分支不会将其意外覆盖到远程默认分支。两个平台的写入权限分别使用本机 Git 凭据；不要把密码或访问令牌写入仓库。
 
 推送遇到远程新提交时，先拉取整合再重试。跨平台推送不具有原子性，脚本会在失败时报告并停止，成功后核对四个分支均指向当前提交。
 

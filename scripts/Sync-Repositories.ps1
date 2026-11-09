@@ -5,6 +5,10 @@ Push-Location -LiteralPath $repoRoot
 try {
     $giteeUrl = 'https://gitee.com/zhang-xinyou/wisdom-cultivator.git'
     $githubUrl = 'https://github.com/zhangxinyou-cameron/-.git'
+    $sourceBranch = (git symbolic-ref --quiet --short HEAD).Trim()
+    if ($LASTEXITCODE -ne 0 -or $sourceBranch -notin @('main', 'master')) {
+        throw 'Run synchronization from the local main or master branch.'
+    }
     $remotes = @(git remote)
     if ($remotes -notcontains 'origin') {
         git remote add origin $giteeUrl
@@ -19,9 +23,9 @@ try {
     git config --local --add remote.origin.pushurl $githubUrl
     if ($LASTEXITCODE -ne 0) { throw 'Cannot configure GitHub push URL.' }
     # Both default branch names resolve to the same commit on both platforms.
-    git config --local --replace-all remote.origin.push 'HEAD:refs/heads/master'
+    git config --local --replace-all remote.origin.push "refs/heads/${sourceBranch}:refs/heads/master"
     if ($LASTEXITCODE -ne 0) { throw 'Cannot configure master refspec.' }
-    git config --local --add remote.origin.push 'HEAD:refs/heads/main'
+    git config --local --add remote.origin.push "refs/heads/${sourceBranch}:refs/heads/main"
     if ($LASTEXITCODE -ne 0) { throw 'Cannot configure main refspec.' }
     if ($ConfigureOnly) {
         Write-Output 'Configured: git push now updates Gitee and GitHub (main/master).'
