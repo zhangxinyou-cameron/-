@@ -2,6 +2,8 @@
 
 个人数字 IC、Verilog、Python 和 C/C++ 全流程学习桌面软件。当前版本 **0.3.0**，使用 Electron、React、TypeScript、Monaco 和 SQLite，学习数据保存在本机。
 
+**AI 协作入口：[代码阅读与开发指南](README_AI.md)**；两个项目 Skill 统一收录在 [skills/](skills/README.md)，包含完整参考资料与题库校验器。
+
 ![知习界面](docs/知习界面预览.png)
 
 ## 功能

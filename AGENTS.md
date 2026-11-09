@@ -1,5 +1,7 @@
 # 仓库协作约定
 
+AI 阅读入口：[README_AI.md](README_AI.md)。按当前任务选择代码阅读路线；项目的题库生成与插件开发 Skill 统一放在 [skills/](skills/README.md)。
+
 用户要求 Gitee 与 GitHub 两个仓库同步更新：
 
 - Gitee：https://gitee.com/zhang-xinyou/wisdom-cultivator

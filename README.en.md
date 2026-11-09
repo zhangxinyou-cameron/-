@@ -6,6 +6,8 @@ Features include objective grading, code/RTL execution, QBank 1.0 imports, space
 
 See the [Chinese README](README.md) for setup, packaging, question banks and documentation.
 
+AI contributors: start with [README_AI.md](README_AI.md) for the code map, plugin workflow and QBank generation. Both complete project skills are versioned under [skills/](skills/README.md).
+
 ```powershell
 cd tech-practice
 npm ci

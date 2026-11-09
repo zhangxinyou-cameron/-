@@ -27,7 +27,7 @@ for name in ['package.json','package-lock.json','tsconfig.json','vite.config.ts'
     sources.append((root/name,Path('tech-practice')/name))
 for folder in ['docs','examples','skills','scripts','题库','题库协议与示例']:
     sources += [(p,p.relative_to(parent)) for p in sorted((parent/folder).rglob('*')) if p.is_file() and '__pycache__' not in p.parts]
-for name in ['README.md','README.en.md','LICENSE','AGENTS.md','.gitignore','.gitattributes']:
+for name in ['README.md','README.en.md','README_AI.md','LICENSE','AGENTS.md','.gitignore','.gitattributes']:
     sources.append((parent/name,Path(name)))
 archive(parent/f'知习-v{version}-源码.zip',sources)
 shutil.copy2(root/'test-results'/'ui'/'01-home.png',parent/'知习界面预览.png')
