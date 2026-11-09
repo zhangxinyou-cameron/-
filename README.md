@@ -53,6 +53,8 @@ npm run package
 - [插件开发契约](docs/插件开发协议.md)，[插件开发 Skill](skills/wisdom-plugin-developer/SKILL.md)。
 
 - [Verilog 时序逻辑 200 题](题库/Verilog时序逻辑200题.qbank.json)：100 单选、40 多选、40 判断、20 RTL，源码与测试均内联，直接导入 JSON。
+- [SystemVerilog 系统学习](题库/systemverilog-course.json)：13 章讲义 + 内嵌 100 题，LearnPack 1.0，从「学习」页导入；只要题目时用 [SystemVerilog 精读 100 题](题库/systemverilog-qbank.json)（54 单选、20 多选、26 判断）。
+- [可导入题库目录说明](题库/README.md)：各文件的格式、导入入口与校验范围。
 - [QBank 协议与示例](题库协议与示例/)：Schema、AI 出题提示词、完整示例。
 - [qbank-generator 技能](skills/qbank-generator/SKILL.md)：生成、校验、修复及增量更新题库。
 - [功能设计文档](docs/个人技术刷题软件功能设计文档.md)。

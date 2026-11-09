@@ -1,0 +1,4308 @@
+{
+  "schema_version": "1.0",
+  "bank_id": "systemverilog-101",
+  "bank_version": "1.0.0",
+  "title": "SystemVerilog 精读 100 题",
+  "description": "面向有 Verilog 基础的工程师，覆盖语言基础、数据结构、建模、面向对象、约束随机、断言与覆盖率七条主线；题型为单选、多选与判断，全部可自动判分。",
+  "locale": "zh-CN",
+  "authors": [
+    "与 AI 协作整理，参考 IEEE 1800-2017 与公开教程"
+  ],
+  "license": "原创题目与讲解，可自由用于个人学习；引用的标准与教程归各自权利人所有。",
+  "knowledge_points": [
+    {
+      "id": "systemverilog",
+      "name": "SystemVerilog"
+    },
+    {
+      "id": "sv_standard",
+      "name": "SystemVerilog 标准与版本演进",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_design_verify",
+      "name": "设计与验证两种用途",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_toolchain",
+      "name": "编译、仿真与语言子集",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_fourstate",
+      "name": "logic/reg/wire 与二值四值",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_int_types",
+      "name": "整型家族与位宽符号",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_real_time",
+      "name": "实数、时间与字符串",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_literal",
+      "name": "字面量与填充",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_cast",
+      "name": "类型转换与 $cast",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_operator",
+      "name": "运算符与自增位宽规则",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_fixed_array",
+      "name": "定长数组与 packed/unpacked",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_array_methods",
+      "name": "数组内建方法",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_dynamic_array",
+      "name": "动态数组",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_queue",
+      "name": "队列",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_assoc_array",
+      "name": "关联数组",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_struct_union",
+      "name": "结构体与联合体",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_enum",
+      "name": "枚举",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_typedef_package",
+      "name": "typedef 与 package",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_always",
+      "name": "always_comb/always_ff/always_latch",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_case",
+      "name": "unique/priority 与 case inside",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_loop",
+      "name": "foreach 与循环控制",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_interface",
+      "name": "interface 与 modport",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_clocking",
+      "name": "clocking block 与 program block",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_function",
+      "name": "function/task 与 automatic",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_ref",
+      "name": "ref 与参数传递语义",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_class",
+      "name": "类、句柄与对象",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_inherit",
+      "name": "继承、virtual 与多态",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_param_class",
+      "name": "参数化类与静态成员",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_rand",
+      "name": "rand/randc 与 randomize",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_constraint",
+      "name": "约束块与常用约束",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_solve",
+      "name": "solve...before 与随机稳定性",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_immediate_assert",
+      "name": "立即断言与并发断言结构",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_sva_seq",
+      "name": "SVA 序列与蕴含",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_sva_sampled",
+      "name": "采样函数与禁用条件",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_covergroup",
+      "name": "covergroup 与采样",
+      "parent_id": "systemverilog"
+    },
+    {
+      "id": "sv_bins_cross",
+      "name": "bins 与交叉覆盖",
+      "parent_id": "systemverilog"
+    }
+  ],
+  "questions": [
+    {
+      "id": "sv-c01-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "SystemVerilog 首个 IEEE 标准版本",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_standard"
+      ],
+      "primary_knowledge_point_id": "sv_standard",
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "stem_md": "SystemVerilog 在成为 IEEE 标准之前以 3.0、3.1、3.1a 等版本发布。它第一次作为 IEEE 标准发布的是下面哪一个？",
+      "explanation_md": "正确项是 IEEE 1800-2005：2005 年 SystemVerilog 3.1a 被 IEEE 收编，编号为 1800-2005，这是它第一个 IEEE 标准。\n\n- IEEE 1364-2005 错：1364 系列是 Verilog 的标准编号（1364-2005 即 Verilog-2005），与 SystemVerilog 无关。\n- IEEE 1800-2009 错：它是 1800 系列的第一次修订，把 1364-2005 并入 1800，是“合并”发生的版本，但不是首个标准。\n- IEEE 1800-2012 错：属于更晚的修订版本。\n\n适用前提：这里问的是“首次成为 IEEE 标准”的版本号，不是“首次合并 Verilog”的版本号，两者常被混淆。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准前言中版本演进与文档范围的说明；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "IEEE 1364-2005"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "IEEE 1800-2009"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "IEEE 1800-2005"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "IEEE 1800-2012"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c01-02",
+      "revision": 1,
+      "type": "true_false",
+      "title": "1800-2017 是否合并了 Verilog",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_standard"
+      ],
+      "primary_knowledge_point_id": "sv_standard",
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "stem_md": "IEEE 1800-2017 把 Verilog 与 SystemVerilog 合并为单一标准文档，并取代了 IEEE 1364-2005。",
+      "explanation_md": "判断为真。1800-2017 的范围覆盖了原 1364-2005 定义的 Verilog 语言，Verilog-2005 的语法因此成为它的子集，1364-2005 被取代。\n\n两个常见误判：\n- 以为 1800-2005 就已经合并：实际是 1800-2009 才把 1364 并入 1800 系列，2005 版仍是独立的 SystemVerilog 文档。\n- 以为 1800 只定义 SystemVerilog 的“新增”特性：实际它同时定义完整的 Verilog 语言，所以只写 Verilog-2005 的代码也在 1800 的范围内。\n\n注意版本年份不代表功能集合的终点，后续修订会继续增加构造。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准前言对 1364 与 1800 合并关系的说明；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c01-03",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "设计用途与验证用途的分工",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_design_verify"
+      ],
+      "primary_knowledge_point_id": "sv_design_verify",
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "stem_md": "SystemVerilog 同时服务 RTL 设计与验证。关于这两类用途，下列哪些说法正确？",
+      "explanation_md": "正确项是前两条。\n\n- “语言统一、可综合子集更小”对：IEEE 1800 定义一门语言，综合工具只实现其中一个子集（可综合的赋值、`always_ff`/`always_comb`、受限的数组与循环等），仿真则接受全部构造。\n- “类、随机约束、覆盖组主要用于验证”对：它们描述激励、约束与覆盖率，没有对应的硬件语义，通常不在可综合子集内。\n- “扩展名是 .sv 就一定可综合”错：可综合性取决于用到的构造，与文件扩展名无关；含 `$display`、动态数组或类的 .sv 文件同样不可综合。\n- “断言只能写在验证平台”错：SVA 可以写在 RTL 模块里（也常用 `bind` 绑定到 DUT），综合工具会忽略断言，但语言本身允许这种写法。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据语言范围与可综合子集的通行划分；未逐条标注条款号。"
+        },
+        {
+          "title": "Verification Guide · SystemVerilog",
+          "locator": "https://verificationguide.com/systemverilog/",
+          "note": "该站按主题区分设计用与验证用构造的讲解。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "语言是统一的，但可综合子集明显小于仿真可用的子集"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "类、随机约束、覆盖组主要服务验证，通常不可综合"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "只要文件扩展名是 .sv，其中的代码就一定可综合"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "断言只能写在验证平台中，RTL 模块里不允许出现"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_b"
+        ]
+      }
+    },
+    {
+      "id": "sv-c01-04",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "工具链不支持 SystemVerilog 时",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_toolchain"
+      ],
+      "primary_knowledge_point_id": "sv_toolchain",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "某 RTL 文件使用了 `logic`、`always_ff` 与 `typedef enum`。如果把该文件原样交给一个只实现 Verilog-2005 的工具，最可能发生什么？",
+      "explanation_md": "正确项是“在解析阶段报语法错误”。`logic`、`always_ff`、`typedef enum` 都是 SystemVerilog 引入的关键字与构造，Verilog-2005 的解析器不认识它们，通常在读入文件时就报错，根本到不了综合或仿真阶段。\n\n- “编译通过但电路功能不一致”错：前提不成立，语言子集不匹配时错误发生在解析，而不是结果偏差。\n- “自动把 logic 降级成 reg”错：标准没有这种降级规则，工具不会猜测作者意图；`always_ff` 也没有 Verilog-2005 的对应物。\n- “只有打开覆盖率才报错”错：覆盖率选项与语法解析无关，报错与是否统计覆盖率无关。\n\n实践上要靠工具对 1800 的支持（常见做法是 `-sv` 开关或按扩展名识别），但开关行为属于工具实现，标准只规定语言本身。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 SystemVerilog 新增关键字与语言子集的划分；未逐条标注条款号。"
+        },
+        {
+          "title": "ChipVerify · SystemVerilog Tutorial",
+          "locator": "https://chipverify.com/systemverilog/systemverilog-tutorial",
+          "note": "该教程说明 SystemVerilog 相对 Verilog 的新增构造。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "编译通过，但综合出的电路功能与仿真结果不一致"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "在解析阶段报语法错误，因为这些构造不在其子集内"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "编译通过，工具会把 logic 自动降级为 reg 处理"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "编译通过，只有打开覆盖率统计时才会报错"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c02-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "logic 变量的缺省值",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_fourstate"
+      ],
+      "primary_knowledge_point_id": "sv_fourstate",
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "stem_md": "在 module 内声明 `logic [3:0] a;` 且没有给它赋初值。仿真开始后 a 的值是什么？",
+      "explanation_md": "正确项是 `4'bxxxx`。`logic` 是四值变量类型，未初始化时每一位都是 x，在被赋值之前一直保持 x。\n\n- `4'b0000` 错：全 0 是二值类型（如 `bit`）的缺省值，`logic` 不做零初始化。\n- `4'bzzzz` 错：z 表示“没有驱动”，是线网在无驱动时的解析结果；变量未初始化是 x 而不是 z。\n- “由综合工具决定、仿真中随机”错：仿真语义是确定的 x，与综合工具无关；随机值来自 `rand`/`randc` 或 `$urandom`，不是变量缺省值。\n\n补充：`logic` 与 Verilog 的 `reg` 在四值语义上一致，缺省值同样是 x。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据四值变量类型的缺省初值语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "4'b0000"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "4'bzzzz"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "由综合工具决定，仿真中取随机值"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "4'bxxxx"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c02-02",
+      "revision": 1,
+      "type": "true_false",
+      "title": "int 与 integer 的区别",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_int_types"
+      ],
+      "primary_knowledge_point_id": "sv_int_types",
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "stem_md": "SystemVerilog 的 `int` 是 32 位有符号二值类型，而 `integer` 是 32 位有符号四值类型。",
+      "explanation_md": "判断为真。`int` 属于二值整型家族（`bit`、`byte`、`shortint`、`int`、`longint`），32 位、有符号、只能保存 0 和 1；`integer` 是 Verilog 遗留的 32 位有符号四值整型，可以保存 x 与 z。\n\n由此引出两个常见误判：\n- 以为两者可以直接互换：把含 x 的四值表达式赋给 `int`，x 位会被转成 0，信息丢失。\n- 以为 `int` 是无符号的：`int` 有符号，要无符号应写 `int unsigned` 或 `bit [31:0]`。\n\n注意 `int` 与 `integer` 位宽相同，差别在值域（二值/四值），不在宽度。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据整型家族中二值类型与四值类型的划分；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c02-03",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "logic、bit 与 wire 的语义差别",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_fourstate"
+      ],
+      "primary_knowledge_point_id": "sv_fourstate",
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "stem_md": "关于 `logic`、`bit` 与 `wire` 三种声明，下列哪些说法正确？",
+      "explanation_md": "正确项是前三条。\n\n- `logic` 是四值变量，可过程赋值，未初始化为 x：对，这是它与 `wire` 的关键区别（变量 vs 线网）。\n- `bit` 是二值类型，不能保存 x/z，未初始化为 0：对，写入 x/z 时逐位转成 0。\n- `wire` 是四值线网，需要驱动源，无驱动时为 z：对，线网的值由驱动与强度解析得到，完全没有驱动就是 z。\n- “`logic` 与 `wire` 都允许被多个过程块赋值、由工具仲裁”错：变量不允许被多个过程块驱动，两个 `always` 块写同一变量属于语义冲突（工具报错或结果不确定）；线网可以被多个驱动，但最终值由强度与 0/1/x/z 解析表决定，不是“工具仲裁”。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据变量与线网的赋值规则、二值与四值类型的值域；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "logic 是四值变量，可过程赋值，未初始化时为 x"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "bit 是二值类型，不能保存 x 或 z，未初始化时为 0"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "wire 是四值线网，需要驱动源，无驱动时其值为 z"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "logic 与 wire 都允许被多个过程块赋值，由工具仲裁"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_b",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c02-04",
+      "revision": 1,
+      "type": "true_false",
+      "title": "变量能否保存 z",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_fourstate"
+      ],
+      "primary_knowledge_point_id": "sv_fourstate",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "`logic` 变量可以保存 z，而 `bit` 变量无法保存 z，向它写入 z 时该位变为 0。",
+      "explanation_md": "判断为真。`logic` 是四值变量，赋值 `1'bz` 后读回就是 z；`bit` 是二值类型，写入 z（或 x）时逐位转成 0。\n\n需要注意两点区别：\n- “能保存 z”不等于“适合做三态总线”：多驱动三态通常仍用线网（`wire`/`tri`），变量被多个过程块驱动本身就是非法的。\n- 未初始化与写入 z 是两件事：未初始化时 `logic` 是 x、`bit` 是 0；而“写入 z 变 0”只发生在二值类型的转换上。\n\n常见误解是认为二值类型遇到 z 会报错，实际标准规定静默转 0。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据四值到二值的逐位转换规则；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c02-05",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "real 与 shortreal 的表示",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_real_time"
+      ],
+      "primary_knowledge_point_id": "sv_real_time",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "关于 `real` 与 `shortreal` 两种实数类型，下列说法正确的是？",
+      "explanation_md": "正确项是“real 64 位双精度、shortreal 32 位单精度”：`real` 对应 IEEE 754 双精度（与 C 的 double 同精度），`shortreal` 对应单精度（与 C 的 float 同精度）；两者都是二值类型，未初始化时为 0.0。\n\n- “real 32 位、shortreal 64 位”错：位宽说反了。\n- “两者都是定点数，只是小数位数不同”错：SV 的实数是浮点数，没有“小数位数”这种定点参数；要定点需自己用整型加缩放因子。\n- “两者都是四值类型，可表示 x 与 z”错：浮点类型没有 x/z 编码；含 x 的四值表达式赋给 real 时，x 会先转成 0。\n\n补充：`realtime` 是 `real` 的别名，不会带来额外精度。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据实数类型与 IEEE 754 精度的对应关系；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "real 是 64 位双精度浮点，shortreal 是 32 位单精度浮点"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "real 是 32 位单精度浮点，shortreal 是 64 位双精度浮点"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "两者都是定点数，区别只是允许的小数位数不同"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "两者都是四值类型，都可以表示 x 与 z"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c02-06",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "四值赋给二值的结果",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_fourstate"
+      ],
+      "primary_knowledge_point_id": "sv_fourstate",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "下列代码执行后打印什么？\n\n```systemverilog\nlogic [3:0] a = 4'b10x1;\nbit   [3:0] b;\ninitial begin\n  b = a;\n  $display(\"%b\", b);\nend\n```",
+      "explanation_md": "正确项是 `1001`：把四值赋给二值类型时逐位转换，x 与 z 变成 0，其余位保留原值，所以 `4'b10x1` 变成 `4'b1001`。\n\n- `10x1` 错：`bit` 无法保存 x，输出里不可能出现 x。\n- `1011` 错：把 x 当成 1 是误解；标准规定是转 0，不是“未知按高电平处理”。\n- `0000` 错：只有整个变量被清零才会得到全 0；二值转换是逐位的，原来的 1 和 0 不受影响。\n\n适用前提：转换发生在赋值时，不是打印时；`$display` 只是把已经转换好的二值内容按 `%b` 输出。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据四值到二值赋值的逐位转换规则；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "1001"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "10x1"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "1011"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "0000"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c02-07",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "无符号短向量赋给 int",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_int_types"
+      ],
+      "primary_knowledge_point_id": "sv_int_types",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "下列代码执行后打印什么？\n\n```systemverilog\nlogic [3:0] a = 4'b1111;\nint b;\ninitial begin\n  b = a;\n  $display(\"%0d\", b);\nend\n```",
+      "explanation_md": "正确项是 `15`：`logic [3:0]` 默认是无符号向量，赋给 32 位 `int` 时先零扩展成 32'h0000_000F，再按位复制，结果就是 15。\n\n- `-1` 错：只有当源本身有符号（例如 `logic signed [3:0]`）时才会符号扩展成 32'hFFFF_FFFF，得到 -1；`logic` 不加 `signed` 就是无符号。\n- `255` 错：255 对应 8 位全 1 再零扩展，4 位向量给不出这个位模式。\n- `0` 错：需要位模式全 0，而 a 是 1111。\n\n关键点：扩展方式由源操作数的符号性决定，与目标是否带符号无关；目标是 `int` 并不会让 4'b1111 变成 -1。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据赋值时的零扩展与符号扩展规则；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "-1"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "15"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "255"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "0"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c02-08",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "哪些表达式的结果含 x",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_fourstate"
+      ],
+      "primary_knowledge_point_id": "sv_fourstate",
+      "difficulty": 3,
+      "estimated_minutes": 5,
+      "stem_md": "下列表达式中，结果含 x（某一位是 x，或整体为 x）的有哪些？",
+      "explanation_md": "正确项是两个：加法与相等比较。\n\n- `4'b1x10 + 4'b0001` 含 x：加法逐位进行并带进位，x 位加 0 仍然是 x，结果为 `4'b1x11`。\n- `4'b10x1 == 4'b10x1` 为 x：相等比较只要有一位是 x/z、且其余比较位不能判定“一定不等”，结果就是 1 位的 x。\n- `4'b1010 & 4'b1x00` 不含 x：按位与中 0 与 x 相与得 0（0 优先），逐位结果是 `4'b1000`。\n- `!4'b0000` 不含 x：逻辑非把全 0 当假，结果确定的 1。\n\n易错点：以为“只要有一个 x 参与，结果整体就是 x”。实际按位运算有 0 优先、1 优先等规则，x 不一定传播到所有位。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据四值逻辑的按位运算表与比较结果规则；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "4'b1010 & 4'b1x00"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "4'b1x10 + 4'b0001"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "4'b10x1 == 4'b10x1"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "!4'b0000"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_b",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c02-09",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "8 位无符号值写入有符号 byte",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_int_types"
+      ],
+      "primary_knowledge_point_id": "sv_int_types",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "下列代码执行后打印什么？\n\n```systemverilog\nbyte unsigned u = 8'd200;\nbyte          s;\ninitial begin\n  s = u;\n  $display(\"%0d\", s);\nend\n```",
+      "explanation_md": "正确项是 `-56`：8'd200 的位模式为 8'b1100_1000。赋给有符号 `byte` 时两者同为 8 位，不发生扩展或截断，只按二进制补码重新解读：最高位是 1，值 = 200 − 256 = −56。\n\n- `200` 错：200 是无符号解读的结果，有符号 8 位最大只能表示 127。\n- `56` 错：56 对应位模式 8'b0011_1000，把位模式算错，符号也丢了。\n- `0` 错：只有发生截断或被清零才会得 0，这里位模式完整保留。\n\n关键点：同宽赋值的“截断/扩展”都不发生，变化来自符号解读；要保留 200 必须让目标也是无符号（`byte unsigned` 或 `int unsigned`）。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据同宽赋值不改变位模式、符号由类型决定的规则；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "200"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "56"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "-56"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "0"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c02-10",
+      "revision": 1,
+      "type": "true_false",
+      "title": "字符串下标赋值",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_real_time"
+      ],
+      "primary_knowledge_point_id": "sv_real_time",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "下列代码执行后打印 `abc`。\n\n```systemverilog\nstring s = \"abc\";\ninitial begin\n  s[0] = \"X\";\n  $display(\"%s\", s);\nend\n```",
+      "explanation_md": "判断为假：`string` 可以按下标访问和改写，`s[0]` 是第一个字节（下标从 0 开始），把单字符 `\"X\"` 赋进去后字符串变成 `Xbc`，打印的是 `Xbc`，长度仍为 3。\n\n两个常见误解：\n- 认为 `string` 是不可变对象、下标写不进去：SV 的 `string` 是可变长度、可按字节下标读写的。\n- 认为 `s[0]` 返回的是 `string` 子串、必须用 `{}` 拼接才能改：单字符可以直接赋给某个下标位置。\n\n注意越界下标（例如对长度 3 的串写 `s[5]`）不会自动扩容，属于错误用法；这与 C 风格字符串的缓冲区别不同。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 string 类型按下标读写单个字符的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "sv-c03-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "填充字面量 '1 的含义",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_literal"
+      ],
+      "primary_knowledge_point_id": "sv_literal",
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "stem_md": "SystemVerilog 中的表达式 `'1` 表示什么？",
+      "explanation_md": "正确项是“把目标的所有位都填成 1”：`'0`、`'1`、`'x`、`'z` 是不指定位宽的填充字面量，赋给 N 位对象时把 N 位全部填成对应值，例如赋给 8 位变量得到 8'hFF。\n\n- “十进制 1、位宽 1 位”错：十进制 1 是无尺寸字面量（至少 32 位、有符号），没有按目标位宽填充的语义。\n- “32 位有符号数 -1”错：`'1` 本身没有固定 32 位宽度，也不带符号属性；只有在 32 位有符号上下文里全 1 才解读成 -1。\n- “非法写法”错：这是标准语法，常用来给向量整体置 1、给掩码或比较值赋初值。\n\n用法提示：写 `if (bus == '1)` 之类比较时，`'1` 会自动匹配 `bus` 的位宽，避免手写位宽的笔误。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据填充字面量 '0/'1/'x/'z 按目标位宽填充的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "把目标的所有位都填成 1 的填充值"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "十进制数值 1，位宽为 1 位"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "32 位有符号数 -1"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "缺少位宽的非法写法，编译会报错"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c03-02",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "无尺寸字面量的符号性",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_literal"
+      ],
+      "primary_knowledge_point_id": "sv_literal",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "比较字面量 `12` 与 `'h12`，下列说法正确的是？",
+      "explanation_md": "正确项是“12 是至少有 32 位的带符号数，'h12 是至少有 32 位的无符号数”：无尺寸的十进制字面量（simple decimal）按有符号处理，位宽至少 32 位；无尺寸的 based 字面量（'h / 'b / 'o / 'd 且不带 s）按无符号处理，位宽同样至少 32 位。\n\n- “两者都是 32 位无符号”错：`12` 带符号，不是无符号。\n- “12 的位宽正好 4 位，'h12 正好 8 位”错：无尺寸字面量不会缩到最小位宽，至少 32 位，仿真器还可能给出更宽的内部宽度。\n- “12 无符号、'h12 带符号”错：符号性正好说反；based 字面量要带符号必须显式写 `'sh12`。\n\n这条规则的实际影响：`-1` 与 `'hFFFFFFFF` 在不同上下文里的比较、移位结果可能不同，写 RTL 时建议显式给位宽和符号。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据无尺寸字面量的位宽下限与符号性规则；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "两者都是 32 位无符号数，只是进制写法不同"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "12 的位宽正好 4 位，'h12 的位宽正好 8 位"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "12 是无符号数，'h12 是带符号数"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "12 是至少有 32 位的带符号数，'h12 是无符号数"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c03-03",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "静态转换与 $cast 的区别",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_cast"
+      ],
+      "primary_knowledge_point_id": "sv_cast",
+      "difficulty": 2,
+      "estimated_minutes": 4,
+      "stem_md": "关于 `int'(expr)` 这类静态转换与系统函数 `$cast`，下列哪些说法正确？",
+      "explanation_md": "正确项是后两条。\n\n- “静态转换在编译/求值时按目标类型直接转换，不报告失败”对：`int'(expr)` 在编译期确定转换方式，按目标位宽截断或扩展，没有失败返回机制。\n- “`$cast` 在运行时检查，函数形式失败返回 0 且不修改目标”对：`$cast` 成功返回 1、失败返回 0，失败时目标变量保持原值。\n- “静态转换会做运行时越界检查、越界报错”错：静态转换不做范围检查，例如把 32 位值转成 8 位会静默截断高位。\n- “`$cast` 只能用于整型”错：`$cast` 最典型的用途是把基类句柄向下转换成派生类句柄，也用于枚举的取值范围检查。\n\n记忆点：静态转换是“编译期的类型重解释”，`$cast` 是“运行期的合法性检查”。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据静态类型转换与 $cast 的运行时检查语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "静态转换在运行时检查目标类型能否容纳源值，越界时报错"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "静态转换在编译或求值时直接转换，运行时不报告失败"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "$cast 在运行时检查转换是否合法，函数形式失败返回 0 且不改目标"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "$cast 只能用于整型之间的转换，不能用于类句柄"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_b",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c03-04",
+      "revision": 1,
+      "type": "true_false",
+      "title": "$cast 的返回状态",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_cast"
+      ],
+      "primary_knowledge_point_id": "sv_cast",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "`$cast` 用作函数时返回 1 表示转换成功、返回 0 表示失败；用作任务时失败会报告错误。",
+      "explanation_md": "判断为真。`$cast(dest, src)` 有函数与任务两种用法：函数形式返回整型状态，可以写成 `if (!$cast(h, base))` 分支处理失败；任务形式忽略返回值，失败时由仿真器报 error。\n\n关键细节：失败时 `dest` 不会被改写，这与静态转换“无论如何都写入目标”不同，也是 `$cast` 能被用来做安全检查的原因。\n\n常见误解是以为 `$cast` 只对类句柄有效；实际它也可用于枚举：源值不在枚举的取值范围内时返回 0，从而避免把越界值塞进枚举变量。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 $cast 作为函数与任务两种形式的返回语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c03-05",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "有符号与无符号扩展",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_literal"
+      ],
+      "primary_knowledge_point_id": "sv_literal",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "下列代码执行后打印什么？\n\n```systemverilog\nint a, b;\ninitial begin\n  a = 8'hFF;\n  b = 8'shFF;\n  $display(\"%0d %0d\", a, b);\nend\n```",
+      "explanation_md": "正确项是 `255 -1`：`8'hFF` 是无符号 8 位，赋给 32 位 `int` 时零扩展为 32'h0000_00FF，得 255；`8'shFF` 带符号，最高位是 1，符号扩展为 32'hFFFF_FFFF，得 -1。\n\n- `255 255` 错：忽略了 `'s` 带来的符号扩展，把 `8'shFF` 也当无符号。\n- `-1 -1` 错：`8'hFF` 不带符号，不会符号扩展。\n- `255 127` 错：127 对应 8'h7F，与 FF 的位模式不符。\n\n关键点：`'s` 同时决定“是否有符号”和“扩展时填空 0 还是符号位”；位宽相同则只影响解读，位宽变宽才真正影响位模式。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据带 s 修饰的字面量在赋值时的符号扩展规则；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "255 255"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "-1 -1"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "255 127"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "255 -1"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c03-06",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "字面量的值与截断",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_literal"
+      ],
+      "primary_knowledge_point_id": "sv_literal",
+      "difficulty": 3,
+      "estimated_minutes": 5,
+      "stem_md": "关于下列字面量及其取值，哪些说法正确？",
+      "explanation_md": "正确项是中间两条。\n\n- “`8'sh80` 赋给 int 得到 -128”对：最高位为 1，符号扩展成 32 位是 32'hFFFF_FF80，即 -128。\n- “`'0` 赋给 8 位变量得到 8'b0000_0000”对：`'0` 是把所有位填 0 的填充字面量，位宽由目标决定。\n- “`4'd20` 因超出 4 位而非法、编译报错”错：尺寸字面量超出位宽时按左侧截断（工具可能给警告），`4'd20` = `4'b0100` = 4，不是语法错误。\n- “`4'b1x01` 赋给 `bit [3:0]` 后 x 位仍是 x”错：赋给二值类型时 x/z 逐位转成 0，结果是 `4'b0101`。\n\n这三条规则经常一起出现在“常量定义”里，写掩码时建议显式写清位宽，避免截断带来的隐式错误。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据尺寸字面量的截断规则、填充字面量与二值转换；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "4'd20 因为 20 超出 4 位范围，属于非法写法，编译报错"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "8'sh80 赋给 int 后得到 -128"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "4'b1x01 赋给 bit [3:0] 变量后 x 位仍然是 x"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "'0 赋给 8 位变量得到 8'b0000_0000"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_b",
+          "opt_d"
+        ]
+      }
+    },
+    {
+      "id": "sv-c03-07",
+      "revision": 1,
+      "type": "true_false",
+      "title": "混合符号性比较",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_operator"
+      ],
+      "primary_knowledge_point_id": "sv_operator",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "下列代码打印 `1`，因为 8 大于 -1。\n\n```systemverilog\nlogic [3:0] a = 4'b1000;\nint b = -1;\ninitial $display(\"%0d\", (a > b));\n```",
+      "explanation_md": "判断为假。混合有符号与无符号操作数时，只要有一个操作数无符号，整个比较就按无符号进行：`a` 被零扩展成 32'h0000_0008，`b`（int，值 -1）按无符号解读为 32'hFFFF_FFFF = 4294967295，所以 8 > 4294967295 为假，打印 `0`。\n\n- “打印 1”错：那是按数学直觉把 b 当 -1 比较，忽略了符号性转换。\n- 若以为“两边都扩展成 32 位就按有符号比”也错：位宽相同不代表符号性相同，混合比较先统一成无符号。\n\n正确做法：要得到带符号比较，两个操作数都必须是有符号类型，例如把 a 转成 `$signed(a)` 后再与 `b` 比较。这类问题在计数器与负阈值比较时最容易出错。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据混合有符号/无符号操作数时按无符号比较的规则；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "sv-c03-08",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "赋值上下文决定运算位宽",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_operator"
+      ],
+      "primary_knowledge_point_id": "sv_operator",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "下列代码执行后打印什么？\n\n```systemverilog\nlogic [3:0] a = 4'b1111;\nlogic [4:0] y;\ninitial begin\n  y = (a + 1'b1) >> 1;\n  $display(\"%b\", y);\nend\n```",
+      "explanation_md": "正确项是 `01000`：赋值目标 y 是 5 位，这个上下文宽度会传递给右侧表达式，因此加法在 5 位下进行——`a` 零扩展成 5'b01111，加 5'b00001 得 5'b10000（没有溢出），再右移一位得 5'b01000。\n\n- `00000` 错：这是把加法压到 4 位算的结果（15+1 溢出成 0000，右移仍是 0000），正是本题要区分的错误路径。\n- `01111` 错：相当于漏掉 `+1`，直接把 a 右移一位。\n- `10000` 错：只做了加法、漏掉右移。\n\n规则要点：赋值语句的右侧是“上下文决定”的表达式，位宽取目标与操作数的最大值；移位运算的结果宽度取左操作数宽度，因此外层 5 位上下文会一直传到加法。写 RTL 时若希望按 4 位回绕，必须显式写 `(a + 4'b1) >> 1` 或对中间结果做截断。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据表达式位宽的上下文决定规则与移位结果宽度规则；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "00000"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "01111"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "01000"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "10000"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c04-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "packed 与 unpacked 维度的书写位置",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_fixed_array"
+      ],
+      "primary_knowledge_point_id": "sv_fixed_array",
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "stem_md": "声明 `logic [7:0] fifo [0:3];` 之后，关于 `fifo` 的类型，下列哪一项描述正确？",
+      "explanation_md": "packed 维度写在标识符左侧（`[7:0]`），决定每个元素的位宽；unpacked 维度写在标识符右侧（`[0:3]`），决定元素个数。所以 `fifo` 是含 4 个 8 位元素的 unpacked 数组。\n\n- 选项 B 正确：`[0:3]` 写在名字右侧给出 4 个元素，`[7:0]` 写在左侧给出每元素 8 位。\n- 选项 A 错：它整体不是一个 32 位向量，unpacked 数组不能用 `fifo[13]` 做位选；位选只作用于 packed 维度。\n- 选项 C 错：`[0:3]` 写在名字右边就已经是 unpacked 维度，不能整体切片成 `fifo[1:0]`。\n- 选项 D 错：元素个数由 `[0:3]` 决定为 4 个、元素位宽由 `[7:0]` 决定为 8 位，这里把两者对调了。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 packed/unpacked 数组的声明位置与维度含义编写，未逐条标注条款号。"
+        },
+        {
+          "title": "ChipVerify · SystemVerilog Tutorial",
+          "locator": "https://chipverify.com/systemverilog/systemverilog-tutorial",
+          "note": "定长数组与 packed/unpacked 数组的基础讲解。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "它是 32 位 packed 向量，可用 `fifo[13]` 访问第 13 位"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "它是含 4 个 8 位元素的 unpacked 数组，元素之间没有位序关系"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "它是含 4 个 8 位元素的 packed 数组，可以整体按位切片"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "它是含 8 个 4 位元素的 unpacked 数组，下标范围 0 到 7"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c04-02",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "packed 数组可以做部分选择，unpacked 不行",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_fixed_array"
+      ],
+      "primary_knowledge_point_id": "sv_fixed_array",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "比较 `bit [7:0] p;` 与 `bit u [0:7];`，下列哪一项正确？",
+      "explanation_md": "`p` 是 packed 数组，本质是一个位向量，因此支持部分选择 `p[3:0]`、整体赋值、拼接和算术运算；`u` 是 unpacked 数组，8 个元素彼此独立，只能按下标访问单个元素 `u[i]`，`u[3:0]` 这种数组切片在 SystemVerilog 中不合法。\n\n- 选项 C 正确：packed 数组是位向量，`p[3:0]` 合法；unpacked 数组只能按下标取 `u[i]`。\n- 选项 A 错：unpacked 数组没有“部分选择”的概念，`u[3:0]` 不能取前 4 个元素。\n- 选项 B 错：两者类型不同（packed 位向量 vs unpacked 数组），`p = u` 不是合法赋值；unpacked 数组之间要用同类型的数组赋值。\n- 选项 D 错：`p` 与 `u` 都由 `bit` 构成，都是二值类型，都不能保存 X/Z。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 packed 数组可作位向量使用、unpacked 数组不可部分选择的规则编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "两者都支持部分选择，写成 `u[3:0]` 就能取前 4 个元素"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "两者存储布局相同，`p` 与 `u` 可以直接互相赋值"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "只有 `p` 支持部分选择 `p[3:0]`，`u` 只能按下标取单个元素"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "`u` 是四值类型而 `p` 是二值类型，所以 `u` 能保存 X"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c04-03",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "定长数组整体赋值复制元素值",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_fixed_array"
+      ],
+      "primary_knowledge_point_id": "sv_fixed_array",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "执行下面的代码后，`src[0]` 的值是多少？\n\n```systemverilog\nint src[3] = '{1, 2, 3};\nint dst[3];\ndst = src;\ndst[0] = 9;\n```",
+      "explanation_md": "unpacked 数组是值类型：`dst = src;` 把 `src` 的每个元素逐个复制到 `dst`，之后两个数组各自独立。修改 `dst[0]` 不会影响 `src[0]`，所以 `src[0]` 仍为 1。这一点与类句柄赋值（两个句柄指向同一对象）完全不同。\n\n- 选项 C 正确：逐元素复制后两个数组各自独立，所以 `src[0]` 仍为 1。\n- 选项 A 错：数组不是句柄，不存在“共享同一份元素存储”的语义。\n- 选项 B 错：整体赋值不会先把目标数组清零，而是逐个元素覆盖。\n- 选项 D 错：数组赋值的语义由语言规定，与工具是否把两个数组放在相邻内存无关。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 unpacked 数组赋值为逐元素值复制的规则编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "9，因为 `dst` 与 `src` 共享同一份元素存储"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "0，因为定长数组整体赋值前会先把目标数组清零"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "1，整体赋值是逐元素复制，两个数组此后互不影响"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "无法确定，取决于工具是否把两个数组放在同一段内存"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c04-04",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "多维 packed 数组的索引顺序",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_fixed_array"
+      ],
+      "primary_knowledge_point_id": "sv_fixed_array",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "执行下面的代码后，`y` 的值是多少？\n\n```systemverilog\nbit [1:0][3:0] x = 8'hA5;\nint y = x[1];\n```",
+      "explanation_md": "`8'hA5` 展开为 `1010_0101`。多维 packed 声明中最左边的维度是最高位，因此 `x[1]` 取高 4 位 `4'hA`（十进制 10），`x[0]` 取低 4 位 `4'h5`。\n\n- 选项 A（5）错：这是 `x[0]` 的值，说明维度顺序读反了（把最左维度当成最低位）。\n- 选项 B（165）错：把整个 8 位 `A5` 当成一个十进制数，忽略了题目取的是 4 位元素。\n- 选项 C（2）错：这是最左维度的元素个数，不是元素取值。\n- 选项 D（10）正确：`x[1]` 取高 4 位 `4'hA`，即十进制 10。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 packed 数组维度自左向右由高到低的排布规则编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "5"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "165"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "2"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "10"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c04-05",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "packed 与 unpacked 数组的能力边界",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_fixed_array",
+        "sv_array_methods"
+      ],
+      "primary_knowledge_point_id": "sv_fixed_array",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "给定 `bit [7:0] p;` 与 `bit u [0:7];`，下列哪些说法正确？（多选）",
+      "explanation_md": "`p` 是 packed 数组（位向量），`u` 是 unpacked 数组，二者规则不同。\n\n- 选项 B 正确：`p` 作为 8 位向量可以整体赋给另一个 `bit [7:0]` 变量；`u` 是元素独立的对象集合，不能整体赋给一个位向量，只能逐元素赋值或用同类型数组赋值。\n- 选项 C 正确：`p[3:0]` 是合法的部分选择；`u[3:0]` 试图对 unpacked 数组做切片，语言不支持，只能写 `u[i]`。\n- 选项 A 错：`p = u` 是 packed 与 unpacked 之间的赋值，不合法；两者存储布局并不“可以直接互换”。\n- 选项 D 错：`sum()` 这类数组方法是针对 unpacked 数组定义的，packed 数组上不能用；对 `p` 求和只能自己写循环或先转换。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 packed/unpacked 数组的赋值兼容性与数组方法适用范围编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`p` 与 `u` 的存储布局相同，可以直接互相赋值"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "`p` 可整体赋给 `bit [7:0]` 变量，`u` 不行"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`p[3:0]` 是合法的部分选择，而 `u[3:0]` 不是"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "`p.sum()` 与 `u.sum()` 都合法，前者对所有位求和"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_b",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c04-06",
+      "revision": 1,
+      "type": "true_false",
+      "title": "reverse 是原地修改还是返回新数组",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_array_methods"
+      ],
+      "primary_knowledge_point_id": "sv_array_methods",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "对定长数组调用 `reverse()` 会返回一个新的逆序数组，原数组保持不变。",
+      "explanation_md": "这句话是错的。`reverse()`、`sort()`、`rsort()`、`shuffle()` 都属于“排序方法”（ordering methods），它们直接修改被调用的数组本身，返回类型为 `void`，不会产生新数组。想保留原数组必须先显式复制一份再排序。\n\n容易混淆的是定位方法（locator methods）如 `unique()`、`find()`、`find_index()`、`min()`、`max()`：它们不修改原数组，而是返回一个队列（或对应类型的值），因此可以写 `q = a.unique();`。判断某个方法是否返回新数组，看它属于 ordering 还是 locator 即可。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据数组排序方法原地修改、定位方法返回队列的语义编写。"
+        },
+        {
+          "title": "Verification Guide · SystemVerilog",
+          "locator": "https://verificationguide.com/systemverilog/",
+          "note": "数组排序方法与定位方法的用法与返回值示例。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "sv-c04-07",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "sum 与 unique 的结果推演",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_array_methods"
+      ],
+      "primary_knowledge_point_id": "sv_array_methods",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "执行下面的代码后，`s` 与 `u` 分别是多少？\n\n```systemverilog\nint a[6] = '{1, 2, 2, 3, 4, 4};\nint s = a.sum();\nint u = a.unique().size();\n```",
+      "explanation_md": "`sum()` 把所有元素相加：1+2+2+3+4+4 = 16。`unique()` 返回一个去掉重复值后的队列，本例为 `{1,2,3,4}`，再取 `size()` 得 4。\n\n- 选项 A（16 和 6）错：6 是原数组长度，`unique()` 会去重。\n- 选项 B（16 和 4）正确：求和得 16，去重后 `{1,2,3,4}` 共 4 个值。\n- 选项 C（14 和 4）错：求和时漏算了一个元素（例如把某个 2 或 4 少算了一次）。\n- 选项 D（16 和 5）错：`{1,2,2,3,4,4}` 去重后是 4 个值，不是 5 个；`unique()` 保留每个值的首次出现，不是只去掉一种重复。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据数组归约方法 sum 与定位方法 unique 的语义编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "16 和 6"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "16 和 4"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "14 和 4"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "16 和 5"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c04-08",
+      "revision": 1,
+      "type": "true_false",
+      "title": "先排序再去重得到的队列内容",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_array_methods"
+      ],
+      "primary_knowledge_point_id": "sv_array_methods",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "执行下面的代码后，`q` 的内容为 `{1, 2, 3}`。\n\n```systemverilog\nint a[4] = '{3, 1, 3, 2};\nint q[$];\na.sort();\nq = a.unique();\n```",
+      "explanation_md": "这句话是对的，但要同时用对两条规则。第一步 `a.sort()` 原地升序排序，`a` 变成 `{1,2,3,3}`，注意它返回 `void`，写成 `a = a.sort();` 是错的。第二步 `a.unique()` 是定位方法，返回按首次出现顺序去重的队列 `{1,2,3}`，赋给 `q`。\n\n如果漏掉 `sort()`，`unique()` 得到的是 `{3,1,2}`（输入顺序），断言就不成立；如果误以为 `unique()` 会排序，也会得出同样的 `{1,2,3}`，但理由是错的——`unique()` 只去重、不排序。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 sort 原地排序与 unique 保留首次出现顺序的语义编写。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c05-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "动态数组声明后尚未分配空间",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_dynamic_array"
+      ],
+      "primary_knowledge_point_id": "sv_dynamic_array",
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "stem_md": "只写 `int da[];` 而不调用 `new[]`，下列哪一项正确？",
+      "explanation_md": "动态数组在声明时只是得到一个空的数组变量，还没有分配任何元素空间，因此 `da.size()` 为 0。此时任何下标访问（包括 `da[0]`）都是越界访问：按标准，越界读返回元素类型的默认值、越界写被忽略，但这属于错误用法，不能当作正常读取使用。\n\n- 选项 C 正确：长度为 0，因此任何下标访问（含 `da[0]`）都是越界。\n- 选项 A 错：声明不会自动创建 1 个元素，长度是 0 而不是 1。\n- 选项 B 错：长度确实是 0，但因此 `da[0]` 不是“可以安全读出 0”的合法访问，而是越界。\n- 选项 D 错：动态数组不会按工具默认上限预分配，长度完全由 `new[]` 决定。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据动态数组声明时为空、需 new[] 分配以及越界访问的规则编写。"
+        },
+        {
+          "title": "ChipVerify · SystemVerilog Tutorial",
+          "locator": "https://chipverify.com/systemverilog/systemverilog-tutorial",
+          "note": "动态数组的声明、new[] 分配与 size() 用法。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`da.size()` 为 1，`da[0]` 的初值为 0"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "`da.size()` 为 0，但 `da[0]` 可以安全地读出 0"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`da.size()` 为 0，此时访问 `da[0]` 属于越界访问"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "声明时按工具默认上限预分配，`da.size()` 与工具相关"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c05-02",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "new[n] 带初值参数时的复制语义",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_dynamic_array"
+      ],
+      "primary_knowledge_point_id": "sv_dynamic_array",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "执行下面的代码后，`d` 的内容是什么？\n\n```systemverilog\nint d[] = '{1, 2, 3};\nd = new[5](d);\n```",
+      "explanation_md": "`new[5]` 表示重新分配 5 个元素。括号里的 `d` 是初值来源：新数组先按位置逐个复制原数组的元素，剩余的新元素取元素类型的默认值（`int` 为 0），复制完成后新数组替换旧数组，旧数组的空间被释放。所以结果是 5 个元素 `1, 2, 3, 0, 0`。\n\n- 选项 A 正确：前 3 个元素由 `(d)` 复制而来，后 2 个取 `int` 默认值 0。\n- 选项 B 错：只有 `new[5]` 不带括号初值时才是全 0；这里带了 `(d)`，前 3 个元素被复制过来。\n- 选项 C 错：`new` 之后长度由方括号里的 5 决定，不是保持 3。\n- 选项 D 错：`new[5]` 是“把长度设为 5”，不是“在末尾追加 5 个元素”，所以不是 8 个。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 new[size](source) 的分配与初值复制规则编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "5 个元素：1, 2, 3, 0, 0"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "5 个元素：0, 0, 0, 0, 0"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "3 个元素：1, 2, 3"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "8 个元素：1, 2, 3, 0, 0, 0, 0, 0"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c05-03",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "动态数组 delete 与重新分配后的打印结果",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_dynamic_array"
+      ],
+      "primary_knowledge_point_id": "sv_dynamic_array",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "执行下面的代码后，打印的内容是什么？\n\n```systemverilog\nint d[] = '{4, 5, 6, 7};\nd.delete(1);\nd = new[3](d);\nd[2] = 9;\n$display(\"%0d %0d\", d.size(), d.sum());\n```",
+      "explanation_md": "`delete(1)` 删除下标 1 的元素 5，后面的元素前移，数组变成 `{4,6,7}`，长度为 3；`new[3](d)` 按新长度 3 复制这 3 个元素，内容不变；再执行 `d[2]=9` 得到 `{4,6,9}`，因此 `size()` 为 3、`sum()` 为 19。\n\n- 选项 A（4 19）错：`delete(1)` 会缩短数组，长度是 3 而不是 4。\n- 选项 B（3 19）正确：删除后剩 3 个元素，末元素改为 9 后和为 19。\n- 选项 C（3 24）错：被删除的 5 已经不在数组里，不能再参与求和。\n- 选项 D（2 19）错：`delete(1)` 只删除下标 1 这一个元素，不是删除下标 1 及其后共两个元素。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据动态数组 delete(index) 删除单个元素并前移的语义编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "4 19"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "3 19"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "3 24"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "2 19"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c05-04",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "有界队列声明 $:7 的含义",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_queue"
+      ],
+      "primary_knowledge_point_id": "sv_queue",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "声明 `int q[$:7];` 中的 `$:7` 表示什么？",
+      "explanation_md": "队列用 `[$]` 声明，方括号里写 `$:N` 表示有界队列，`$` 仍是“当前最后一个元素的下标”，`N` 是允许的最大下标值，因此元素个数上限为 `N+1` = 8。队列长度仍可动态变化（0 到 8），`$` 也随之变化，而不是被固定成 7。\n\n- 选项 D 正确：上限是 8 个元素，`$` 始终跟随当前末元素下标。\n- 选项 A 错：`0` 到 `7` 是下标上限，不是固定编号；元素删除后队列变短，`$` 会跟着变小。\n- 选项 B 错：声明不会创建任何元素，`q.size()` 初始为 0。\n- 选项 C 错：有界只限制上限，不要求恰好 8 个元素，也不会因为不满就阻塞。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据有界队列 $:N 的边界含义编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "队列下标被固定为 0 到 7，元素删除后编号不能复用"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "声明时即创建 8 个元素，初值都是 0"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "队列深度必须恰好为 8，不足 8 个时写入会被阻塞"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "队列元素个数上限为 8，`$` 仍表示当前最后一个元素的下标"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c05-05",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "队列插入、前后进出后的状态",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_queue"
+      ],
+      "primary_knowledge_point_id": "sv_queue",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "执行下面的代码后，下列哪些说法正确？（多选）\n\n```systemverilog\nint q[$] = '{1, 2, 3, 4};\nq.push_front(0);\nq.insert(2, 9);\nq.pop_back();\n```",
+      "explanation_md": "逐步推演：初始 `{1,2,3,4}`；`push_front(0)` 在队首插入 → `{0,1,2,3,4}`；`insert(2,9)` 在下标 2 之前插入 9 → `{0,1,9,2,3,4}`；`pop_back()` 删除队尾 4 → `{0,1,9,2,3}`，长度 5，元素和为 0+1+9+2+3 = 15。\n\n- 选项 A 正确：最终数组为 `{0,1,9,2,3}`，共 5 个元素。\n- 选项 C 正确：`insert(2,9)` 把 9 插在下标 2 的位置，所以 `q[2]` 为 9。\n- 选项 B 错：队尾元素是 3，不是 4，4 已被 `pop_back()` 删除。\n- 选项 D 错：和是 15，不是 16；16 相当于没有插入 9 却仍把 4 算进来的错误结果。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据队列 push_front/insert/pop_back 的下标语义编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`q.size()` 为 5"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "`q[$]` 的值为 4"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`q[2]` 的值为 9"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "`q.sum()` 的值为 16"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c05-06",
+      "revision": 1,
+      "type": "true_false",
+      "title": "空队列上 pop_front 的行为",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_queue"
+      ],
+      "primary_knowledge_point_id": "sv_queue",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "对一个空队列执行 `pop_front()`，会返回元素类型的默认值（`int` 时为 0），并且队列仍然为空。",
+      "explanation_md": "这句话是对的。`pop_front()` 与 `pop_back()` 是函数，返回被取出元素的值；当队列为空时，标准规定返回元素类型的默认值（`int` 为 0，四值类型为 X），队列大小保持 0，不会报错也不会把队列变大。\n\n这条规则最容易踩的坑是：它掩盖了“本该有数据却没有”的逻辑错误，所以工程上应先判 `q.size() > 0` 或 `if (q.size())` 再取。另一个常见误解是认为空队列 pop 会返回 0 并且队列变成 -1 长度或抛异常，这两种都不符合语言语义。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据队列方法在空队列上返回元素类型默认值的规则编写。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c05-07",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "关联数组 num、exists 与 delete 的综合推演",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_assoc_array"
+      ],
+      "primary_knowledge_point_id": "sv_assoc_array",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "执行下面的代码后，打印的内容是什么？\n\n```systemverilog\nint aa[string];\naa[\"a\"] = 1; aa[\"b\"] = 2; aa[\"c\"] = 3;\naa.delete(\"b\");\naa[\"d\"] = aa.num();\n$display(\"%0d %0d\", aa.num(), aa.exists(\"b\"));\n```",
+      "explanation_md": "关联数组只保存被赋值过的键。初始三个元素 `a`、`b`、`c`；`delete(\"b\")` 后剩 `a`、`c`，`num()` 为 2；接着 `aa[\"d\"] = aa.num()` 先把 2 赋给新键 `d`，键变成 `a`、`c`、`d` 共 3 个；`exists(\"b\")` 对被删除的键返回 0。所以打印 `3 0`。\n\n- 选项 A（3 0）正确：删除 `b` 后剩 2 个键，新增 `d` 后变 3 个，`exists` 对被删键返回 0。\n- 选项 B（2 0）错：漏掉了 `aa[\"d\"] = aa.num()` 这次赋值本身也会新增一个元素。\n- 选项 C（3 1）错：`delete` 之后键确实不存在了，`exists` 不会因为曾经存在过而返回 1。\n- 选项 D（4 0）错：`num()` 统计当前存在的元素个数，`delete` 不会留下空槽。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据关联数组 num/exists/delete 以及赋值即建键的语义编写。"
+        },
+        {
+          "title": "Verification Guide · SystemVerilog",
+          "locator": "https://verificationguide.com/systemverilog/",
+          "note": "关联数组 exists、num、delete 方法示例。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "3 0"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "2 0"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "3 1"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "4 0"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c05-08",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "字符串索引的大小写与删除不存在的键",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_assoc_array"
+      ],
+      "primary_knowledge_point_id": "sv_assoc_array",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "执行下面的代码后，下列哪些说法正确？（多选）\n\n```systemverilog\nint aa[string];\naa[\"id\"] = 1;\naa[\"ID\"] = 2;\n```",
+      "explanation_md": "字符串索引按内容精确比较，区分大小写，所以 `\"id\"` 与 `\"ID\"` 是两个不同的键，`num()` 为 2。\n\n- 选项 A 正确：两个键不同，数组里有 2 个元素。\n- 选项 D 正确：`exists(\"Id\")` 查询的键从未被赋值，返回 0。\n- 选项 B 错：`delete` 一个不存在的键是合法操作，什么也不做，不会报错；这正是遍历中“先判 exists 再 delete”可以省略判断的原因。\n- 选项 C 错：`delete(\"id\")` 会真正移除该元素，`num()` 变为 1；关联数组删除后不保留空位，也不会把值置空。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据关联数组字符串索引的比较规则与 delete 不存在键的语义编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`aa.num()` 为 2，两个键互不相同"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "`aa.delete(\"nope\")` 会报运行时错误，因为该键不存在"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`aa.delete(\"id\")` 后 `aa.num()` 仍为 2"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "`aa.exists(\"Id\")` 返回 0"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_d"
+        ]
+      }
+    },
+    {
+      "id": "sv-c05-09",
+      "revision": 1,
+      "type": "true_false",
+      "title": "foreach 遍历关联数组求累加和",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_assoc_array"
+      ],
+      "primary_knowledge_point_id": "sv_assoc_array",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "执行下面的代码后，`t` 的值为 6。\n\n```systemverilog\nint m[string];\nm[\"a\"] = 1; m[\"b\"] = 2; m[\"c\"] = 3;\nint t = 0;\nforeach (m[k]) t += m[k];\n```",
+      "explanation_md": "这句话是对的。`foreach (m[k])` 会遍历关联数组中所有实际存在的键，循环体里 `m[k]` 取出该键对应的值，累加 1+2+3 得 6，遍历次数等于 `m.num()`（本例为 3）。\n\n要注意的是：`foreach` 的遍历顺序由工具实现决定，语言不保证按键值升序；本题只求和，与顺序无关。若把循环体写成依赖顺序的逻辑（例如“第一个元素”），代码就不可移植。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 foreach 遍历关联数组的语义编写，遍历顺序不在标准保证范围内。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c06-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "packed struct 的成员排布",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_struct_union"
+      ],
+      "primary_knowledge_point_id": "sv_struct_union",
+      "difficulty": 1,
+      "estimated_minutes": 3,
+      "stem_md": "声明 `typedef struct packed { bit [3:0] hi; bit [3:0] lo; } word_t;` 中，`packed` 的作用是什么？",
+      "explanation_md": "被声明为 `packed` 的结构体，其成员按声明顺序从高位到低位紧密拼成一个位向量，`hi` 占 `[7:4]`、`lo` 占 `[3:0]`，因此 `word_t` 变量可以整体赋给 `bit [7:0]`、做位选和拼接。不加 `packed` 的普通结构体则不能这样用。\n\n- 选项 B 正确：`hi` 占 `[7:4]`、`lo` 占 `[3:0]`，整体就是一个 8 位向量。\n- 选项 A 错：`packed` 不涉及字节对齐，也不保证与 C 结构体的二进制布局一致；与 C 互操作通常用 unpacked struct 再逐字段打包。\n- 选项 C 错：`packed` 与随机化无关，成员要被随机化需要 `rand` 修饰。\n- 选项 D 错：`packed` 只要求成员是整型（integral）类型，成员可以是四值的 `logic`。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 packed struct 成员按声明顺序拼成位向量的规则编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "成员按字节对齐排列，便于与 C 结构体二进制互操作"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "成员按声明顺序紧密拼成一个 8 位向量，可整体赋值或位选"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "成员自动获得 rand 修饰，可以直接参与随机化"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "成员被限制为二值类型，其中不能出现四值类型"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c06-02",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "packed 与 unpacked 结构体的赋值兼容性",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_struct_union"
+      ],
+      "primary_knowledge_point_id": "sv_struct_union",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "两个结构体类型成员完全相同：`typedef struct packed { bit [7:0] a; bit [7:0] b; } ps_t;` 与 `typedef struct { bit [7:0] a; bit [7:0] b; } us_t;`。下列哪一项正确？",
+      "explanation_md": "`ps_t` 是 packed 结构体，整体就是一个 16 位向量，可以与 `bit [15:0]` 直接互相赋值、位选、拼接。`us_t` 是 unpacked 结构体，成员各自独立存放，不是位向量，不能整体赋给 16 位向量，只能逐成员赋值或做结构体之间（同类型）的赋值。\n\n- 选项 A 正确：packed 结构体本身是位向量，可与 `bit [15:0]` 直接互相赋值。\n- 选项 B 错：unpacked 结构体没有整体位向量的身份，不能直接赋给向量。\n- 选项 C 错：packed 结构体本来就可以整体赋值给向量，不存在“都必须逐成员”的限制。\n- 选项 D 错：决定能否整体赋给向量的是结构体本身是否 `packed`，与成员自身是不是 packed 类型无关。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 packed 结构体可作位向量赋值、unpacked 结构体不可的规则编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`ps_t` 变量可直接赋给 16 位向量，`us_t` 变量不行"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "两种变量都可以直接赋给 16 位向量"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "两种变量都不能，必须逐成员赋值"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "`us_t` 也可以，因为它的成员本身都是 packed 的"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c06-03",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "结构体赋值拷贝与联合体共享存储",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_struct_union"
+      ],
+      "primary_knowledge_point_id": "sv_struct_union",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "执行下面的代码后，下列哪些说法正确？（多选）\n\n```systemverilog\ntypedef struct { int x; int y; } pt_t;\ntypedef union packed { bit [15:0] w; bit [1:0][7:0] b; } u_t;\npt_t p1 = '{1, 2};\npt_t p2 = p1;\np2.x = 9;\nu_t u;\nu.w = 16'h1234;\n```",
+      "explanation_md": "结构体是值类型，`pt_t p2 = p1;` 逐成员复制，两份数据互不影响；联合体的所有成员共享同一段存储，写一个成员就是改写全部成员的位模式。\n\n- 选项 B 正确：`p1.x` 仍为 1，修改 `p2.x` 不会回写到 `p1`。\n- 选项 D 正确：`u.b[0]` 是 `u` 的低 8 位，`16'h1234` 的低字节为 `8'h34`。\n- 选项 A 错：结构体不是句柄，不存在共享成员存储；若 `pt_t` 换成类，句柄赋值才会共享对象。\n- 选项 C 错：联合体成员不是独立字段，写 `b` 就是在写 `w` 的同一段比特，`w` 不会被清零而是变成与 `b` 对应的位模式。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据结构体赋值逐成员复制与 union 成员共享存储的规则编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`p1.x` 也变为 9，因为 `p2` 与 `p1` 共享同一份成员存储"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "`p1.x` 仍为 1，因为结构体赋值是逐成员复制"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`u.w` 被清零，因为写 `b` 与写 `w` 属于不同成员"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "`u.b[0]` 等于 `8'h34`"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_b",
+          "opt_d"
+        ]
+      }
+    },
+    {
+      "id": "sv-c06-04",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "未指定初值与基类型时的枚举编码",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_enum"
+      ],
+      "primary_knowledge_point_id": "sv_enum",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "`typedef enum {IDLE, RUN, DONE} state_t;` 中三个枚举常量的整数值与底层类型是什么？",
+      "explanation_md": "枚举中未显式赋值的常量从 0 开始、依次加 1，所以 `IDLE`=0、`RUN`=1、`DONE`=2；未指定基类型（base type）时，默认基类型是 `int`。\n\n- 选项 D 正确：三个常量依次为 0、1、2，默认基类型是 `int`。\n- 选项 A 错：第一个常量是 0 而不是 1，只有显式写 `IDLE = 1` 才是 1。\n- 选项 B 错：默认基类型是 `int`，不是 `bit [1:0]`；要用 2 位需显式写 `enum bit [1:0] {…}`。\n- 选项 C 错：编码由语言规则确定，虽然可用显式赋值改写，但绝不是工具随机分配。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据枚举常量默认从 0 递增、缺省基类型为 int 的规则编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "依次为 1、2、3，底层类型是 `int`"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "依次为 0、1、2，底层类型是 `bit [1:0]`"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "取值由工具随机分配，不能依赖"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "依次为 0、1、2，底层类型是 `int`"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c06-05",
+      "revision": 1,
+      "type": "true_false",
+      "title": "next(N) 是数枚举值还是按声明顺序移动",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_enum"
+      ],
+      "primary_knowledge_point_id": "sv_enum",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "执行下面的代码后，`e` 的值等于 3（即 `A` 的编码 1 加 2）。\n\n```systemverilog\ntypedef enum {A = 1, B = 4, C = 6} e_t;\ne_t e = e.first();\ne = e.next(2);\n```",
+      "explanation_md": "这句话是错的。`first()` 返回第一个枚举常量 `A`（值 1）；`next(N)` 沿枚举的**声明顺序**向后移动 N 个常量，不做算术加法。`A` 之后第 1 个是 `B`，第 2 个是 `C`，所以 `e` 的值是 6，不是 3。\n\n`next()` 之所以不按数值加，是因为枚举允许跳号（本例 1、4、6），数值上有空洞。若要按数值偏移，只能自己算并保证结果落在枚举列表中，或改用整数变量。`prev()` 同理，沿声明顺序向前移动。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据枚举 next/prev 按声明顺序移动而非按数值运算的规则编写。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "sv-c06-06",
+      "revision": 1,
+      "type": "true_false",
+      "title": "赋枚举列表之外的值不会被折算",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_enum"
+      ],
+      "primary_knowledge_point_id": "sv_enum",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "给枚举变量赋一个不在枚举列表中的值，仿真器会自动把它折算成列表中数值最接近的枚举常量。",
+      "explanation_md": "这句话是错的。语言中不存在“折算到最近枚举常量”的规则：把一个不在列表中的值赋给枚举变量，标准把它视为错误，工具通常给出 warning 并保留写入的位模式，于是变量处在一个不对应任何枚举常量的状态，后续 `case` 会走到 `default`。\n\n正确做法有两种：一是先用整数变量校验范围，再显式转换赋值；二是用 `$cast(enum_var, int_expr)`，它在值不合法时返回 0 且不改变目标变量，便于在验证代码里做检查。若枚举基类型是四值类型（如 `enum logic [1:0]`），变量还可能因未初始化而取到 X。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据枚举变量赋值超出枚举列表属错误、$cast 可做合法性检查的语义编写。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "sv-c06-07",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "通配 import 后类型名的两种写法",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_typedef_package"
+      ],
+      "primary_knowledge_point_id": "sv_typedef_package",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "下面的代码中，关于 `req_t` 的引用方式，哪一项正确？\n\n```systemverilog\npackage cfg_pkg;\n  typedef struct packed { bit [7:0] addr; bit [7:0] data; } req_t;\nendpackage\n\nmodule m;\n  import cfg_pkg::*;\n  cfg_pkg::req_t r;\nendmodule\n```",
+      "explanation_md": "package 里的 `typedef` 属于该 package 的作用域，通过 `import cfg_pkg::*;` 把这个作用域里的名字引入当前作用域后，既可以写不带前缀的 `req_t`，也随时可以写完全限定名 `cfg_pkg::req_t`——后者本来就不需要 import。\n\n- 选项 A 正确：短名 `req_t` 与全限定名 `cfg_pkg::req_t` 都可用。\n- 选项 B 错：通配 import 之后可以直接用 `req_t`，不必写全限定名。\n- 选项 C 错：`import` 导入的是名字，不区分类型、变量、task/function，package 内的变量和子程序同样可以导入。\n- 选项 D 错：`typedef` 定义的类型只有一份，import 只是让名字可见，不会为每个 module 复制出独立类型；正因如此，跨 module 传递该类型才是同一个类型。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 package import 引入名字、作用域引用不依赖 import 的规则编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "有了通配 import，`req_t` 与 `cfg_pkg::req_t` 两种写法都能用"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "import 之后仍必须写全 `cfg_pkg::req_t`，否则找不到该类型"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`import cfg_pkg::*;` 只能导入类型，不能导入变量和 task"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "import 会把 typedef 复制一份到 module 内，各 module 各有一份类型"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c06-08",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "package 之间的 import 与名字可见性",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_typedef_package"
+      ],
+      "primary_knowledge_point_id": "sv_typedef_package",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "下面的代码中，下列哪些说法正确？（多选）\n\n```systemverilog\npackage p1;\n  typedef int word_t;\nendpackage\n\npackage p2;\n  import p1::*;\n  typedef word_t half_t;\nendpackage\n```",
+      "explanation_md": "package 也是作用域，`import p1::*;` 把 `p1` 中的名字引入 `p2` 的作用域，因此其后的声明可以直接使用 `word_t`，`half_t` 的定义合法；import 只做名字可见性，不复制声明实体。\n\n- 选项 A 正确：import 之后 `word_t` 在 `p2` 后续声明中可见。\n- 选项 C 正确：`half_t` 与 `p1::word_t` 指向同一个类型，不是新类型。\n- 选项 B 错：`p1::word_t` 是完全限定名，作用域解析本来就不需要 import；import 只是让你能写短名。\n- 选项 D 错：import 是声明，可以出现在作用域内可写声明的位置，也不限制只能出现一次。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 package 的 import 语义与作用域名字解析规则编写。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`p2` 中 import 之后 `word_t` 可见，因此 `half_t` 的定义合法"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "在 `p2` 里写 `p1::word_t` 之前必须先 import `p1`"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "import 只把名字引入当前作用域，不会复制 `p1` 中的声明"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "同一个 import 只能出现一次，且必须写在 `p2` 的第一条声明位置"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c07-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "always_comb 的敏感表与时间零执行",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_always"
+      ],
+      "primary_knowledge_point_id": "sv_always",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "关于 `always_comb` 过程块的敏感表与执行时机，下列说法正确的是？",
+      "explanation_md": "正确项 B：`always_comb` 的敏感表由过程块内读取的变量推断，包括被调用 function 内部读取的变量；标准还要求它在时间 0 自动执行一次，用于建立初值。A 错在把敏感表限制成「直接出现在赋值右侧的变量」，漏掉了 function 内部读取的变量。C 错在否认时间 0 的那次执行，实际会把初值问题留给后续激励。D 错在把两者等同：`always @*` 只在函数实参变化时被触发，不跟踪函数内部读取的其他变量。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 always_comb 的敏感表推断与时间 0 执行语义，未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "敏感表只包含过程块里直接出现在赋值右侧的变量，被调用 function 内部读取的变量不会加入"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "敏感表包含块内读取的全部变量（含被调用 function 中读取的），并在时间 0 自动执行一次"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "过程块只在被读变量发生变化时执行，时间 0 不会主动执行一次"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "敏感表按 `@*` 的规则推断，因此与 `always @*` 的行为完全等价"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c07-02",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "always_comb 中不完整的 if 分支",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_always"
+      ],
+      "primary_knowledge_point_id": "sv_always",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "```systemverilog\nlogic [1:0] sel;\nlogic       a, b, y;\n\nalways_comb begin\n  if (sel == 2'b00) y = a;\n  else if (sel == 2'b01) y = b;\nend\n```\n\n当 `sel` 从 `2'b01` 变为 `2'b10` 时，仿真中 `y` 的取值和工具行为是？",
+      "explanation_md": "正确项 C：`always_comb` 只是声明「这段是组合逻辑」的意图，并不强制每条路径都赋值。`sel` 为 `2'b10` 时两个分支都不成立，过程块体实际不执行任何赋值，`y` 保持上一次触发的值，表现为锁存行为；工具通常会对 always_comb 推断出锁存器给出告警。A 错在把过程块当成会自动清零，未赋值的变量不会复位成 0。B 错在混淆「未赋值」与「赋 X」，保持旧值不是 X。D 错在把语义告警当成语法错误，代码可以编译通过。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 always_comb 不完整赋值时的保持行为与锁存器推断告警，未标注条款号。"
+        },
+        {
+          "title": "ChipVerify · SystemVerilog Tutorial",
+          "locator": "https://chipverify.com/systemverilog/systemverilog-tutorial",
+          "note": "该教程的 always_comb 一节举例说明了组合块内省略分支导致锁存器的问题。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`y` 变为 0，因为 `always_comb` 在未赋值的路径上默认清零"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "`y` 变为 X，因为组合逻辑的输出必须被完整赋值"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`y` 保持上一次的值，工具通常会告警该块可能推断出锁存器"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "编译直接报错，因为 `always_comb` 不允许不完整的 if-else"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c07-03",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "always_comb 的三条硬性约束",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_always"
+      ],
+      "primary_knowledge_point_id": "sv_always",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "关于 `always_comb` 的语义约束，下列哪些说法正确？（多选）",
+      "explanation_md": "正确项 B、C。B：敏感表覆盖块内读取的全部变量，包括被调用 function 内部读取的变量，这是 `always_comb` 与 `always @*` 的关键差别之一。C：`always_comb` 左侧的变量不允许再被其他过程块或 `assign` 驱动，标准要求单一驱动。A 错：`always_comb` 内不允许任何时序控制（`#`、`@`、`wait`），出现延时即非法。D 错：块内一个变量都不读时敏感表为空，属于错误用法，不能当成 `always @*` 的等价写法。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 always_comb 禁止时序控制、敏感表推断与左侧变量单一驱动的规定，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "块内可以出现 `#5` 之类的延时，用来模拟组合逻辑的传播延迟"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "敏感表会包含块内读取的全部变量，包括在被调用 function 内部读取的变量"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "同一个变量不允许再被其他过程块或 `assign` 语句驱动"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "块内完全不读取任何变量时，行为与 `always @*` 等价，仍然合法"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_b",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c07-04",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "always_ff 与 always_comb 同时驱动同一变量",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_always"
+      ],
+      "primary_knowledge_point_id": "sv_always",
+      "difficulty": 5,
+      "estimated_minutes": 5,
+      "stem_md": "```systemverilog\nlogic q, d, a, b, sel, clk;\n\nalways_ff @(posedge clk)\n  q <= d;\n\nalways_comb\n  q = sel ? a : b;\n```\n\n这段代码最主要的问题是什么？",
+      "explanation_md": "正确项 D：`always_ff` 要求其左侧变量只由该过程块驱动，`always_comb` 同样要求左侧变量不被其他过程驱动。`q` 同时出现在两个块的左侧，违反单一驱动约束，工具会报错，即便勉强通过也会得到不可靠结果。A 错：`always_comb` 的敏感表包含 `sel`、`a`、`b`，并不为空。B 错：`always_ff` 内用非阻塞赋值是推荐写法，`q` 仍会在时钟沿更新。C 错：`always_comb` 不在时钟沿执行，所谓「两个块都在沿上」的前提不成立，问题不是竞争而是多驱动。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 always_ff 与 always_comb 对左侧变量单一驱动的要求，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`always_comb` 的敏感表为空，因此 `q` 永远不会被更新"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "`always_ff` 中用了非阻塞赋值，因此 `q` 不会在时钟沿更新"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "两个过程块都在时钟沿执行，`q` 只会出现不影响功能的竞争"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "`q` 被两个过程块同时驱动，违反单一驱动约束，工具会报错或行为不可靠"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c07-05",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "case 无匹配且无 default 的仿真与综合",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_case"
+      ],
+      "primary_knowledge_point_id": "sv_case",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "```systemverilog\nlogic [1:0] sel;\nlogic       a, b, y;\n\nalways_comb begin\n  case (sel)\n    2'b00: y = a;\n    2'b01: y = b;\n  endcase\nend\n```\n\n当 `sel` 取 `2'b10` 时，仿真结果与综合结果分别是？",
+      "explanation_md": "正确项 A：`case` 没有匹配分支又没有 `default` 时，整个过程块体不执行任何赋值，`y` 保持上一次的值，这就是锁存行为；综合据此推断出锁存器。B 错：不会清零，也不存在「综合得纯组合逻辑」——缺少 default 的组合块正是锁存器的典型来源。C 错：未赋值不等于 X，也不会有综合报错。D 错：仿真侧描述对了，但综合侧错误，若只有纯组合逻辑则必须补齐所有分支或加 default。补充：若写成 `unique case`，还会额外报告 no-match 违规，但缺省行为仍是保持。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 case 无匹配无 default 时保持原值、以及综合推断锁存器的语义，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`y` 保持上一次的值；综合会推断出锁存器"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "`y` 变为 0；综合得到纯组合逻辑"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`y` 变为 X；综合工具直接报错退出"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "`y` 保持上一次的值；综合仍得到纯组合逻辑"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c07-06",
+      "revision": 1,
+      "type": "true_false",
+      "title": "unique case 的检查发生在仿真期",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_case"
+      ],
+      "primary_knowledge_point_id": "sv_case",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "`unique case` 会在仿真时检查各分支是否互斥且至少匹配一个，违规时报告运行期错误或警告，但它并不改变匹配成功时的分支行为。",
+      "explanation_md": "答案为真。`unique` 是仿真期检查加综合指示：仿真时若出现多个分支同时匹配（重叠）或无分支匹配，会报告违规；综合工具则把它当作 full_case/parallel_case 的意图提示。它不改变正常匹配时的选择结果，也不是编译期保证——代码仍可能通过编译，只在仿真运行到违规条件时才暴露问题。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 unique 关键字的仿真期违规检查与综合指示语义，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c07-07",
+      "revision": 1,
+      "type": "true_false",
+      "title": "priority case 不改变分支匹配顺序",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_case"
+      ],
+      "primary_knowledge_point_id": "sv_case",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "`priority case` 会改变分支的匹配顺序，使写在后面的分支优先于前面的分支被选中。",
+      "explanation_md": "答案为假。`priority case` 不改变 case 自上而下、第一个匹配分支生效的规则；它表达的是「至少应有一个分支匹配」，若仿真时无任何分支匹配则报告运行期违规，同时给综合工具一个 full_case 意图提示。要得到真正的优先级，只能靠分支的书写顺序来实现，关键字本身不重排分支。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 priority 仅表达至少一个分支匹配、不改变求值顺序的规定，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "sv-c07-08",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "foreach 遍历二维数组的顺序",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_loop"
+      ],
+      "primary_knowledge_point_id": "sv_loop",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "```systemverilog\nint m[2][3] = '{'{1, 2, 3}, '{4, 5, 6}};\ninitial foreach (m[i, j]) $write(\"%0d\", m[i][j]);\n```\n\n以上代码打印的结果是？",
+      "explanation_md": "正确项 C：`foreach (m[i, j])` 中 i 是最外层索引（变化最慢），j 是最内层索引（每次迭代递增），等价于 `for (i=0;i<2;i++) for (j=0;j<3;j++)`，因此先输出 m[0][0..2]，再输出 m[1][0..2]，得到 123456。A 是「列优先」的错误假设，把最右维当成最外层。B 把遍历方向整体反了。D 跳着取值，不符合任何一维的连续遍历，是误解了索引的嵌套关系。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "Verification Guide · SystemVerilog",
+          "locator": "https://verificationguide.com/systemverilog/",
+          "note": "该站的数组与 foreach 小节说明了多维数组按声明顺序嵌套遍历。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "142536"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "654321"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "123456"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "135246"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c07-09",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "foreach 索引变量与 break/continue",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_loop"
+      ],
+      "primary_knowledge_point_id": "sv_loop",
+      "difficulty": 4,
+      "estimated_minutes": 4,
+      "stem_md": "关于 SystemVerilog 中的循环控制，下列哪些说法正确？（多选）",
+      "explanation_md": "正确项 B、C。B：`break` 立即跳出当前所在的整个循环，执行循环之后的语句。C：`continue` 只结束当前这一轮，跳到循环的下一次迭代（对 `foreach` 就是下一组索引）。A 错：索引变量由循环本身在每轮迭代开始时设定，你在循环体里改写它，下一轮仍会被重新设置回正确索引，靠它跳过元素不会生效（部分工具也直接禁止这种赋值），要跳过元素应当用 `continue` 加条件判断。D 错：`foreach` 适用于定长数组、动态数组、队列和关联数组，关联数组按键类型遍历。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 foreach 索引变量只读、break/continue 的作用范围与适用范围，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`foreach` 的索引变量可以在循环体内赋值，从而跳过某些元素的遍历"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "在 `foreach` 或 `for` 循环中执行 `break` 会立即终止整个循环"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`continue` 结束当前这一轮迭代，直接进入下一轮"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "`foreach` 只能遍历定长数组，不能用于动态数组、队列或关联数组"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_b",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c08-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "modport 是方向视图而不是信号副本",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_interface"
+      ],
+      "primary_knowledge_point_id": "sv_interface",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "关于 `modport` 的作用，下列说法正确的是？",
+      "explanation_md": "正确项 C：modport 在 interface 内部把同一组信号按不同角色的端口方向分组，供编译器做方向检查；所有 modport 视图看到的都是同一个 interface 实例里的同一组信号，不存在复制。A 错：若每个模块各得一份副本，interface 就失去了共享连线的意义。B 错：modport 除了信号方向，还可以用 `import`/`export` 引入或导出 task、function。D 错：modport 就定义在 interface 内部，没有「外部定义再 import 进来」这种形式。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 modport 的方向分组与 import/export 子程序能力，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "modport 会为每个使用它的模块复制一份接口信号，模块之间互不影响"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "modport 只能声明信号方向，不能声明 task 或 function"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "modport 把 interface 内的信号按端口方向分组供工具检查，不复制信号"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "modport 必须在 interface 外部定义，再用 `import` 引入"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c08-02",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "通过 modport 视图连接的驱动与可见性",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_interface"
+      ],
+      "primary_knowledge_point_id": "sv_interface",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "```systemverilog\ninterface bus_if;\n  logic       valid;\n  logic [7:0] data;\n  modport mst (output valid, data);\n  modport slv (input  valid, data);\nendinterface\nmodule drv (bus_if.mst m);\n  assign m.valid = 1'b1;\n  assign m.data  = 8'hA5;\nendmodule\n```\n\n关于这段代码，下列说法正确的是？",
+      "explanation_md": "正确项 D：interface 端口把 interface 实例（这里是它的 mst 视图）传进 module，drv 通过 m 驱动的是实例里的那组信号，同一实例上以 slv 视图连接的模块会读到相同值。A 错：`bus_if.mst m` 正是标准的 interface 端口写法，编译合法。B 错：不存在副本，interface 的意义就是共享同一组连线。C 错：mst 把 valid、data 声明为 output，正是允许 drv 驱动它们；若 drv 去读这两个信号才需要留意方向限制。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 interface 端口与 modport 视图共享同一实例信号的语义，未标注条款号。"
+        },
+        {
+          "title": "ASIC-World · SystemVerilog",
+          "locator": "https://www.asic-world.com/systemverilog/",
+          "note": "该站的 interface/modport 示例展示了模块端口使用 modport 视图的写法。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "编译报错，因为 modport 视图不能出现在 module 的端口列表里"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "drv 拿到的是 data 的副本，必须再 assign 回 interface 才能被 slv 看到"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "mst 声明为 output，因此 drv 内部不能对 `m.data` 赋值"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "drv 通过 m 驱动同一组信号，以 slv 连接的模块读到相同的值"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c08-03",
+      "revision": 1,
+      "type": "true_false",
+      "title": "interface 内可以出现 always_ff 过程块",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_interface"
+      ],
+      "primary_knowledge_point_id": "sv_interface",
+      "difficulty": 5,
+      "estimated_minutes": 5,
+      "stem_md": "interface 内部不允许出现 `always_ff`、`initial` 这类过程块，只能声明信号、modport 和 task/function。",
+      "explanation_md": "答案为假。interface 是设计单元，除信号与 modport 外还可以包含 `always_ff`、`always_comb`、`initial`、`final` 过程块，以及 clocking block、断言和 task/function，标准并未禁止过程块。把协议驱动或检查写进 interface 是风格取舍（不少团队更愿意放在 module 或 program 中），但那是编码规范而不是语法限制。真正的约束来自方向与驱动一致性：例如在 interface 内用过程块驱动某信号，同时又在 modport 中把它声明为 input，就会产生方向冲突。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 interface 可包含过程块、clocking block、子程序与断言的规定，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "sv-c08-04",
+      "revision": 1,
+      "type": "true_false",
+      "title": "clocking block 的 input 采样时刻",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_clocking"
+      ],
+      "primary_knowledge_point_id": "sv_clocking",
+      "difficulty": 4,
+      "estimated_minutes": 4,
+      "stem_md": "clocking block 中的 input 信号在时钟沿之前的 preponed 区域完成采样，因此采到的是该沿到来之前的稳定值。",
+      "explanation_md": "答案为真。默认 input skew 是 `#1step`，采样发生在时钟沿前最后一个时间精度步（preponed 区），取到沿前的稳定值；因此 testbench 即使在同一沿上用阻塞赋值改动信号，也不会影响本次采样结果。output 方向相反，按 output skew 推迟到沿之后驱动。这正是 clocking block 用来消除 testbench 与 DUT 竞争的手段，也是它比手写 `@(posedge clk)` 更可靠的原因。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 clocking block 的 preponed 采样与 output skew 驱动语义，未标注条款号。"
+        },
+        {
+          "title": "VerilogPro · SystemVerilog",
+          "locator": "https://verilogpro.com/",
+          "note": "该站关于 clocking block 的文章解释了采样与驱动偏移如何避免竞争。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c08-05",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "default input #1step 的含义",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_clocking"
+      ],
+      "primary_knowledge_point_id": "sv_clocking",
+      "difficulty": 3,
+      "estimated_minutes": 3,
+      "stem_md": "```systemverilog\nclocking cb @(posedge clk);\n  default input #1step output #2;\n  input  dout;\n  output din;\nendclocking\n```\n\n其中 `default input #1step` 的含义是？",
+      "explanation_md": "正确项 A：`#1step` 表示一个时间精度步，采样发生在时钟沿前的最后一个精度步（preponed 区），取到沿前的稳定值。B 错：`1step` 不是 1 个时间单位，写成 `#1` 才是沿前 1 个时间单位，两者在精度较细时差别明显。C 错：input 描述的是采样，不是把信号延迟后驱动给 DUT。D 错：input 采样发生在沿前而非沿后，沿后 2 个时间单位驱动的是同一行里的 output #2。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 clocking block 中 1step 时间单位与 input/output skew 的定义，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "在时钟沿前的最后一个时间步（preponed 区）采样 `dout`，取沿前的稳定值"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "在每个时钟沿之前 1 个时间单位采样 `dout`"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "把 `dout` 延迟 1 个时间步后再驱动给 DUT"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "让 `dout` 在时钟沿后 1 个时间步才可被读取"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c08-06",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "clocking block 的时钟事件与驱动偏移",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_clocking"
+      ],
+      "primary_knowledge_point_id": "sv_clocking",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "关于 clocking block，下列说法哪些正确？（多选）",
+      "explanation_md": "正确项 A、B。A：一个 clocking block 只绑定一个时钟事件，块内所有信号都按这个事件采样或驱动，这正是它能把时序集中描述的原因。B：`cb.din <= v` 的驱动不会立即生效，而是推迟到该时钟沿之后按 output skew 指定的时间，从而避开与 DUT 的竞争。C 错：clocking block 里声明为 input 的信号只能读，不能在其中驱动，写它会违反方向约束。D 错：一个 clocking block 不能同时绑定 `posedge clk` 与 `negedge clk`，需要两个沿就分别建两个 clocking block。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 clocking block 单一时钟事件、input 只读与 output skew 驱动的规定，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "一个 clocking block 只绑定一个时钟事件，块内信号都按它采样或驱动"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "用 `cb.din <= v` 驱动时，实际驱动时刻推到沿之后按 output skew 指定的时间"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "块内声明为 input 的信号仍是普通变量，可以在任意时刻直接赋值"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "同一个 clocking block 可以同时绑定 `posedge clk` 与 `negedge clk`"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_b"
+        ]
+      }
+    },
+    {
+      "id": "sv-c09-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "module 内 function 的缺省存储类别",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_function"
+      ],
+      "primary_knowledge_point_id": "sv_function",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "在 module 内声明一个没有写 `automatic` 的 function，它内部局部变量的存储特性是？",
+      "explanation_md": "正确项 D：module、interface、program 中声明的 function/task 缺省是静态存储，局部变量只有一份，调用之间保留上次的值；要可重入必须显式写 `automatic`。A 描述的是 automatic 语义，正好相反。B 错：缺省值由语言规定，不由工具选择（只有类的方法缺省是 automatic）。C 错：不写 `static` 就已经是静态，不存在「缺省自动」的情况。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据模块级子程序缺省 static、类方法缺省 automatic 的规定，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "每次调用都重新分配，递归调用之间互不影响"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "由工具决定：仿真器默认 automatic，综合器默认 static"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "只有显式写 `static` 关键字才静态分配，缺省是自动的"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "静态分配，所有调用共享同一份存储，调用之间保留上次的值"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c09-02",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "静态 function 的累加结果",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_function"
+      ],
+      "primary_knowledge_point_id": "sv_function",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "```systemverilog\nfunction int f(int n);\n  int acc; acc = acc + n; return acc;\nendfunction\ninitial begin\n  int a, b;\n  a = f(1);\n  b = f(2);\n  $display(\"%0d %0d\", a, b);\nend\n```\n\n这段代码打印的结果是？",
+      "explanation_md": "正确项 B（1 3）：`f` 没有写 `automatic`，`acc` 是静态变量，只在时间 0 初始化一次为 0，之后跨调用保留。第一次调用 `acc = 0 + 1 = 1`；第二次调用时 `acc` 仍是 1，于是 `1 + 2 = 3`。A（1 2）是把 `acc` 当成 automatic 的结果。C（0 0）误解了赋值顺序，返回值就是累加结果。D（3 3）错在认为第一次调用也会得到 3，实际第一次累加前 `acc` 为 0。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据静态子程序局部变量的单次初始化与跨调用保持语义，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "1 2"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "1 3"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "0 0"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "3 3"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c09-03",
+      "revision": 1,
+      "type": "true_false",
+      "title": "static function 递归时共享局部变量",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_function"
+      ],
+      "primary_knowledge_point_id": "sv_function",
+      "difficulty": 5,
+      "estimated_minutes": 5,
+      "stem_md": "未声明为 `automatic` 的 function 递归调用自身时，各层调用共享同一份局部变量，因此递归结果通常是错的。",
+      "explanation_md": "答案为真。静态存储只有一份，递归的每一层都读写同一个局部变量，内层会覆盖外层尚未使用的中间值，结果不可预测；要写递归或可重入的 function，必须显式声明为 `automatic`，让每次调用各自分配栈上的局部变量。补充两点：递归本身在综合工具中通常也不被支持，验证环境中才常见；类的方法缺省是 automatic，不受这条陷阱影响。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据静态子程序存储共享导致递归不可重入的语义，未标注条款号。"
+        },
+        {
+          "title": "原创题",
+          "locator": "原创出题，未引用外部题面",
+          "note": "依据 SystemVerilog 标准语义自行编写，未核实具体条款出处。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c09-04",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "ref 参数与 input 副本的语义差别",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_ref"
+      ],
+      "primary_knowledge_point_id": "sv_ref",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "关于 task/function 的 `ref` 参数，下列说法哪些正确？（多选）",
+      "explanation_md": "正确项 A、B。A：`ref` 在调用期间是实参的别名，被调方通过形参写入会直接落到调用方的变量上。B：`input` 方向在调用时把实参复制一份，被调方改的只是副本，实参不变。C 错：两者不是性能差别而是语义差别，`ref` 根本不复制。D 错：`ref` 只要求实参是可写的变量，automatic 变量同样可以，只要它在调用期间存在。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 input 的值复制与 ref 的别名语义，未标注条款号。"
+        },
+        {
+          "title": "Verification Guide · SystemVerilog",
+          "locator": "https://verificationguide.com/systemverilog/",
+          "note": "该站子程序一节对比了 input/output/inout/ref 四种参数方向。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`ref` 传递的是引用，被调方通过形参写入会直接反映到调用方的变量上"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "`input` 方向在调用时复制实参，被调方修改形参不影响实参"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`ref` 与 `input` 语义相同，区别只在仿真性能"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "只有 static 变量能作 `ref` 实参，automatic 变量不可以"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_b"
+        ]
+      }
+    },
+    {
+      "id": "sv-c09-05",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "input 与 ref 混用时调用方变量的变化",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_ref"
+      ],
+      "primary_knowledge_point_id": "sv_ref",
+      "difficulty": 4,
+      "estimated_minutes": 4,
+      "stem_md": "```systemverilog\ntask t(input int a, ref int b);\n  a = a + 1;\n  b = b + 1;\nendtask\ninitial begin\n  int x = 5, y = 5;\n  t(x, y);\n  $display(\"%0d %0d\", x, y);\nend\n```\n\n这段代码打印的结果是？",
+      "explanation_md": "正确项 C（5 6）：`a` 是 input 方向，调用时把 x 复制一份，`a = a + 1` 只改副本，x 仍为 5；`b` 是 ref 方向，是 y 的别名，`b = b + 1` 直接写回 y，得到 6。A（6 6）错在把 input 也当成回写。B（5 5）错在以为 ref 也不回写。D（6 5）把两个方向的效果正好对调了。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 input 副本与 ref 别名在同一子程序内的不同写回效果，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "6 6"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "5 5"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "5 6"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "6 5"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c09-06",
+      "revision": 1,
+      "type": "true_false",
+      "title": "常量表达式不能作为 ref 实参",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_ref"
+      ],
+      "primary_knowledge_point_id": "sv_ref",
+      "difficulty": 4,
+      "estimated_minutes": 4,
+      "stem_md": "把常量表达式（如 `4'd3`）作为 `ref` 实参传给 task 是合法的，仿真器会自动创建临时变量来承接。",
+      "explanation_md": "答案为假。`ref` 形参在调用期间是实参的别名，要求实参本身是可写的变量；常量表达式和字面量没有存储位置，无法被别名引用，属于编译期错误。`input` 方向则可以接受任意表达式，因为它只做值复制——这正是 `ref` 与 `input` 的一个重要边界：凡是需要写回的场景，实参必须是变量。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 ref 实参必须是变量的规定，未标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "sv-c10-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "句柄赋值后两个句柄指向同一对象",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_class"
+      ],
+      "primary_knowledge_point_id": "sv_class",
+      "difficulty": 3,
+      "estimated_minutes": 3,
+      "stem_md": "阅读下面的代码，`$display` 会打印出什么？\n\n```systemverilog\nclass C; int v; endclass\n\ninitial begin\n  C a = new();\n  C b = new();\n  a.v = 1; b.v = 2;\n  a = b;\n  a.v = 3;\n  $display(\"%0d %0d\", a.v, b.v);\nend\n```",
+      "explanation_md": "`a = b;` 复制的是句柄而不是对象：赋值后 a 与 b 指向同一个 C 对象，a 原来指向的对象不再被任何句柄引用。因此 `a.v = 3;` 改的是两者共同的对象，a.v 与 b.v 都读到 3，答案为「3 3」。\n\n- 「3 2」误以为 `a = b` 会新建对象或复制内容，实际句柄赋值既不新建也不复制。\n- 「1 3」把 a、b 当成始终独立的两个对象，忽略了中间的句柄赋值。\n- 「1 2」既忽略了句柄赋值，也忽略了之后对 a.v 的写入。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据类句柄是对象引用的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "1 3"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "3 2"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "3 3"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "1 2"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c10-02",
+      "revision": 1,
+      "type": "true_false",
+      "title": "声明句柄并不创建对象",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_class"
+      ],
+      "primary_knowledge_point_id": "sv_class",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "声明 `C c;` 之后，c 是一个值为 `null` 的空句柄，此时还没有任何 C 对象被创建。",
+      "explanation_md": "正确。类句柄的声明只分配句柄变量，默认值为 null；对象只在执行 `new()` 时创建，因此 `C c;` 之后没有任何对象，`C c = new();` 才会构造一个对象并把句柄交给 c。若在 c 为 null 时访问 `c.v`，属于空句柄解引用，会在运行时报错，而不是读到 0；只有 `$cast` 或赋值让 c 指向真实对象后，访问成员才合法。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据类句柄默认值为 null、对象由 new 创建的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c10-03",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "new 与句柄的三条基本规则",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_class"
+      ],
+      "primary_knowledge_point_id": "sv_class",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "关于 SystemVerilog 中类对象的创建与句柄，下列哪些说法正确？",
+      "explanation_md": "正确项：\n- `new()` 求值得到新对象的句柄，可以赋给同类型的句柄变量；\n- 两个句柄可以指向同一个对象，通过任一句柄做的修改对另一个句柄同样可见。\n\n错误项：\n- `a = b;` 只复制句柄，不复制对象内容，也不新建对象；要得到内容副本必须显式拷贝（如 `new b` 的浅拷贝或自定义 copy 方法）；\n- 未初始化的句柄是 null，不指向任何对象，访问其成员是空句柄解引用错误，不会返回 0。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 new 表达式、句柄赋值与 null 句柄的语义；未逐条标注条款号。"
+        },
+        {
+          "title": "ChipVerify · SystemVerilog Tutorial",
+          "locator": "https://chipverify.com/systemverilog/systemverilog-tutorial",
+          "note": "该教程覆盖 class、new 与句柄的基础用法。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`new()` 返回新对象的句柄，可赋给同类型的句柄变量"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "两个句柄可指向同一个对象，通过任一句柄修改都可见"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`a = b;` 会按 b 的内容复制出一个新对象再赋给 a"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "未初始化的句柄指向一个空对象，读其成员得到 0"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_b"
+        ]
+      }
+    },
+    {
+      "id": "sv-c10-04",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "浅拷贝后内部句柄仍指向同一对象",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_class"
+      ],
+      "primary_knowledge_point_id": "sv_class",
+      "difficulty": 4,
+      "estimated_minutes": 4,
+      "stem_md": "下面代码中 `b = new a;` 用已有对象 a 构造 b。运行后 `$display` 打印什么？\n\n```systemverilog\nclass Inner; int x; endclass\nclass Outer; Inner in; endclass\n\ninitial begin\n  Outer a = new();\n  a.in = new();\n  Outer b = new a;\n  b.in.x = 7;\n  $display(\"%0d\", a.in.x);\nend\n```",
+      "explanation_md": "`new a` 执行浅拷贝（shallow copy）：新对象 b 的每个属性都从 a 复制，其中 `in` 是句柄，复制后 b.in 与 a.in 指向同一个 Inner 对象。所以 `b.in.x = 7;` 修改的正是 a.in 指向的对象，打印 7。\n\n- 「0」按深拷贝理解，以为 b 拥有一份独立的 Inner；要得到这种效果必须自己 `new` 一个 Inner 再逐字段复制（深拷贝）。\n- 「编译错误」不成立：`in` 在 `a.in = new();` 已赋值，语言也不要求属性必须在构造函数里初始化。\n- 「随机」没有依据：拷贝构造是确定的逐属性复制，与随机化无关。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据用已有对象作 new 参数时的浅拷贝语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "7"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "0"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "编译错误，因为 `in` 没有在构造函数里赋值"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "每次运行在 7 与 0 之间随机"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c10-05",
+      "revision": 1,
+      "type": "true_false",
+      "title": "virtual 方法按对象真实类型分派",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_inherit"
+      ],
+      "primary_knowledge_point_id": "sv_inherit",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "父类句柄指向子类对象后，通过该句柄调用 virtual 方法，执行的是子类中重新定义的方法。",
+      "explanation_md": "正确。virtual 方法采用动态绑定：调用时看对象的真实类型（这里指向的是子类对象），而不是句柄的声明类型，因此执行子类版本。对照：若方法没有声明 virtual，则按句柄的静态类型在编译期绑定，即使对象真实类型是子类，通过父类句柄调用的仍是父类版本。这也是父类句柄能实现多态的前提。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 virtual method 的动态分派语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c10-06",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "子类对象的构造顺序",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_inherit"
+      ],
+      "primary_knowledge_point_id": "sv_inherit",
+      "difficulty": 3,
+      "estimated_minutes": 3,
+      "stem_md": "下面代码创建 D 的对象，会按什么顺序打印？\n\n```systemverilog\nclass B;\n  function new(); $display(\"B\"); endfunction\nendclass\nclass D extends B;\n  function new(); super.new(); $display(\"D\"); endfunction\nendclass\ninitial begin\n  D d = new();\nend\n```",
+      "explanation_md": "子类对象构造时先构造父类部分。即使不写 `super.new()`，编译器也会在子类构造函数体之前隐式调用父类构造函数；这里显式写了 `super.new()`，于是先执行 B 的 new 打印 B，再执行 D 的 new 打印 D，答案为「先打印 B，再打印 D」。\n\n- 「先打印 D，再打印 B」颠倒了构造顺序。\n- 「只打印 D」「只打印 B」都以为另一侧的构造函数不会执行；创建子类对象时父类构造函数必然执行，显式写法只是用来传参。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据派生类构造时先调用父类构造函数的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "先打印 D，再打印 B"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "只打印 D"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "只打印 B"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "先打印 B，再打印 D"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c10-07",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "$cast 向下转换失败的返回值",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_inherit",
+        "sv_cast"
+      ],
+      "primary_knowledge_point_id": "sv_inherit",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "下面代码的 `$display` 会打印什么？\n\n```systemverilog\nclass B; endclass\nclass D extends B; int id; endclass\n\ninitial begin\n  B h = new();\n  D d;\n  int ok = $cast(d, h);\n  $display(\"%0d %0d\", ok, (d == null));\nend\n```",
+      "explanation_md": "h 指向的是 B 对象，不是 D 对象，`$cast(d, h)` 的运行时类型检查失败，返回 0；失败时目标句柄不被写入，d 仍是未初始化的 null，所以 `d == null` 为 1，打印「0 1」。\n\n- 「1 0」以为有继承关系就能转换成功；向下转换要求对象真实类型与目标句柄兼容。\n- 「0 0」以为失败后 d 会指向某个非法对象；失败时 d 保持原值。\n- 「1 1」两项都反了。若改成 `B h = new D();` 再 `$cast(d, h)`，才会得到 1 且 d 非 null。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 $cast 的运行时类型检查与返回值语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "1 0"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "0 1"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "0 0"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "1 1"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c10-08",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "父类句柄能访问的范围",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_inherit"
+      ],
+      "primary_knowledge_point_id": "sv_inherit",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "设 `B h = new D();`，其中 D 继承自 B，且 B 中的 `show()` 声明为 virtual。关于通过 h 能做什么，下列哪些说法正确？",
+      "explanation_md": "正确项：\n- 句柄的静态类型是 B，因此 B 中声明的成员和方法都能通过 h 访问；\n- 调用 virtual 方法时按对象真实类型 D 分派；\n- 要访问 D 新增的成员，必须先用 `$cast` 把 h 转成 D 的句柄，且转换成功后才能访问。\n\n错误项：\n- 「可以直接访问 D 新增的成员」不成立：编译期只按句柄的静态类型 B 做检查，`h.id` 这类写法直接编译报错，与运行时对象是什么无关。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据句柄静态类型检查、virtual 分派与 $cast 的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "可以读写 B 中声明的成员，也可以调用 B 的方法"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "可以直接访问 D 中新增的成员，因为对象真实类型是 D"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "调用 virtual 方法时按对象真实类型 D 分派"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "要访问 D 新增的成员，必须先用 `$cast` 转成 D 的句柄并成功"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_c",
+          "opt_d"
+        ]
+      }
+    },
+    {
+      "id": "sv-c10-09",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "参数化类的不同特化是不同类型",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_param_class"
+      ],
+      "primary_knowledge_point_id": "sv_param_class",
+      "difficulty": 5,
+      "estimated_minutes": 4,
+      "stem_md": "下面代码的结果是什么？\n\n```systemverilog\nclass C #(int W = 8);\n  bit [W-1:0] data;\nendclass\n\ninitial begin\n  C#(8)  a = new();\n  C#(16) b = new();\n  a = b;\nend\n```",
+      "explanation_md": "`C#(8)` 与 `C#(16)` 是同一个参数化类模板的两个不同特化，语言把每个特化视为独立的类型，因此 `a = b;` 是类型不匹配的句柄赋值，编译期就报错。\n\n- 「合法，b 的对象被截断后赋给 a」混淆了句柄与值：句柄赋值不做位宽截断，且两者类型不同。\n- 「合法，a 与 b 指向同一个对象」把不同特化当成同一类型，只有同一特化的句柄之间才能互相赋值。\n- 「运行时错误」不对：类型检查在编译期完成，代码根本编不过。\n\n附带结论：每个特化还有各自独立的 static 成员，`C#(8)::n` 与 `C#(16)::n` 不是同一份存储。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据参数化类每个特化构成独立类型的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "合法，a 与 b 指向同一个对象"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "合法，b 的对象被截断后赋给 a"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "编译错误：两者是不同类型"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "运行时错误：位宽不匹配"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c10-10",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "每个特化各有一份静态成员",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_param_class"
+      ],
+      "primary_knowledge_point_id": "sv_param_class",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "下面代码的 `$display` 会打印什么？\n\n```systemverilog\nclass C #(int W = 8);\n  static int n;\n  function void inc(); n++; endfunction\nendclass\n\ninitial begin\n  C#(8) a = new();  C#(16) c = new();\n  a.inc(); a.inc(); c.inc(); c.inc(); c.inc();\n  $display(\"%0d %0d\", C#(8)::n, C#(16)::n);\nend\n```",
+      "explanation_md": "静态成员属于类而不是对象：同一特化的所有对象共享同一份 n，不同特化各有一份。`C#(8)` 的 a 调用 inc 两次，使 `C#(8)::n` 为 2；`C#(16)` 的 c 调用三次，使 `C#(16)::n` 为 3，打印「2 3」。\n\n- 「5 5」把两个特化当成同一个类，误以为静态成员全局共享。\n- 「2 2」只看到 C#(8) 一侧，忽略了 C#(16) 的三次自增。\n- 「3 2」把两个特化的计数对调了。\n\n注意：`a.inc()` 只是通过实例访问，真正被修改的仍是类级变量；直接用 `C#(8)::n` 访问更清晰。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 static 成员被同类实例共享、参数化类每个特化独立拥有静态成员的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "5 5"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "3 2"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "2 2"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "2 3"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c11-01",
+      "revision": 1,
+      "type": "true_false",
+      "title": "randc 的周期内不重复性质",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_rand"
+      ],
+      "primary_knowledge_point_id": "sv_rand",
+      "difficulty": 2,
+      "estimated_minutes": 3,
+      "stem_md": "`randc` 修饰的变量在耗尽当前周期的所有可能取值之前不会重复，而 `rand` 修饰的变量没有这个保证。",
+      "explanation_md": "正确。randc 是周期随机（cyclic random）：它把变量取值域内的每个值在一轮中恰好用一次，用完后开始新的一轮；rand 每次随机都与历史无关，因此可能连续取到同一个值。两者都只对整型等可取有限值的类型有意义，且 randc 的一轮以该变量的全部可能取值为长度，取值域很大时一轮会很长。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 rand 与 randc 的取值语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c11-02",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "约束无解时 randomize 返回 0",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_rand"
+      ],
+      "primary_knowledge_point_id": "sv_rand",
+      "difficulty": 3,
+      "estimated_minutes": 3,
+      "stem_md": "下面代码的 `$display` 会打印什么？\n\n```systemverilog\nclass P;\n  rand bit [3:0] x;\n  constraint c { x > 10; x < 5; }\nendclass\n\ninitial begin\n  P p = new();\n  $display(\"%0d\", p.randomize());\nend\n```",
+      "explanation_md": "`x > 10` 与 `x < 5` 没有交集，两个硬约束无法同时满足，求解失败，`randomize()` 返回 0。\n\n- 「1」是求解成功时的返回值，这里不存在可行解。\n- 「一个随机值」混淆了返回值与变量值：randomize 返回 int（1 成功 / 0 失败），不会返回随机数。\n- 「编译错误」不成立：约束互相矛盾在语法上完全合法，只有运行时求解才会失败。\n\n实际使用中应检查返回值，例如 `if (!p.randomize()) $error(\"no solution\");`，否则后续代码可能用到未按预期更新的变量。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 randomize() 返回 int、约束不可满足时返回 0 的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "1"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "0"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "一个 0 到 15 之间的随机值"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "编译错误：约束块不能写矛盾条件"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c11-03",
+      "revision": 1,
+      "type": "true_false",
+      "title": "randc 第五次调用是否等于第一次",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_rand"
+      ],
+      "primary_knowledge_point_id": "sv_rand",
+      "difficulty": 4,
+      "estimated_minutes": 4,
+      "stem_md": "对一个 2 位的 `randc` 变量连续调用 5 次 `randomize()`，第 5 次的取值一定与第 1 次相同。",
+      "explanation_md": "错误。2 位变量只有 4 个取值，前 4 次调用恰好把 4 个值各用一次（顺序不定），第 5 次进入新一轮，可以取到 4 个值中的任意一个，因此只能保证它与前 4 次中的某一个相同，不保证等于第 1 次。若把陈述改成「第 5 次一定与前面某一次相同」，则为真；「一定等于第 1 次」是把周期起点误当成固定值。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 randc 在耗尽取值域后开始新周期的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "sv-c11-04",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "inside 集合中的闭区间",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_constraint"
+      ],
+      "primary_knowledge_point_id": "sv_constraint",
+      "difficulty": 3,
+      "estimated_minutes": 3,
+      "stem_md": "x 为 `rand int`，约束如下。下列哪个值可能被 x 取到？\n\n```systemverilog\nclass P;\n  rand int x;\n  constraint c { x inside {[2:4], 9}; }\nendclass\n```",
+      "explanation_md": "`inside` 的花括号里是取值集合，`[2:4]` 是闭区间，包含 2、3、4，再加上单值 9，所以可行集合为 {2,3,4,9}，只有 4 可能被取到。\n\n- 5 与 8 不在集合内。\n- 1 不在集合内，容易被误当成「2 到 4 之外但接近」而误选。\n\n要点：`[a:b]` 两端都包含；若写 `[2:4)` 这种半开写法在 SV 中并不合法，闭区间是唯一形式。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 inside 集合与闭区间的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "5"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "8"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "1"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "4"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c11-05",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "dist 的 := 权重按值计",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_constraint"
+      ],
+      "primary_knowledge_point_id": "sv_constraint",
+      "difficulty": 4,
+      "estimated_minutes": 4,
+      "stem_md": "下面约束中，x 取到 8 的概率是多少？\n\n```systemverilog\nclass P;\n  rand int x;\n  constraint c { x dist { [0:3] := 1, 8 := 2 }; }\nendclass\n```",
+      "explanation_md": "`:=` 表示区间内每一个取值各自获得所写权重：`[0:3]` 有 4 个值，每个权重 1，共贡献 4；8 的权重是 2；总权重 4 + 2 = 6，因此 P(x==8) = 2/6 = 1/3。\n\n- 「1/2」忽略了区间要按值展开，把 [0:3] 与 8 当成等权两项。\n- 「2/5」把 [0:3] 整体只算 1 份权重（这是 `:/` 的算法），得 2/(1+2) 的错误中间值再误写成 2/5。\n- 「1/6」把 8 的权重当成 1，或把总权重算成 6 后取错分子。\n\n对照：若写成 `[0:3] :/ 1, 8 :/ 2`，则区间整体只分 1 份权重，总权重 3，P(x==8) = 2/3。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "Verification Guide · SystemVerilog",
+          "locator": "https://verificationguide.com/systemverilog/",
+          "note": "该站讲解 constraint 中 dist 的 := 与 :/ 权重写法。"
+        },
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 dist 中 := 按值分配权重的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "1/2"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "1/6"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "1/3"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "2/5"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c11-06",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "约束块是声明式的且彼此取与",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_constraint"
+      ],
+      "primary_knowledge_point_id": "sv_constraint",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "关于类中 constraint 块的语义，下列哪些说法正确？",
+      "explanation_md": "正确项：\n- 约束是声明式的关系描述，求解器一次性求出同时满足所有关系的一组值，块内语句的书写顺序不构成执行顺序；\n- 同一对象上所有生效的约束块必须同时满足，等价于逻辑与，任何一条不满足都会导致求解失败。\n\n错误项：\n- 约束块内不能写 `$display` 这类过程语句，它不是过程代码，不能逐步执行；\n- 后写的约束块不会覆盖先写的，只有 `soft` 约束会在冲突时被放弃。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据约束块的声明式语义与多约束块取与的规则；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "约束块里可以调用 `$display` 输出求解过程中的中间值"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "约束描述变量之间必须满足的关系，不按书写顺序逐句执行"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "后写的约束块会覆盖先写的同名约束"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "同一对象的所有生效约束块同时成立，相当于逻辑与"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_b",
+          "opt_d"
+        ]
+      }
+    },
+    {
+      "id": "sv-c11-07",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "soft 约束被内联硬约束覆盖",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_constraint"
+      ],
+      "primary_knowledge_point_id": "sv_constraint",
+      "difficulty": 5,
+      "estimated_minutes": 4,
+      "stem_md": "下面代码的 `$display` 会打印什么？\n\n```systemverilog\nclass P;\n  rand int x;\n  constraint c { soft x == 5; }\nendclass\n\ninitial begin\n  P p = new();\n  void'(p.randomize() with { x == 9; });\n  $display(\"%0d\", p.x);\nend\n```",
+      "explanation_md": "`soft` 约束是低优先级的：只有当它与其他约束不冲突时才尽量满足。`randomize() with { x == 9; }` 里的大括号是内联的硬约束，优先级高于类内的 soft 约束，因此 soft 的 `x == 5` 被放弃，求解成功且 x 为 9。\n\n- 「5」误以为类内约束一定优先于内联约束。\n- 「0」以为冲突会让求解失败并把变量清 0；soft 的意义恰恰是冲突时让路，不会失败。\n- 「报错：soft 与硬约束冲突」把 soft 当成硬约束；只有两条硬约束冲突才会求解失败。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 soft 约束可被硬约束覆盖的优先级语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "5"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "0"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "9"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "编译错误：soft 与内联约束冲突"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c11-08",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "用 solve...before 指定先求解的变量",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_solve"
+      ],
+      "primary_knowledge_point_id": "sv_solve",
+      "difficulty": 3,
+      "estimated_minutes": 3,
+      "stem_md": "下面的类中，希望求解器先确定 `mode`，再在 `mode` 决定的范围内确定 `len`，应添加哪条语句？\n\n```systemverilog\nclass T;\n  rand bit [1:0] mode;\n  rand bit [7:0] len;\n  constraint c { len < (mode + 1) * 64; }\nendclass\n```",
+      "explanation_md": "`solve mode before len;` 明确告诉求解器先为 mode 取值，再在 mode 已定的条件下为 len 求解，正是题目要求的顺序。\n\n- `solve len before mode;` 方向反了，会先定 len 再定 mode。\n- `soft len < 64;` 只是一条低优先级约束，不影响求解顺序。\n- `randc bit [1:0] mode;` 只改变 mode 的取值方式（周期内不重复），不规定它与 len 的求解先后。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 solve...before 规定变量求解顺序的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "`solve mode before len;`"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "`solve len before mode;`"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "`soft len < 64;`"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "`randc bit [1:0] mode;`"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c11-09",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "solve...before 只改顺序不改解集",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_solve"
+      ],
+      "primary_knowledge_point_id": "sv_solve",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "关于约束块中的 `solve a before b;`，下列哪些说法正确？",
+      "explanation_md": "正确项：\n- 它只是求解顺序（distribution）指令，不会删除任何满足其余约束的解，解集保持不变；\n- 交换成 `solve b before a;` 后解集同样不变，但先被求解的变量不同，各变量取值的分布可能不同。\n\n错误项：\n- 它不会给 b 追加任何大小关系约束，`b >= a` 必须自己写；\n- 它与 rand、randc 无关，任何随机变量都可以参与 solve...before，randc 只是取值方式不同。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 solve...before 只影响求解顺序、不改变解集的语义；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "只影响求解顺序，不会删除满足其余约束的解"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "会自动给 b 追加一条 `b >= a` 的约束"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "交换成 `solve b before a;` 后解集不变，但分布可能不同"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "只有 a、b 都是 randc 变量时才允许使用"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c11-10",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "solve 顺序改变蕴含约束下的分布",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_solve",
+        "sv_rand"
+      ],
+      "primary_knowledge_point_id": "sv_solve",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "反复调用下面对象的 `randomize()`，d 取到 0 的概率是多少？\n\n```systemverilog\nclass P;\n  rand bit s;\n  rand bit [1:0] d;\n  constraint c { s == 0 -> d == 0;\n                 solve s before d; }\nendclass\n```",
+      "explanation_md": "`solve s before d;` 让求解器先定 s，再在 s 已定的条件下定 d。s 的可行值是 0 和 1，按均匀各取 1/2。s 为 0 时蕴含式要求 d 必须为 0；s 为 1 时 d 在 0–3 中均匀，取到 0 的概率是 1/4。因此 P(d==0) = 1/2×1 + 1/2×1/4 = 5/8。\n\n- 「1/2」只看到 s=0 的分支，漏掉 s=1 时 d 也可能为 0。\n- 「1/4」只算了 s=1 的分支。\n- 「3/8」把两个分支的概率组合错了（例如按 1/4 与 1/4 相加再加 1/8）。\n\n前提：solve...before 只规定求解顺序，不改变满足约束的解集；若换成 `solve d before s`，s 的可行值仍由 d 的取值决定，边缘分布会不同。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据 solve...before 影响求解顺序与条件分布的语义，配合蕴含约束推导；未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "3/8"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "1/4"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "1/2"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "5/8"
+          }
+        ],
+        "correct_option_id": "opt_d"
+      }
+    },
+    {
+      "id": "sv-c12-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "立即断言与并发断言的求值时机",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_immediate_assert"
+      ],
+      "primary_knowledge_point_id": "sv_immediate_assert",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "关于立即断言（immediate assertion）与并发断言（concurrent assertion）的求值时机，下列哪一项描述正确？",
+      "explanation_md": "**正确项 B**：立即断言是过程语句，执行到该行时用当前仿真值马上判断；并发断言是声明，在每个时钟边沿的 preponed 区采样后按属性求值，可以跨多个周期。\n\n- A 把两者的时机说反了。\n- C 错在采样机制：并发断言由时钟事件触发采样，立即断言与时钟无关，`else` 只是失败动作的差别。\n- D 错在并发断言并非在过程语句执行时求值，它不能像普通语句那样被随时执行。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中立即断言与并发断言的执行与采样语义自行改写，未逐条标注条款号。"
+        },
+        {
+          "title": "Verification Guide · SystemVerilog",
+          "locator": "https://verificationguide.com/systemverilog/",
+          "note": "覆盖立即断言与并发断言的语法及时序差异。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "立即断言在时钟边沿采样，并发断言在过程语句执行时求值"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "立即断言在过程语句执行时求值，并发断言在时钟边沿采样"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "两者都在时钟边沿采样，区别只在于是否允许写 else 分支"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "两者都在过程语句执行时求值，区别只在于能否引用时钟"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c12-02",
+      "revision": 1,
+      "type": "true_false",
+      "title": "立即断言失败但未写 else 分支",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_immediate_assert"
+      ],
+      "primary_knowledge_point_id": "sv_immediate_assert",
+      "difficulty": 5,
+      "estimated_minutes": 5,
+      "stem_md": "立即断言失败时若没有写 `else` 分支，仿真器不会给出任何错误报告，只是丢弃这次断言的结果。",
+      "explanation_md": "**判断为假**：立即断言失败时，即使没有 `else` 分支，也会执行默认失败动作——工具报告断言错误（默认严重级别为 error），仿真通常继续往下执行。`else` 分支只是用来替换或补充自定义动作，例如 `$error`、`$fatal`、`$warning` 等，并不是“没有 else 就不报告”。把“不写 else”理解成“静默丢弃”是常见陷阱。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中立即断言的失败动作与默认严重级别语义，未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    },
+    {
+      "id": "sv-c12-03",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "非重叠蕴含的检查时刻",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_sva_seq"
+      ],
+      "primary_knowledge_point_id": "sv_sva_seq",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "```systemverilog\nassert property (@(posedge clk) req |=> grant);\n```\n\n某次采样中 `req` 为 1、`grant` 为 0；下一个时钟边沿采样到 `grant` 为 1。这次尝试的结果是？",
+      "explanation_md": "**正确项 C**：`|=>` 是非重叠蕴含，前提在某一拍匹配后，后果从下一个时钟边沿开始检查；本拍 `grant` 为 0 并不影响，下一拍为 1 即成功。\n\n- A 描述的是重叠蕴含 `|->`，那才要求同一拍满足。\n- B 把“下一拍成功”误当成真空成功；真空成功只发生在前提为假时，这里 `req` 为 1。\n- D 错在结果在下一拍就已确定，不需要再看第三拍。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中重叠蕴含 |-> 与非重叠蕴含 |=> 的时序语义，未逐条标注条款号。"
+        },
+        {
+          "title": "ChipVerify · SystemVerilog Tutorial",
+          "locator": "https://chipverify.com/systemverilog/systemverilog-tutorial",
+          "note": "覆盖 SVA 蕴含操作符与序列时序的讲解。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "失败，因为 req 与 grant 必须在同一拍同时为 1"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "真空成功，因为 grant 在下一拍才为 1"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "成功，因为 |=> 要求 grant 在下一个采样边沿为 1"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "无法判定，还要看第三拍 grant 的值"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c12-04",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "重叠蕴含的成功与真空成功",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_sva_seq"
+      ],
+      "primary_knowledge_point_id": "sv_sva_seq",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "关于并发断言\n\n```systemverilog\nassert property (@(posedge clk) a |-> b);\n```\n\n下列哪些说法正确？（多选）",
+      "explanation_md": "- **A 正确**：`|->` 是重叠蕴含，前提与后果在同一采样边沿检查，两者都为 1 即这次尝试成功。\n- **B 正确**：前提 `a` 为 0 时后果根本不需要成立，属性真空成功（vacuous success）。\n- **C 正确**：前提为 1 而后果为 0，是唯一会被判失败的组合。\n- D 错误：`a` 为 0 时无论 `b` 是什么都真空成功，不会失败。\n- E 错误：`b` 曾经为 1 不能挽救 `a=1、b=0` 的失败尝试；每次尝试只看对应的采样边沿。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中蕴含的真空成功（vacuous success）定义与 |-> 的求值规则，未逐条标注条款号。"
+        },
+        {
+          "title": "Verification Guide · SystemVerilog",
+          "locator": "https://verificationguide.com/systemverilog/",
+          "note": "覆盖 SVA 蕴含、真空成功与失败判定的示例。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "a 与 b 在同一采样边沿都为 1 时，该次尝试成功"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "a 在采样边沿为 0 时，该次尝试真空成功"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "a 为 1 而 b 为 0 时，该次尝试失败"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "a 为 0 而 b 为 1 时，该次尝试失败"
+          },
+          {
+            "id": "opt_e",
+            "text_md": "只要 b 曾经为 1，无论 a 取何值都成功"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_b",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c12-05",
+      "revision": 1,
+      "type": "multiple_choice",
+      "title": "序列局部变量的捕获值",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_sva_seq"
+      ],
+      "primary_knowledge_point_id": "sv_sva_seq",
+      "difficulty": 5,
+      "estimated_minutes": 6,
+      "stem_md": "```systemverilog\nproperty p;\n  logic [7:0] v;\n  @(posedge clk) (req, v = addr) |-> ##[1:2] (ack && addr == v);\nendproperty\n```\n\n关于该属性中的局部变量 `v`，下列哪些说法正确？（多选）",
+      "explanation_md": "- **A 正确**：序列项 `(req, v = addr)` 匹配时，把该拍采样到的 `addr` 写入 `v`，保存的是采样值而不是后续的当前值。\n- **B 正确**：property 内声明的局部变量是自动变量，每次尝试新建一份，不同尝试之间不会互相覆盖。\n- **C 正确**：后果项在 `ack` 为 1 的那一拍求值，`addr == v` 中的 `addr` 取该拍采样值，`v` 取之前捕获的值。\n- D 错误：`##[1:2]` 只允许在后续第 1 或第 2 个时钟边沿完成；第 3 拍才为 1 已超出窗口，尝试失败。\n- E 错误：`v` 只在匹配 `(req, v = addr)` 时赋值，之前不是复位值 0；四值 `logic` 未赋值时初值为 X，属性里也没有复位逻辑。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中序列局部变量、序列匹配项与延迟区间 ##[m:n] 的语义，未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "v 在 req 为 1 的采样边沿捕获 addr 的采样值"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "每次新尝试都有独立的 v，尝试之间互不影响"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "ack 为 1 时比较的是当拍 addr 采样值与 v"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "若 ack 在第 3 个时钟边沿才为 1，属性仍会成功"
+          },
+          {
+            "id": "opt_e",
+            "text_md": "v 在整条属性匹配完成前始终保持复位值 0"
+          }
+        ],
+        "correct_option_ids": [
+          "opt_a",
+          "opt_b",
+          "opt_c"
+        ]
+      }
+    },
+    {
+      "id": "sv-c12-06",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "$past 的采样窗口",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_sva_sampled"
+      ],
+      "primary_knowledge_point_id": "sv_sva_sampled",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "```systemverilog\nassert property (@(posedge clk) en |-> data == $past(data, 2));\n```\n\n当 `en` 在某个时钟边沿为 1 时，该属性比较的是什么？",
+      "explanation_md": "**正确项 A**：`$past(expr, n)` 返回当前时钟事件之前第 n 个时钟事件的采样值；这里默认时钟事件由属性中的 `@(posedge clk)` 给出，所以是“两个时钟边沿之前”的 `data` 采样值，与当拍采样值比较。\n\n- B 错在把周期数当成时间单位，`$past` 按时钟事件回溯，不按纳秒回溯。\n- C 比较对象说错了，左边是当拍采样值。\n- D 是 `$past(data)` 的默认一拍行为，不是 `$past(data, 2)`。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中 $past 的采样值回溯与时钟事件参数语义，未逐条标注条款号。"
+        },
+        {
+          "title": "ChipVerify · SystemVerilog Tutorial",
+          "locator": "https://chipverify.com/systemverilog/systemverilog-tutorial",
+          "note": "覆盖 $past、$rose、$stable 等采样函数的用法。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "当拍采样到的 data 与两个时钟边沿之前采样到的 data"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "当拍采样到的 data 与两个时间单位之前的 data 当前值"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "两个时钟边沿之前的 data 与再往前一拍的 data"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "当拍 data 的当前值与上一拍 data 的采样值"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c12-07",
+      "revision": 1,
+      "type": "true_false",
+      "title": "disable iff 为真时的结果",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_sva_sampled"
+      ],
+      "primary_knowledge_point_id": "sv_sva_sampled",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "并发断言中的 `disable iff (rst)` 条件为真时，当前尝试被中止，既不计为成功也不计为失败。",
+      "explanation_md": "**判断为真**：`disable iff` 提供异步禁用，条件一为真就中止当前尝试（abort），不产生 pass 或 fail，也不执行 action block；条件撤销后才重新开始新的尝试。它不等同于把属性判为失败，也不等同于真空成功——这两者是常见的混淆点。另一个细节是 `disable iff` 的表达式是异步求值的，不依赖属性的时钟事件。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中 disable iff 的异步禁用与尝试中止语义，未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c12-08",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "$rose 的判定条件",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_sva_sampled"
+      ],
+      "primary_knowledge_point_id": "sv_sva_sampled",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "对单比特信号 `x`，采样函数 `$rose(x)` 在什么条件下返回真？",
+      "explanation_md": "**正确项 A**：`$rose` 检测的是采样值从 0 变为 1，即当前时钟边沿的采样值为 1、上一时钟边沿的采样值为 0；它只比较采样值，不看两次边沿之间的毛刺。\n\n- B 把方向说反了，1 变 0 是下降沿，对应 `$fell`。\n- C 把比较对象指向了下一拍，`$rose` 只看当前拍与上一拍，不预知未来。\n- D 描述的是 `$changed`，任何变化都算，包括 1 变 0。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中 $rose 对采样值 0→1 跳变的定义，未逐条标注条款号。"
+        },
+        {
+          "title": "Verification Guide · SystemVerilog",
+          "locator": "https://verificationguide.com/systemverilog/",
+          "note": "覆盖 $rose/$fell/$stable/$changed 的采样语义。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "当拍 x 的采样值为 1，且上一拍采样值为 0"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "当拍 x 的采样值由 1 变为 0"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "当拍 x 的采样值为 1，且下一拍采样值为 0"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "当拍 x 的采样值与上一拍采样值不相同"
+          }
+        ],
+        "correct_option_id": "opt_a"
+      }
+    },
+    {
+      "id": "sv-c13-01",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "合并 bins 的命中次数",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_covergroup"
+      ],
+      "primary_knowledge_point_id": "sv_covergroup",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "```systemverilog\ncovergroup cg @(posedge clk);\n  cp: coverpoint mode {\n    bins low  = {0, 1};\n    bins high = {2, 3};\n  }\nendgroup\n```\n\n仿真中 `mode` 依次被采样为 0、2、1、3、2，仿真结束时两个 bin 的命中次数是？",
+      "explanation_md": "**正确项 C**：`bins low = {0, 1}` 是一个取值集合，采样到 0 或 1 都让 `low` 加 1；`bins high = {2, 3}` 同理。序列 0、2、1、3、2 中，0 和 1 落入 low（2 次），2、3、2 落入 high（3 次）。\n\n- A 错在把 bin 当成只记录一次。\n- B 把两个集合的计数对调了。\n- D 漏掉了 high 的第三次命中。\n\n补充：covergroup 声明中的 `@(posedge clk)` 就是采样事件，因此不需要在别处显式调用 `sample()`。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中 coverpoint、bins 取值集合与覆盖计数语义，未逐条标注条款号。"
+        },
+        {
+          "title": "ChipVerify · SystemVerilog Tutorial",
+          "locator": "https://chipverify.com/systemverilog/systemverilog-tutorial",
+          "note": "覆盖 covergroup 的定义、采样事件与 bins 计数。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "low 命中 1 次，high 命中 1 次"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "low 命中 3 次，high 命中 2 次"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "low 命中 2 次，high 命中 3 次"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "low 命中 2 次，high 命中 2 次"
+          }
+        ],
+        "correct_option_id": "opt_c"
+      }
+    },
+    {
+      "id": "sv-c13-02",
+      "revision": 1,
+      "type": "true_false",
+      "title": "option.per_instance 的作用",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_covergroup"
+      ],
+      "primary_knowledge_point_id": "sv_covergroup",
+      "difficulty": 5,
+      "estimated_minutes": 6,
+      "stem_md": "设置 `option.per_instance = 1` 后，同一 covergroup 的多个实例各自保留独立的覆盖率统计，而不是按类型合并。",
+      "explanation_md": "**判断为真**：默认情况下，同一 covergroup 类型的所有实例共享并合并统计；`option.per_instance = 1` 让每个实例单独统计、单独报告，便于定位是哪个实例没有覆盖到目标。相关但不同的设置是 `type_option`：它属于类型级，所有实例共享（例如 `type_option.weight`），不能在实例上分别改；`option.weight` 则控制该 covergroup 在总体覆盖率中的权重。这些选项都不改变采样时机。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中 covergroup 的 option/type_option 与 per-instance 统计语义，未逐条标注条款号。"
+        },
+        {
+          "title": "Verification Guide · SystemVerilog",
+          "locator": "https://verificationguide.com/systemverilog/",
+          "note": "覆盖 covergroup 选项、实例化与覆盖率合并的讲解。"
+        }
+      ],
+      "answer": {
+        "correct": true
+      }
+    },
+    {
+      "id": "sv-c13-03",
+      "revision": 1,
+      "type": "single_choice",
+      "title": "交叉覆盖中被忽略的组合",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_bins_cross"
+      ],
+      "primary_knowledge_point_id": "sv_bins_cross",
+      "difficulty": 4,
+      "estimated_minutes": 5,
+      "stem_md": "```systemverilog\ncovergroup cg @(posedge clk);\n  cp_a: coverpoint a { bins lo = {[0:3]}; bins hi = {[4:7]}; }\n  cp_b: coverpoint b { bins x = {0}; bins y = {1}; }\n  x_ab: cross cp_a, cp_b {\n    ignore_bins ig = binsof(cp_a.lo) && binsof(cp_b.x);\n  }\nendgroup\n```\n\n该 cross 中需要被覆盖的交叉 bin 共有多少个？",
+      "explanation_md": "**正确项 B**：自动交叉 bin 的数量是各 coverpoint 的 bin 数之积，2×2=4；`ignore_bins` 把 `cp_a.lo` 与 `cp_b.x` 这一个组合排除，忽略的 bin 既不计入命中也不计入覆盖率分母，所以剩下 3 个需要覆盖的组合。\n\n- A 只数了 `cp_b` 的两个 bin，没有做交叉。\n- C 忽略了 `ignore_bins` 的作用。\n- D 把 2 和 4 相加，交叉 bin 数应相乘而不是相加。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中 cross 的自动 bin 生成与 ignore_bins 语义，未逐条标注条款号。"
+        }
+      ],
+      "answer": {
+        "options": [
+          {
+            "id": "opt_a",
+            "text_md": "2 个"
+          },
+          {
+            "id": "opt_b",
+            "text_md": "3 个"
+          },
+          {
+            "id": "opt_c",
+            "text_md": "4 个"
+          },
+          {
+            "id": "opt_d",
+            "text_md": "6 个"
+          }
+        ],
+        "correct_option_id": "opt_b"
+      }
+    },
+    {
+      "id": "sv-c13-04",
+      "revision": 1,
+      "type": "true_false",
+      "title": "交叉覆盖的自动 bin 数量",
+      "domain": "digital_ic",
+      "knowledge_point_ids": [
+        "sv_bins_cross"
+      ],
+      "primary_knowledge_point_id": "sv_bins_cross",
+      "difficulty": 3,
+      "estimated_minutes": 4,
+      "stem_md": "两个各有 8 个取值 bin 的 coverpoint 做 cross，若不加任何筛选，cross 默认只为仿真中实际出现过的组合建立 bin。",
+      "explanation_md": "**判断为假**：默认 cross 为两个 coverpoint 所有 bin 的笛卡尔积建立自动 bin，共 8×8=64 个；没有出现过的组合同样计入覆盖率分母，所以未命中时覆盖率不会到 100%。这正是交叉覆盖容易“bin 数量爆炸”的原因，需要用 `ignore_bins`、显式 `bins` 或合理的 bin 划分来控制规模。若只为出现过的组合建 bin，覆盖率将永远是 100%，失去度量意义。",
+      "hints": [],
+      "sources": [
+        {
+          "title": "IEEE Std 1800-2017",
+          "locator": "IEEE Std 1800-2017（统一 LRM）",
+          "note": "依据标准中 cross 自动建立 bin 的笛卡尔积规则，未逐条标注条款号。"
+        },
+        {
+          "title": "ChipVerify · SystemVerilog Tutorial",
+          "locator": "https://chipverify.com/systemverilog/systemverilog-tutorial",
+          "note": "覆盖 cross 与交叉覆盖率 bin 的生成方式。"
+        }
+      ],
+      "answer": {
+        "correct": false
+      }
+    }
+  ],
+  "files": {}
+}
