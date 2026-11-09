@@ -63,6 +63,20 @@ npm run test:ui
 
 启动/桌面测试需要可运行 Electron 的 Windows 桌面，使用独立数据库和 Chromium profile。构建产物、下载缓存和个人学习数据已加入 .gitignore。
 
+## 双仓库同步
+
+本项目同步维护于 [Gitee](https://gitee.com/zhang-xinyou/wisdom-cultivator) 与 [GitHub](https://github.com/zhangxinyou-cameron/-)。
+
+首次克隆后，在仓库根目录运行以下命令配置同步推送（本地 Git 配置不会随克隆复制）：
+
+```powershell
+.\scripts\Sync-Repositories.ps1 -ConfigureOnly
+```
+
+之后正常提交并执行 `git push`，会将当前提交推送到两个平台的 main 和 master 分支，保持默认分支内容一致。也可以运行 `.\scripts\Sync-Repositories.ps1` 完成推送及远程提交核验。两个平台的写入权限分别使用本机 Git 凭据；不要把密码或访问令牌写入仓库。
+
+推送遇到远程新提交时，先拉取整合再重试。跨平台推送不具有原子性，脚本会在失败时报告并停止，成功后核对四个分支均指向当前提交。
+
 ## 目录
 
 ```text
