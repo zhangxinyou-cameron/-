@@ -205,14 +205,14 @@ export class Store {
       if (action === 'reason') this.db.run('UPDATE progress SET reason=? WHERE qkey=?', [String(reason).slice(0, 200), key]);
     }); return true;
   }
-  startSession(keys, mode, seed = 0) {
+  startSession(keys, mode, seed = 0, pluginContext = null) {
     ensure(Array.isArray(keys) && keys.length > 0 && keys.length <= 10000 && ['sequence', 'random', 'review', 'topic', 'wrong'].includes(mode), '练习范围为空或模式无效');
     const unique = [...new Set(keys)]; unique.forEach(k => ensure(this.one('SELECT key FROM questions WHERE key=?', [k]), '练习中包含不存在的题目'));
     if (mode === 'random') {
       let state = seed || Date.now() % 2147483647; seed = state;
       for (let i = unique.length - 1; i > 0; i--) { state = state * 16807 % 2147483647; const j = state % (i + 1); [unique[i], unique[j]] = [unique[j], unique[i]]; }
     }
-    const session = { id: uid(), mode, keys: unique, index: 0, seed, createdAt: new Date().toISOString() };
+    const session = { id: uid(), mode, keys: unique, index: 0, seed, createdAt: new Date().toISOString(), ...(pluginContext ? {pluginContext} : {}) };
     this.transaction(() => this.db.run('INSERT INTO sessions VALUES(?,?,?)', [session.id, JSON.stringify(session), session.createdAt]));
     this.setSettings({ lastSession: session.id, lastQuestion: unique[0] }); return session;
   }

@@ -1,6 +1,6 @@
 # Wisdom Cultivator (知习)
 
-A local-first Windows desktop learning app for digital IC, Verilog, Python, C and C++. Built with Electron, React, TypeScript, Monaco and SQLite. Current version: 0.3.0. Includes a plugin manager and a learning plugin linking Markdown reading, editing, notes and chapter quizzes.
+A local-first Windows desktop learning app for digital IC, Verilog, Python, C and C++. Built with Electron, React, TypeScript, Monaco and SQLite. Current version: 0.3.1. Includes a plugin manager and a learning plugin linking Markdown reading, editing, notes and chapter quizzes.
 
 Features include objective grading, code/RTL execution, QBank 1.0 imports, spaced review, bookmarks, notes, statistics, backups, and a native launcher with startup progress and rotating learning messages.
 
