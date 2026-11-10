@@ -36,6 +36,8 @@
 
 插件需要发起刷题时，继续阅读 [ChapterPractice.tsx](tech-practice/src/plugins/ChapterPractice.tsx) 和插件协议中的 pluginContext / pluginPracticeViews 约定，保留来源上下文并在作答后刷新进度。学习插件的 startQuiz 在同一事务内记录已读并创建带章节来源的练习会话。
 
+修改更新器、打包器时先读 [软件更新说明](docs/软件更新.md)，保留独立暂存构建及进程退出后再切换程序的契约。其专用验证入口为 npm run test:updates，后端 Git/npm/Windows 助手测试包含在 npm test 中。
+
 注意 `src/Learning.tsx` 与 `src/plugins/Learning.tsx` 的职责不同。Windows 下 `Plugins.tsx` 与 `plugins/` 名称接近，导入注册表请沿用 `./plugins/index`，避免目录解析歧义。
 
 优先用 `rg` 定位目标接口，再顺着调用链读相关函数和测试。不要先遍历 node_modules、build、dist、release 或打包后的校验器；它们不是日常修改的源码入口。

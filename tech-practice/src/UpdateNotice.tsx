@@ -1,0 +1,15 @@
+import React,{useEffect,useState} from 'react';
+import {createPortal} from 'react-dom';
+import {Download,RefreshCw} from 'lucide-react';
+import {api} from './api';
+import {Button,Modal,useApp} from './components';
+const call=(action:string)=>api<any>('plugin',{id:'updates',action});
+export default function UpdateNotice(){
+ const {boot,notify}=useApp();
+ const [state,setState]=useState<any>({status:'idle',message:'尚未检查更新'}),[open,setOpen]=useState(false),[working,setWorking]=useState(false);
+ const invoke=async(action:string)=>{setWorking(true);try{if(action==='start'||action==='install'){const tasks:Promise<any>[]=[];window.dispatchEvent(new CustomEvent('practice:flush',{detail:{tasks}}));await Promise.all(tasks);await new Promise(r=>setTimeout(r,1000));}const r=await call(action);if(action!=='install')setState(r)}catch(e:any){notify(e.message,'error')}finally{setWorking(false)}};
+ useEffect(()=>{let active=true;const status=()=>call('status').then(s=>{if(active)setState(s)}).catch(()=>{});status();const poll=setInterval(status,1500);let first:any,timer:any;if(boot.updateAutoCheck){const check=()=>call('check').then(s=>{if(active)setState(s)}).catch(()=>{});first=setTimeout(check,8000);timer=setInterval(check,10*60*1000);}return()=>{active=false;clearInterval(poll);clearInterval(timer);clearTimeout(first)}},[]);
+ const busy=working||state.status==='checking'||state.status==='updating';
+ const label=state.status==='available'?'发现新版本 · 可更新':state.status==='ready'?'重启完成更新':state.status==='updating'?`更新中 ${state.progress}%`:state.status==='error'?'更新检查 / 重试':'检查软件更新';
+ return <><button className={`update-entry ${['available','ready'].includes(state.status)?'available':''}`} aria-label={label} onClick={()=>{setOpen(true);if(state.status==='available')invoke('start');else if(state.status==='ready')invoke('install');else if(!['updating','installing'].includes(state.status))invoke('check')}}><Download size={15}/><span>{label}</span></button>{open&&createPortal(<Modal title="软件更新" onClose={()=>setOpen(false)} footer={<><Button disabled={busy||state.status==='ready'} onClick={()=>invoke('check')}><RefreshCw size={14}/>检查更新</Button>{(state.status==='available'||state.status==='error'&&state.remoteCommit)&&<Button kind="primary" disabled={busy} onClick={()=>invoke('start')}>立即更新</Button>}{state.status==='ready'&&<Button kind="primary" disabled={busy} onClick={()=>invoke('install')}>重启完成更新</Button>}</>}><p role="status">{state.message}</p><p className="muted">同步仓库最新提交并构建新版。更新前备份学习数据，本地修改或分支冲突会阻止更新；准备完成后重启切换。</p>{state.progress>0&&<progress aria-label="更新进度" max={100} value={state.progress}/>}<p>当前提交：{state.currentCommit?.slice(0,8)||'未记录'}<br/>远程提交：{state.remoteCommit?.slice(0,8)||'尚未获取'}</p>{state.repo&&<p className="update-repo">源码仓库：{state.repo}</p>}{state.status==='ready'&&<p>重启后会保留原程序目录备份。学习数据继续使用原来的数据目录。</p>}<Button disabled={busy||state.status==='ready'} onClick={async()=>{try{setState(await api('associateUpdateRepo'))}catch(e:any){notify(e.message,'error')}}}>关联本地源码仓库</Button><p className="muted">需要 Git、Node.js 24+ 与 npm。首次更新下载构建依赖可能需要几分钟。</p></Modal>,document.body)}</>;
+}

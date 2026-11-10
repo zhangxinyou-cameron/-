@@ -1,12 +1,14 @@
 # 知习 · 技术练习室
 
-个人数字 IC、Verilog、Python 和 C/C++ 全流程学习桌面软件。当前版本 **0.3.1**，使用 Electron、React、TypeScript、Monaco 和 SQLite，学习数据保存在本机。
+个人数字 IC、Verilog、Python 和 C/C++ 全流程学习桌面软件。当前版本 **0.4.0**，使用 Electron、React、TypeScript、Monaco 和 SQLite，学习数据保存在本机。
 
 **AI 协作入口：[代码阅读与开发指南](README_AI.md)**；两个项目 Skill 统一收录在 [skills/](skills/README.md)，包含完整参考资料与题库校验器。
 
 ![知习界面](docs/知习界面预览.png)
 
 ## 功能
+
+- 左下角检测仓库更新，一键同步与暂存构建、重启切换；[更新说明](docs/软件更新.md)。
 
 - 插件注册、生命周期、开关及错误隔离，开关跨重启保存。
 - 学习中心插件：AI 课程 JSON 导入、Markdown 阅读/编辑、选文摘录、章节笔记、已读标记、对应题目测试与独立通过进度；内置一键导入的入门课程。
@@ -60,6 +62,7 @@ npm run package
 - [功能设计文档](docs/个人技术刷题软件功能设计文档.md)。
 - [启动功能测试报告](tech-practice/STARTUP_TEST_REPORT.md)。
 - [插件与学习功能多轮测试报告](tech-practice/LEARNING_TEST_REPORT.md)。
+- [软件更新测试报告](tech-practice/UPDATE_TEST_REPORT.md)。
 
 ![学习中心](docs/学习中心预览.png)
 
@@ -71,6 +74,7 @@ npm run package
 cd tech-practice
 npm test
 npm run test:learning
+npm run test:updates
 npm run test:startup
 npm run test:ui
 ```

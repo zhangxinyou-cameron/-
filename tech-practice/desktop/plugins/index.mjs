@@ -1,7 +1,8 @@
 import {ensure} from '../util.mjs';
 import * as learning from './learning.mjs';
+import * as updates from './updates.mjs';
 export class Plugins{
- constructor(context,definitions=[learning]){this.context=context;this.definitions=new Map();this.active=new Map();this.errors=new Map();for(const d of definitions){ensure(d.manifest.apiVersion===1&&/^[a-z][a-z0-9_-]*$/.test(d.manifest.id)&&!this.definitions.has(d.manifest.id),'插件协议或 ID 无效');this.definitions.set(d.manifest.id,d);}}
+ constructor(context,definitions=[learning,updates]){this.context=context;this.definitions=new Map();this.active=new Map();this.errors=new Map();for(const d of definitions){ensure(d.manifest.apiVersion===1&&/^[a-z][a-z0-9_-]*$/.test(d.manifest.id)&&!this.definitions.has(d.manifest.id),'插件协议或 ID 无效');this.definitions.set(d.manifest.id,d);}}
  enabled(id){const d=this.definitions.get(id);ensure(d,'插件不存在');const r=this.context.store.one('SELECT value FROM meta WHERE key=?',['plugin-enabled:'+id]);return r?JSON.parse(r.value):d.manifest.defaultEnabled===true;}
  activate(id){if(this.active.has(id))return;const d=this.definitions.get(id);const instance=d.activate(this.context);ensure(instance&&instance.handlers&&typeof instance.dispose==='function','插件缺少生命周期接口');this.active.set(id,instance);this.errors.delete(id);}
  start(){for(const id of this.definitions.keys())if(this.enabled(id)){if(!this.errors.has(id))try{this.activate(id)}catch(e){this.errors.set(id,e.message)}}else if(this.active.has(id)){try{this.active.get(id).dispose()}catch(e){this.errors.set(id,e.message)}finally{this.active.delete(id)}}}

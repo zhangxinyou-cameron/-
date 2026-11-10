@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-const out = path.resolve('release/TechPractice-win32-x64');
+import {execFileSync} from 'node:child_process';
+const out = path.resolve(process.env.TECH_PRACTICE_PACKAGE_DIR||'release/TechPractice-win32-x64');
 fs.mkdirSync(out, { recursive: true });
 const exe = path.join(out, 'TechPractice.exe');
 const digest = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
@@ -15,12 +16,15 @@ for (const name of ['build','dist','assets']) fs.cpSync(name, path.join(app,name
 const pkg = JSON.parse(fs.readFileSync('package.json','utf8'));
 fs.writeFileSync(path.join(app,'package.json'), JSON.stringify({name:'tech-practice',version:pkg.version,main:'build/main.cjs',productName:'知习'}));
 fs.copyFileSync('build/知习.exe',path.join(out,'知习.exe'));
-fs.copyFileSync('build/知习.exe',path.resolve('../知习.exe'));
+if(!process.env.TECH_PRACTICE_PACKAGE_DIR)fs.copyFileSync('build/知习.exe',path.resolve('../知习.exe'));
+let commit=null;try{commit=execFileSync(process.platform==='win32'&&fs.existsSync('C:/Program Files/Git/cmd/git.exe')?'C:/Program Files/Git/cmd/git.exe':'git',['rev-parse','HEAD'],{windowsHide:true,encoding:'utf8'}).trim()}catch{}
+fs.writeFileSync(path.join(app,'build-info.json'),JSON.stringify({commit,version:pkg.version,builtAt:new Date().toISOString()}));
 fs.writeFileSync(path.join(out, '使用说明.md'), fs.readFileSync('README.md','utf8').replace('双击工作区的 `知习.exe`，或 release/TechPractice-win32-x64/知习.exe。','双击本文件夹中的 `知习.exe`。'));
 if (fs.existsSync('TEST_REPORT.md')) fs.copyFileSync('TEST_REPORT.md', path.join(out, 'TEST_REPORT.md'));
 if (fs.existsSync('STARTUP_TEST_REPORT.md')) fs.copyFileSync('STARTUP_TEST_REPORT.md', path.join(out, 'STARTUP_TEST_REPORT.md'));
 if (fs.existsSync('LEARNING_TEST_REPORT.md')) fs.copyFileSync('LEARNING_TEST_REPORT.md', path.join(out, 'LEARNING_TEST_REPORT.md'));
-for (const name of ['学习资料协议.md','插件开发协议.md']) {
+if (fs.existsSync('UPDATE_TEST_REPORT.md')) fs.copyFileSync('UPDATE_TEST_REPORT.md',path.join(out,'UPDATE_TEST_REPORT.md'));
+for (const name of ['学习资料协议.md','插件开发协议.md','软件更新.md']) {
   const file=path.resolve('../docs',name);
   if(fs.existsSync(file))fs.copyFileSync(file,path.join(out,name));
 }

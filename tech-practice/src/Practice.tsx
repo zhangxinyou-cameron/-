@@ -15,6 +15,7 @@ export default function Practice(){
   const draftRef=useRef<any>(null),noteRef=useRef<any>(null),activity=useRef(Date.now()),submitRef=useRef<any>(null),saveCounter=useRef(0), mounted=useRef(true);
   const currentMeta=questions.find((x:any)=>x.key===key);
   const saveCurrent=async()=>{if(draftRef.current)await api('saveDraft',draftRef.current);if(noteRef.current)await api('annotate',noteRef.current)};
+  useEffect(()=>{const flush=(e:any)=>e.detail.tasks.push(saveCurrent());window.addEventListener('practice:flush',flush);return()=>window.removeEventListener('practice:flush',flush)},[]);
   useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;saveCurrent().catch(()=>{})}},[]);
   useEffect(()=>{if(!key)return;let active=true;setQ(null);setJob(null);setResult(null);setTab('problem');setHintCount(0);setCustom(false);
     Promise.all([api('question',{key}),api('activeJob')]).then(([value,activeJob])=>{

@@ -23,7 +23,7 @@ archive(parent/f'知习-v{version}-Windows-x64.zip',[(p,Path('TechPractice')/p.r
 sources=[]
 for folder in ['src','desktop','scripts','tests','assets','launcher']:
     sources += [(p,Path('tech-practice')/p.relative_to(root)) for p in sorted((root/folder).rglob('*')) if p.is_file() and '__pycache__' not in p.parts and not p.is_relative_to(root/'assets'/'python') and p.name!='sql-wasm.wasm']
-for name in ['package.json','package-lock.json','tsconfig.json','vite.config.ts','index.html','README.md','TEST_REPORT.md','STARTUP_TEST_REPORT.md','LEARNING_TEST_REPORT.md','.npmrc','.gitignore']:
+for name in ['package.json','package-lock.json','tsconfig.json','vite.config.ts','index.html','README.md','TEST_REPORT.md','STARTUP_TEST_REPORT.md','LEARNING_TEST_REPORT.md','UPDATE_TEST_REPORT.md','.npmrc','.gitignore']:
     sources.append((root/name,Path('tech-practice')/name))
 for folder in ['docs','examples','skills','scripts','题库','题库协议与示例']:
     sources += [(p,p.relative_to(parent)) for p in sorted((parent/folder).rglob('*')) if p.is_file() and '__pycache__' not in p.parts]

@@ -8,7 +8,7 @@ import { Backups } from './backup.mjs';
 import { ensure, uid } from './util.mjs';
 import { Plugins } from './plugins/index.mjs';
 
-export async function createServices(root, assetDir, { onProgress = () => {} } = {}) {
+export async function createServices(root, assetDir, { onProgress = () => {}, updater = null } = {}) {
   await onProgress(12, '读取你的学习记录');
   const store = await new Store(path.join(root, 'state'), path.join(assetDir, 'sql-wasm.wasm')).init();
   await onProgress(35, '学习记录已就绪');
@@ -36,7 +36,7 @@ export async function createServices(root, assetDir, { onProgress = () => {} } =
   await onProgress(78, '检查本地学习备份');
   try { backups.automatic(); } catch (error) { console.error('Automatic backup:', error.message); }
   await onProgress(86, '准备练习工作台');
-  const plugins = new Plugins({store,validator}); plugins.start();
+  const plugins = new Plugins({store,validator,updater}); plugins.start();
   return { root, assetDir, store, validator, environments, runner, backups, plugins };
 }
 
