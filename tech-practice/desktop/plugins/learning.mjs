@@ -38,14 +38,41 @@ export function activate({store,validator}){
   const old=get(packKey(p.id));if(old){const n=compare(p.version,old.version);ensure(n>=0,'不能导入较旧的课程版本');ensure(n!==0||canonical(old)===canonical(p),'同版本内容冲突，请递增课程 version');}
   return checked;
  }
- function detail(id){const p=pack(id);return {...p,chapters:p.chapters.map(c=>{const s=state(id,c.id);const questions=c.question_refs.map(r=>{const row=store.one('SELECT key,payload FROM questions WHERE bank_id=? AND id=? AND current=1',[r.bank_id,r.question_id]);if(!row)return {...r,missing:true,passed:false};const q=JSON.parse(row.payload);return {...r,key:row.key,title:q.title,passed:!!store.one("SELECT id FROM attempts WHERE qkey=? AND status='AC' AND assisted=0 LIMIT 1",[row.key])};});const read=s.read_version===p.version;return {...c,state:s,read,questions,completed:read&&questions.every(q=>q.passed)};})};}
+ const resumeKey=id=>'plugin:learning:resume:'+id;
+ function resume(p){
+  let saved=get(resumeKey(p.id));
+  if(!saved){for(const row of store.all('SELECT payload FROM sessions ORDER BY updated_at DESC')){const origin=JSON.parse(row.payload).pluginContext;if(origin?.id==='learning'&&origin.courseId===p.id&&p.chapters.some(c=>c.id===origin.chapterId)){saved={chapterId:origin.chapterId,scrollTop:0,version:p.version};break;}}}
+  const chapter=p.chapters.find(c=>c.id===saved?.chapterId);
+  return chapter?{...saved,chapterTitle:chapter.title,scrollTop:saved.version===p.version?saved.scrollTop||0:0}:null;
+ }
+ function visit(id,chapterId,scrollTop){
+  const p=pack(id);ensure(p.chapters.some(c=>c.id===chapterId),'章节不存在');
+  ensure(typeof scrollTop==='number'&&Number.isFinite(scrollTop)&&scrollTop>=0&&scrollTop<=10000000,'阅读位置无效');
+  const value={chapterId,scrollTop:Math.round(scrollTop),version:p.version,updatedAt:new Date().toISOString()};
+  return store.transaction(()=>{put(resumeKey(id),value);return value;});
+ }
+ function detail(id){const p=pack(id);return {...p,resume:resume(p),chapters:p.chapters.map(c=>{
+  const s=state(id,c.id);const questions=c.question_refs.map(r=>{
+   const row=store.one('SELECT key,payload FROM questions WHERE bank_id=? AND id=? AND current=1',[r.bank_id,r.question_id]);
+   if(!row)return {...r,missing:true,answered:false,passed:false};
+   const q=JSON.parse(row.payload);
+   return {...r,key:row.key,title:q.title,
+    answered:!!store.one("SELECT id FROM attempts WHERE qkey=? AND status IN ('AC','WA','CE','RE','TLE','MLE','OLE') LIMIT 1",[row.key]),
+    passed:!!store.one("SELECT id FROM attempts WHERE qkey=? AND status='AC' AND assisted=0 LIMIT 1",[row.key])};
+  });const read=s.read_version===p.version;
+  return {...c,state:s,read,questions,completed:read&&questions.every(q=>q.answered)};
+ })};}
  return {handlers:{
-  list:()=>store.all("SELECT value FROM meta WHERE key LIKE 'plugin:learning:pack:%'").map(r=>{const p=JSON.parse(r.value),d=detail(p.id);return {id:p.id,title:p.title,description:p.description||'',version:p.version,chapters:d.chapters.length,completed:d.chapters.filter(c=>c.completed).length};}),
+  list:()=>store.all("SELECT value FROM meta WHERE key LIKE 'plugin:learning:pack:%'").map(r=>{
+   const p=JSON.parse(r.value),d=detail(p.id),questions=d.chapters.flatMap(c=>c.questions),readChapters=d.chapters.filter(c=>c.read).length,answered=questions.filter(q=>q.answered).length;
+   return {id:p.id,title:p.title,description:p.description||'',version:p.version,chapters:d.chapters.length,completed:d.chapters.filter(c=>c.completed).length,readChapters,answered,totalQuestions:questions.length,passed:questions.filter(q=>q.passed).length,progressPercent:Math.round((readChapters+answered)/(d.chapters.length+questions.length)*100),resume:d.resume};
+  }),
+  visit:({id,chapterId,scrollTop=0})=>visit(id,chapterId,scrollTop),
   detail:({id})=>detail(id),
   import:({pack:p})=>{const checked=validate(p);return store.transaction(()=>{if(checked)store.importBank(checked.bank);put(packKey(p.id),p);return {id:p.id,title:p.title,chapters:p.chapters.length};});},
   save:({id,chapterId,patch})=>{const p=pack(id);ensure(p.chapters.some(c=>c.id===chapterId),'章节不存在');ensure(patch&&Object.keys(patch).every(k=>['note_md','content_md','read'].includes(k)),'不支持的章节字段');for(const k of ['note_md','content_md'])if(Object.hasOwn(patch,k))ensure(typeof patch[k]==='string'&&patch[k].length<=500000,'文本无效或过长');if(Object.hasOwn(patch,'content_md'))ensure(patch.content_md.trim(),'章节正文不能为空');if(Object.hasOwn(patch,'read'))ensure(typeof patch.read==='boolean','已读状态必须为布尔值');return store.transaction(()=>{const s=state(id,chapterId);for(const k of ['note_md','content_md'])if(Object.hasOwn(patch,k))s[k]=patch[k];if(Object.hasOwn(patch,'content_md'))s.read_version=null;if(Object.hasOwn(patch,'read'))s.read_version=patch.read?p.version:null;put(stateKey(id,chapterId),s);return s;});},
   quiz:({id,chapterId})=>{const c=detail(id).chapters.find(c=>c.id===chapterId);ensure(c,'章节不存在');ensure(c.questions.every(q=>q.key),'关联题库缺失，请重新导入');return c.questions.map(q=>q.key);},
-  startQuiz:({id,chapterId})=>{const p=detail(id),c=p.chapters.find(c=>c.id===chapterId);ensure(c,'章节不存在');ensure(c.questions.every(q=>q.key),'关联题库缺失，请重新导入');return store.transaction(()=>{const s=state(id,chapterId);s.read_version=p.version;put(stateKey(id,chapterId),s);return store.startSession(c.questions.map(q=>q.key),'sequence',0,{id:'learning',courseId:id,chapterId});});},
+  startQuiz:({id,chapterId})=>{const p=detail(id),c=p.chapters.find(c=>c.id===chapterId);ensure(c,'章节不存在');ensure(c.questions.every(q=>q.key),'关联题库缺失，请重新导入');return store.transaction(()=>{const s=state(id,chapterId);s.read_version=p.version;put(stateKey(id,chapterId),s);const last=resume(p);visit(id,chapterId,last?.chapterId===chapterId?last.scrollTop:0);return store.startSession(c.questions.map(q=>q.key),'sequence',0,{id:'learning',courseId:id,chapterId});});},
   export:({id})=>{const p=structuredClone(pack(id));let edited=false;for(const c of p.chapters){const s=state(id,c.id);if(s.content_md!==null){c.content_md=s.content_md;edited=true;}}if(edited){const key='plugin:learning:export:'+id,digest=hash(p),old=get(key);if(old?.digest===digest)p.version=old.version;else{const start=old&&compare(old.version,p.version)>0?old.version:p.version;const v=start.split('.').map(Number);v[2]++;p.version=v.join('.');store.transaction(()=>put(key,{digest,version:p.version}));}}return p;}
  },dispose(){}};
 }

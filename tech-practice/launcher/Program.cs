@@ -10,8 +10,8 @@ using System.Windows.Forms;
 [assembly: AssemblyDescription("知习技术练习室启动入口")]
 [assembly: AssemblyCompany("TechPractice")]
 [assembly: AssemblyProduct("知习")]
-[assembly: AssemblyVersion("0.4.0.0")]
-[assembly: AssemblyFileVersion("0.4.0.0")]
+[assembly: AssemblyVersion("0.4.1.0")]
+[assembly: AssemblyFileVersion("0.4.1.0")]
 
 internal static class Program
 {
